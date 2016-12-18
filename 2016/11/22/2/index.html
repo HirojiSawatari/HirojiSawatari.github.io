@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Android开发获取设备硬件相关信息 | Essays from KT</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="Essays from KT">
+
+  
+  
+  
+
+  
+</head>
+
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="\images\logo.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Essays from Ka</h1>
+            <h2 class="blog-description"></h2>
+        </div>
+    </div>
+</header>
+  
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2016-11-22T14:25:00.000Z" itemprop="datePublished">
+          2016-11-22
+      </time>
+    
+    
+    | 
+    <a href='/tags/Android开发/'>Android开发</a>
+    
+    
+</span>
+    <h1 class="post-title">Android开发获取设备硬件相关信息</h1>
+    <section class="post-content">
+      <p>在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。本文所有代码能获取的设备信息如下图所示：</p>
+<p><img src="\images\2_1.png" alt="Screenshot"></p>
+<p>首先在manifest.xml添加以下权限：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_WIFI_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CAMERA"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CHANGE_NETWORK_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CHANGE_WIFI_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.RESTART_PACKAGES"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_LOGS"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_PHONE_STATE"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p>下面开始逐一获取设备相关信息分条目添加至某一FragmentPage中的LinearLayout pwTable中。<br>通过以下代码获取设备型号：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_model = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_model.setTextColor(Color.BLACK);</div><div class="line">p_model.setText(<span class="string">"手机型号："</span> + android.os.Build.MODEL);</div><div class="line">pwTable.addView(p_model);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取手机品牌：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_brand = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_brand.setTextColor(Color.BLACK);</div><div class="line">p_brand.setText(<span class="string">"手机品牌："</span> + android.os.Build.BRAND);</div><div class="line">pwTable.addView(p_brand);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取手机制造商，此条目信息通常情况与手机品牌一致：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_company = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_company.setTextColor(Color.BLACK);</div><div class="line">p_company.setText(<span class="string">"制造商："</span> + android.os.Build.MANUFACTURER);</div><div class="line">pwTable.addView(p_company);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取安卓版本信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_and = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_and.setTextColor(Color.BLACK);</div><div class="line">p_and.setText(<span class="string">"Android版本号："</span> + android.os.Build.VERSION.RELEASE);</div><div class="line">pwTable.addView(p_and);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU型号信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_cpuname = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_cpuname.setTextColor(Color.BLACK);</div><div class="line">p_cpuname.setText(<span class="string">"CPU型号："</span> + android.os.Build.HARDWARE);</div><div class="line">pwTable.addView(p_cpuname);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU架构信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_cputype = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_cputype.setTextColor(Color.BLACK);</div><div class="line">p_cputype.setText(<span class="string">"CPU架构："</span> + android.os.Build.CPU_ABI);</div><div class="line">pwTable.addView(p_cputype);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU核心数信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> cores;</div><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">	cores = <span class="keyword">new</span> File(<span class="string">"/sys/devices/system/cpu/"</span>).listFiles(CPU_FILTER).length;</div><div class="line">&#125; <span class="keyword">catch</span>(SecurityException e)&#123;</div><div class="line">	cores = <span class="number">0</span>;</div><div class="line">&#125; <span class="keyword">catch</span>(NullPointerException e)&#123;</div><div class="line">	cores = <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line">TextView p_cpucore = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_cpucore.setTextColor(Color.BLACK);</div><div class="line">p_cpucore.setText(<span class="string">"CPU核心数："</span> + cores);</div><div class="line">pwTable.addView(p_cpucore);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU最高频率信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> maxRate1 = <span class="number">0</span>;</div><div class="line"><span class="keyword">double</span> temp;</div><div class="line">String maxRate = <span class="string">"0"</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	FileReader fr1 = <span class="keyword">new</span> FileReader(<span class="string">"/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"</span>);</div><div class="line">	BufferedReader br1 = <span class="keyword">new</span> BufferedReader(fr1);</div><div class="line">	String text1 = br1.readLine();</div><div class="line">	maxRate1 = Integer.parseInt(text1);</div><div class="line">	temp = maxRate1 / <span class="number">1000.0</span>;</div><div class="line">	maxRate = String.format(<span class="string">"%.1f"</span>, temp);</div><div class="line">	br1.close();</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	<span class="comment">// TODO 自动生成的 catch 块</span></div><div class="line">&#125;</div><div class="line">TextView p_cpurate = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_cpurate.setTextColor(Color.BLACK);</div><div class="line">p_cpurate.setText(<span class="string">"CPU最高频率："</span> + maxRate + <span class="string">"MHz"</span>);</div><div class="line">pwTable.addView(p_cpurate);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU最低频率信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> minRate1 = <span class="number">0</span>;</div><div class="line">String minRate = <span class="string">"0"</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	FileReader fr2 = <span class="keyword">new</span> FileReader(<span class="string">"/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq"</span>);</div><div class="line">	BufferedReader br2 = <span class="keyword">new</span> BufferedReader(fr2);</div><div class="line">	String text2 = br2.readLine();</div><div class="line">	minRate1 = Integer.parseInt(text2);</div><div class="line">	temp = minRate1 / <span class="number">1000.0</span>;</div><div class="line">	minRate = String.format(<span class="string">"%.1f"</span>, temp);</div><div class="line">	br2.close();</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	<span class="comment">// TODO 自动生成的 catch 块</span></div><div class="line">&#125;</div><div class="line">TextView p_cpurate2 = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_cpurate2.setTextColor(Color.BLACK);</div><div class="line">p_cpurate2.setText(<span class="string">"CPU最低频率："</span> + minRate + <span class="string">"MHz"</span>);</div><div class="line">pwTable.addView(p_cpurate2);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU温度：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">String text4 = <span class="string">"0"</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	FileReader fr4 = <span class="keyword">new</span> FileReader(<span class="string">"/sys/class/thermal/thermal_zone9/subsystem/thermal_zone9/temp"</span>);</div><div class="line">	BufferedReader br4 = <span class="keyword">new</span> BufferedReader(fr4);</div><div class="line">	text4 = br4.readLine();</div><div class="line">	br4.close();</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	<span class="comment">// TODO 自动生成的 catch 块</span></div><div class="line">&#125;</div><div class="line">TextView p_temp = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_temp.setTextColor(Color.BLACK);</div><div class="line">p_temp.setText(<span class="string">"CPU温度："</span> + text4 + <span class="string">"℃"</span>);</div><div class="line">pwTable.addView(p_temp);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取RAM大小信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> memorySize = <span class="number">0</span>;</div><div class="line">String ramSize = <span class="string">"0"</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	FileReader fr3 = <span class="keyword">new</span> FileReader(<span class="string">"/proc/meminfo"</span>);</div><div class="line">	BufferedReader br3 = <span class="keyword">new</span> BufferedReader(fr3);</div><div class="line">	String memoryLine = br3.readLine();</div><div class="line">	String subMemoryLine = memoryLine.substring(memoryLine.indexOf(<span class="string">"MemTotal:"</span>));</div><div class="line">	memorySize = Integer.parseInt(subMemoryLine.replaceAll(<span class="string">"\\D+"</span>, <span class="string">""</span>));</div><div class="line">	temp = memorySize / <span class="number">1000000.0</span>;</div><div class="line">	ramSize = String.format(<span class="string">"%.1f"</span>, temp);</div><div class="line">	br3.close();</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	<span class="comment">// TODO 自动生成的 catch 块</span></div><div class="line">&#125;</div><div class="line">TextView p_ram = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_ram.setTextColor(Color.BLACK);</div><div class="line">p_ram.setText(<span class="string">"RAM大小："</span> + ramSize + <span class="string">"GB"</span>);</div><div class="line">pwTable.addView(p_ram);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取ROM大小信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">StatFs stat = <span class="keyword">new</span> StatFs(Environment.getExternalStorageDirectory().getPath());</div><div class="line"><span class="keyword">long</span> blockSize = stat.getBlockSize();</div><div class="line"><span class="keyword">long</span> totalBlocks = stat.getBlockCount();</div><div class="line"><span class="keyword">long</span> romSize1 = blockSize * totalBlocks;</div><div class="line">temp = romSize1 / <span class="number">1000000000.0</span>;</div><div class="line">String romSize = String.format(<span class="string">"%.1f"</span>, temp);</div><div class="line">TextView p_rom = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_rom.setTextColor(Color.BLACK);</div><div class="line">p_rom.setText(<span class="string">"ROM大小："</span> + romSize + <span class="string">"GB"</span>);</div><div class="line">pwTable.addView(p_rom);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取电池容量信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">PowerProfile pp = <span class="keyword">new</span> PowerProfile(getActivity());</div><div class="line"><span class="keyword">int</span> batteryRate = (<span class="keyword">int</span>) pp.getBatteryCapacity();</div><div class="line">TextView p_batteryrate = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_batteryrate.setTextColor(Color.BLACK);</div><div class="line">p_batteryrate.setText(<span class="string">"电池容量："</span> + batteryRate + <span class="string">"mAh"</span>);</div><div class="line">pwTable.addView(p_batteryrate);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取前置摄像头像素信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_front = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_front.setTextColor(Color.BLACK);</div><div class="line">p_front.setText(<span class="string">"前置摄像头像素："</span> + CameraUtils.getCameraPixels(CameraUtils.HasFrontCamera()));</div><div class="line">pwTable.addView(p_front);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取后置摄像头像素信息： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_back = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_back.setTextColor(Color.BLACK);</div><div class="line">p_back.setText(<span class="string">"后置摄像头像素："</span> + CameraUtils.getCameraPixels(CameraUtils.HasBackCamera()));</div><div class="line">pwTable.addView(p_back);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取屏幕分辨率信息（有虚拟按键时会有误差）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">WindowManager windowManager = getActivity().getWindowManager();    </div><div class="line">Display display = windowManager.getDefaultDisplay();    </div><div class="line"><span class="keyword">int</span> screenWidth = screenWidth = display.getWidth();    </div><div class="line"><span class="keyword">int</span> screenHeight = screenHeight = display.getHeight();</div><div class="line">TextView p_screen = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_screen.setTextColor(Color.BLACK);</div><div class="line">p_screen.setText(<span class="string">"屏幕分辨率："</span> + screenHeight + <span class="string">"×"</span> + screenWidth);</div><div class="line">pwTable.addView(p_screen);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取本机号码信息（双卡手机此方法只能获取卡1号码）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_num = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_num.setTextColor(Color.BLACK);</div><div class="line">p_num.setText(<span class="string">"本机号码："</span> + num);</div><div class="line">pwTable.addView(p_num);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取运营商名称（同样此方法只能获取卡1运营商）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_nm = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_nm.setTextColor(Color.BLACK);</div><div class="line">p_nm.setText(<span class="string">"运营商名称："</span> + nm);</div><div class="line">pwTable.addView(p_nm);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取IMEI码（同样获取的是卡1的IMEI码）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_imei = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_imei.setTextColor(Color.BLACK);</div><div class="line">p_imei.setText(<span class="string">"IMEI码："</span> + imei);</div><div class="line">pwTable.addView(p_imei);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取手机MAC地址：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">WifiManager wifiMng = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);</div><div class="line">WifiInfo wifiInfor = wifiMng.getConnectionInfo();</div><div class="line">TextView p_mac = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_mac.setTextColor(Color.BLACK);</div><div class="line">p_mac.setText(<span class="string">"MAC地址："</span> + wifiInfor.getMacAddress());</div><div class="line">pwTable.addView(p_mac);</div></pre></td></tr></table></figure>
+<p>具体实际应用请见我的GitHub：<br><a href="https://github.com/HirojiSawatari/Sysmonitor/blob/master/src/hg/crx/sysmonitor/FragmentPage2.java" target="_blank" rel="external">https://github.com/HirojiSawatari/Sysmonitor/blob/master/src/hg/crx/sysmonitor/FragmentPage2.java</a></p>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Tou Ka</h4>
+    <p>二十三年前、この腐敗した世界に堕とされた...</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://yoursite.com/2016/11/22/2/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/11/22/2/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://yoursite.com/2016/11/22/2/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/2016/12/19/3/">
+        ← Scrapy爬虫 + Tkinter爬取天猫热门商品
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2015/05/25/1/">
+        求索路（一） →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
+
+  
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Sawatari Hiroji (Ka Tou)</a> &copy; 2015-2016 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+
+
+
+
+</body>
+</html>
