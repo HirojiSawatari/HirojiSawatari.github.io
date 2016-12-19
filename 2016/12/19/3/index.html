@@ -1,59 +1,234 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Scrapy爬虫 + Tkinter爬取天猫热门商品 | Essays from KT</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+    
 
-  <link href="\images\favicon.ico" rel="icon" type="\images\favicon.ico">
+    <title>
+      Scrapy爬虫 + Tkinter爬取天猫热门商品 | Essays from KT 
+    </title>
 
-  <meta name="generator" content="Essays from KT">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Tou Ka">
+    
+    
 
-  
-  
-  
+    <meta name="description" content="每当双十一、双十二，看着淘宝、天猫、京东网页上琳琅满目的商品，经常有人会因为选择困难症不知道该购买什么好。而且购物网站商品的排列顺序经常会受到人为控制。因此，一个具有通过输入关键字，筛选相关热门产品并按热门程度排序的程序是有存在意义的。本程序以天猫为例，使用Python语言开发，利用Scrapy框架爬取网页信息，利用Tkinter框架构建程序GUI。源代码已上传至GitHub：https://gi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrapy爬虫 + Tkinter爬取天猫热门商品 | Essays from KT">
+<meta property="og:url" content="http://yoursite.com/2016/12/19/3/index.html">
+<meta property="og:site_name" content="Essays from KT">
+<meta property="og:description" content="每当双十一、双十二，看着淘宝、天猫、京东网页上琳琅满目的商品，经常有人会因为选择困难症不知道该购买什么好。而且购物网站商品的排列顺序经常会受到人为控制。因此，一个具有通过输入关键字，筛选相关热门产品并按热门程度排序的程序是有存在意义的。本程序以天猫为例，使用Python语言开发，利用Scrapy框架爬取网页信息，利用Tkinter框架构建程序GUI。源代码已上传至GitHub：https://gi">
+<meta property="og:image" content="http://yoursite.com/\images\3_1.png">
+<meta property="og:updated_time" content="2016-12-19T03:55:21.903Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scrapy爬虫 + Tkinter爬取天猫热门商品 | Essays from KT">
+<meta name="twitter:description" content="每当双十一、双十二，看着淘宝、天猫、京东网页上琳琅满目的商品，经常有人会因为选择困难症不知道该购买什么好。而且购物网站商品的排列顺序经常会受到人为控制。因此，一个具有通过输入关键字，筛选相关热门产品并按热门程度排序的程序是有存在意义的。本程序以天猫为例，使用Python语言开发，利用Scrapy框架爬取网页信息，利用Tkinter框架构建程序GUI。源代码已上传至GitHub：https://gi">
+<meta name="twitter:image" content="http://yoursite.com/\images\3_1.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
 
-  
 </head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
 
 
-<body class="post-template">
+  <div class="panel-main">
 
-  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="\images\logo.png" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Essays from KT</h1>
-            <h2 class="blog-description"></h2>
-        </div>
-    </div>
-</header>
   
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2016-12-18T16:10:23.000Z" itemprop="datePublished">
-          2016-12-19
-      </time>
+        
+        <a href="/" title="link to homepage for Essays from KT"><img src="/images/logo2.png" width="80" alt="Essays from KT logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Essays from KT</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          二十三年前、この腐敗した世界に堕とされた...
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
     
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/HirojiSawatari" title="Ka Tou on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
     
-    | 
-    <a href='/tags/Python开发/'>Python开发</a>
+
+    <!-- China social icon -->
+    <!--
     
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+    -->
+
+      <li class="navigation__item">
+        <a href="https://weibo.com/u/2196708441" title="Ka Tou on Weibo">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
     
-</span>
     <h1 class="post-title">Scrapy爬虫 + Tkinter爬取天猫热门商品</h1>
-    <section class="post-content">
-      <p>每当双十一、双十二，看着淘宝、天猫、京东网页上琳琅满目的商品，经常有人会因为选择困难症不知道该购买什么好。而且购物网站商品的排列顺序经常会受到人为控制。因此，一个具有通过输入关键字，筛选相关热门产品并按热门程度排序的程序是有存在意义的。本程序以天猫为例，使用Python语言开发，利用Scrapy框架爬取网页信息，利用Tkinter框架构建程序GUI。源代码已上传至GitHub：<a href="https://github.com/HirojiSawatari/FindGoods" target="_blank" rel="external">https://github.com/HirojiSawatari/FindGoods</a><br>最终界面如下所示：</p>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-12-19" class="post-meta__date date">2016-12-19</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/开发文档/">开发文档</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/Python开发/">Python开发</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>每当双十一、双十二，看着淘宝、天猫、京东网页上琳琅满目的商品，经常有人会因为选择困难症不知道该购买什么好。而且购物网站商品的排列顺序经常会受到人为控制。因此，一个具有通过输入关键字，筛选相关热门产品并按热门程度排序的程序是有存在意义的。本程序以天猫为例，使用Python语言开发，利用Scrapy框架爬取网页信息，利用Tkinter框架构建程序GUI。源代码已上传至GitHub：<a href="https://github.com/HirojiSawatari/FindGoods" target="_blank" rel="external">https://github.com/HirojiSawatari/FindGoods</a><br>最终界面如下所示：</p>
 <p><img src="\images\3_1.png" alt="Screenshot"></p>
 <h2 id="一、框架安装"><a href="#一、框架安装" class="headerlink" title="一、框架安装"></a>一、框架安装</h2><p>Tkinter框架为内置模块，无需额外安装，而Scrapy框架安装方法见官方链接：<a href="https://doc.scrapy.org/en/latest/intro/install.html" target="_blank" rel="external">https://doc.scrapy.org/en/latest/intro/install.html</a></p>
 <h2 id="二、Scrapy配置"><a href="#二、Scrapy配置" class="headerlink" title="二、Scrapy配置"></a>二、Scrapy配置</h2><p>构建项目后，由于天猫具有反爬取措施，首先需要在配置文件settings.py中输入以下代码：</p>
@@ -91,64 +266,58 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 监听Click</span></div><div class="line">tree.bind(<span class="string">"&lt;Double-1&gt;"</span>, onDBClick)</div><div class="line">跳转函数代码如下：</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">onDBClick</span><span class="params">(event)</span>:</span></div><div class="line">    <span class="comment"># 点击跳转天猫</span></div><div class="line">    item = tree.selection()[<span class="number">0</span>]</div><div class="line">    info = tree.item(item, <span class="string">"values"</span>)</div><div class="line">    url = info[<span class="number">2</span>]</div><div class="line">    webbrowser.open_new(url)</div></pre></td></tr></table></figure>
 <p>以上就是构建该项目的全部步骤。执行main.py即可实现项目的启动。</p>
 
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Tou Ka</h4>
-    <p>二十三年前、この腐敗した世界に堕とされた...</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://yoursite.com/2016/12/19/3/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/12/19/3/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://yoursite.com/2016/12/19/3/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <span class="page-number">•</span>
-    
-    <a class="older-posts" href="/2016/11/22/2/">
-        Android开发获取设备硬件相关信息 →
-    </a>
-    
-</nav>
-  <div id="comment" class="comments-area">
-    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
-
-    
-</div>
-</main>
-
+  </section>
 
   
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Sawatari Hiroji (Ka Tou)</a> &copy; 2015-2016 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2015-2016 <a href="https://hirojisawatari.github.io/">Sawatari Hiroji (Ka Tou)</a> 版权所有 | 由 <a href="https://hexo.io/">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/someus/huno">Huno</a></span>
+    
 </footer>
+        </div>
+    </div>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
 
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
 
 
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
 
 
-
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
 
 </body>
 </html>
