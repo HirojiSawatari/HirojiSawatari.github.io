@@ -925,7 +925,7 @@ html {
 
 body {
   /*font-family: "Raleway", sans-serif;*/
-  font-family:  "Raleway",Verdana,sans-serif,宋体, serif, "Droid Serif", Helvetica Neue, Helvetica, Arial;
+  font-family:  "Raleway", 微软雅黑, Verdana, sans-serif, 宋体, serif, "Droid Serif", Helvetica Neue, Helvetica, Arial;
   font-size: 1em;
   color: #666666; }
 
@@ -954,14 +954,14 @@ h5 {
   margin-top: .8em;
   margin-bottom: .4em;
   /*font-family: "Roboto Slab", serif;*/
-  font-family: "Raleway",Verdana,sans-serif,宋体, serif, "Droid Serif", Helvetica Neue, Helvetica, Arial;
+  font-family: "Raleway", 微软雅黑, Verdana, sans-serif, 宋体, serif, "Droid Serif", Helvetica Neue, Helvetica, Arial;
   font-weight: lighter;
   color: #333333;
   -webkit-font-smoothing: antialiased; }
 
 h1 {
   margin-top: 0;
-  font-size: 3.2em;
+  font-size: 2.5em;
   line-height: 1.2em;
   letter-spacing: .05em; }
 
@@ -997,7 +997,7 @@ blockquote {
   border: 1px solid #eeeeee;
   border-radius: 3px;
   /*font-family: "Roboto Slab", serif;*/
-  font-family:  "Raleway",Verdana,sans-serif,宋体, serif, "Droid Serif", Helvetica Neue, Helvetica, Arial;
+  font-family:  "Raleway", 微软雅黑, Verdana, sans-serif, 宋体, serif, "Droid Serif", Helvetica Neue, Helvetica, Arial;
   font-weight: lighter;
   font-style: italic;
   font-size: 1.0em;
@@ -1428,7 +1428,6 @@ i {
   margin-bottom: .2em;
   font-size: 1.8em;
   -webkit-font-smoothing: antialiased;
-  font-weight: bold;
   line-height: 1.3em; }
   .post-list__post-title a {
     color: #333333; }
