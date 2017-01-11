@@ -27,7 +27,8 @@
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_3.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_4.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_5.png">
-<meta property="og:updated_time" content="2017-01-11T15:20:00.616Z">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\6_6.png">
+<meta property="og:updated_time" content="2017-01-11T15:34:43.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在GitHub上利用Hexo搭建个人博客的详细步骤 | Ka Tou Space">
 <meta name="twitter:description" content="最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。">
@@ -263,10 +264,10 @@ classes that you can use:
   <section id="post-content" class="article-content post">
     <p>最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。<a id="more"></a></p>
 <p><img src="\images\6_1.png" alt="Screenshot"></p>
-<h2 id="一、在GitHub上建立博客源码仓库"><a href="#一、在GitHub上建立博客源码仓库" class="headerlink" title="一、在GitHub上建立博客源码仓库"></a>一、在GitHub上建立博客源码仓库</h2><p>首先，在GitHub上建立一个空仓库用来存放博客源码，仓库命名方式必须为“GitHub账户名.github.io”。</p>
+<h3 id="一、在GitHub上建立博客源码仓库"><a href="#一、在GitHub上建立博客源码仓库" class="headerlink" title="一、在GitHub上建立博客源码仓库"></a>一、在GitHub上建立博客源码仓库</h3><p>首先，在GitHub上建立一个空仓库用来存放博客源码，仓库命名方式必须为“GitHub账户名.github.io”。</p>
 <p><img src="\images\6_2.png" alt="Screenshot"></p>
 <p>同时，安装<a href="https://desktop.github.com/" target="_blank" rel="external">GitHub客户端</a>到本地。安装本地后打开客户端，登录账号。</p>
-<h2 id="二、安装Hexo"><a href="#二、安装Hexo" class="headerlink" title="二、安装Hexo"></a>二、安装Hexo</h2><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo</a>是一个快速简洁且高效的博客框架。在使用Hexo之前需要安装<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>以及其npm管理模块。</p>
+<h3 id="二、安装Hexo"><a href="#二、安装Hexo" class="headerlink" title="二、安装Hexo"></a>二、安装Hexo</h3><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo</a>是一个快速简洁且高效的博客框架。在使用Hexo之前需要安装<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>以及其npm管理模块。</p>
 <p>安装Node.js完毕后，打开GitHub客户端中的Git Shell，输入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
 <p>Hexo安装完毕后先建立一个存储博客的文件夹，再进入文件夹路径，输入命令：</p>
@@ -274,14 +275,14 @@ classes that you can use:
 <p><img src="\images\6_3.png" alt="Screenshot"></p>
 <p>输入完毕后hexo项目即初始化成功。然后进入博客仓库目录，输入以下命令安装依赖模块：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install</div></pre></td></tr></table></figure>
-<p>安装完毕后输入以下命令即可以运行Hexo服务端，在浏览器输入<a href="http://127.0.0.1:4000即可以看见初始状态的博客页面。" target="_blank" rel="external">http://127.0.0.1:4000即可以看见初始状态的博客页面。</a></p>
+<p>安装完毕后输入以下命令即可以运行Hexo服务端，在浏览器输入<a href="http://127.0.0.1:4000" target="_blank" rel="external">http://127.0.0.1:4000</a>即可以看见初始状态的博客页面。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
 <p><img src="\images\6_4.png" alt="Screenshot"></p>
-<h2 id="三、安装Hexo主题"><a href="#三、安装Hexo主题" class="headerlink" title="三、安装Hexo主题"></a>三、安装Hexo主题</h2><p>初始主题个人觉得不是很美观。试用了几个主题后我还是决定使用<a href="https://github.com/letiantian/huno" target="_blank" rel="external">Huno</a>主题。</p>
+<h3 id="三、安装Hexo主题"><a href="#三、安装Hexo主题" class="headerlink" title="三、安装Hexo主题"></a>三、安装Hexo主题</h3><p>初始主题个人觉得不是很美观。试用了几个主题后我还是决定使用<a href="https://github.com/letiantian/huno" target="_blank" rel="external">Huno</a>主题。</p>
 <p>安装Huno主题首先需要打开Git Shell，在博客仓库目录执行以下命令，从而将主题下载到博客仓库中的theme/huno目录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/letiantian/huno.git theme/huno</div></pre></td></tr></table></figure>
 <p>主题下载完毕后打开博客根目录的配置文件_config.yml，修改theme为theme: huno，应用新主题。输入huno s指令重启服务端后即可生效。</p>
-<h2 id="四、提交仓库至GitHub"><a href="#四、提交仓库至GitHub" class="headerlink" title="四、提交仓库至GitHub"></a>四、提交仓库至GitHub</h2><p>打开根目录配置文件_config.yml，将deploy改为如下所示：</p>
+<h3 id="四、提交仓库至GitHub"><a href="#四、提交仓库至GitHub" class="headerlink" title="四、提交仓库至GitHub"></a>四、提交仓库至GitHub</h3><p>打开根目录配置文件_config.yml，将deploy改为如下所示：</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">  <span class="attribute">type</span>: git</div><div class="line">  <span class="attribute">repository</span>: <span class="attribute">https</span>:<span class="comment">//github.com/HirojiSawatari/HirojiSawatari.github.io.git</span></div><div class="line">  <span class="attribute">branch</span>: master</div></pre></td></tr></table></figure>
 <p>其中repository项的值为之前建立的博客源码仓库地址，可从下图所示位置获取。</p>
 <p><img src="\images\6_5.png" alt="Screenshot"></p>
@@ -291,12 +292,17 @@ classes that you can use:
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
 <p>再执行以下命令生成静态站点并发布，即可在互联网上打开新建的博客了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
-<h2 id="发布博文"><a href="#发布博文" class="headerlink" title="发布博文"></a>发布博文</h2><p>在博客仓库执行以下命令即可以自动在source/_posts目录下生成对应的markdown文件。</p>
+<h3 id="五、发布博文"><a href="#五、发布博文" class="headerlink" title="五、发布博文"></a>五、发布博文</h3><p>在博客仓库执行以下命令即可以自动在source/_posts目录下生成对应的markdown文件。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &lt;filename&gt;</div></pre></td></tr></table></figure>
 <p>文章编写完毕后执行以下命令即可提交至服务器。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
 <p>同时，在编写过程中可以执行以下命令在本地服务器查看实时效果。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo s</div></pre></td></tr></table></figure>
+<h3 id="六、自定义域名"><a href="#六、自定义域名" class="headerlink" title="六、自定义域名"></a>六、自定义域名</h3><p>原本的域名是GitHub分配的域名，个性化不足。因此我决定注册一个自己的域名。注册完自己的域名后需要将新域名与博客绑定。打开博客仓库目录中public目录，新建“CNAME”文件，在该文件中写入注册的新域名。</p>
+<p>然后解析新域名，向域名的DNS配置中添加以下两条记录：</p>
+<p><img src="\images\6_6.png" alt="Screenshot"></p>
+<p>其中记录类型为CNAME，记录值即为GitHub分配的博客原域名，主机记录分别为“@”和“www”,其余项默认即可。</p>
+<p>配置完毕后打开Git Shell执行发布命令，稍等几分钟后即可使用新域名进入博客主页。</p>
 
   </section>
 
