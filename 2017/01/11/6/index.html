@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_4.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_5.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_6.png">
-<meta property="og:updated_time" content="2017-01-11T15:34:43.960Z">
+<meta property="og:updated_time" content="2017-01-11T15:44:52.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在GitHub上利用Hexo搭建个人博客的详细步骤 | Ka Tou Space">
 <meta name="twitter:description" content="最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。">
@@ -294,6 +294,10 @@ classes that you can use:
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
 <h3 id="五、发布博文"><a href="#五、发布博文" class="headerlink" title="五、发布博文"></a>五、发布博文</h3><p>在博客仓库执行以下命令即可以自动在source/_posts目录下生成对应的markdown文件。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &lt;filename&gt;</div></pre></td></tr></table></figure>
+<p>初始markdown文件内结构如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: test</div><div class="line">date: 2011-1-1</div><div class="line">tags:</div><div class="line">  - aaa</div><div class="line"><span class="section">categories: AAA</span></div><div class="line">---</div></pre></td></tr></table></figure>
+<p>其中title项为文章的标题；date项为文章建立日期，可以自定义；tags项为文章标签，可设置为多个，多个标签通过键入回车键分隔；categories项为分类，只能设置一个。正文需在最后键入回车键后编写。</p>
+<p>若需生成在首页博文列表可见的摘要信息，则在文章适当位置处键入“<!--more-->”，之前的内容即可展示在首页博文目录中。</p>
 <p>文章编写完毕后执行以下命令即可提交至服务器。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
 <p>同时，在编写过程中可以执行以下命令在本地服务器查看实时效果。</p>
