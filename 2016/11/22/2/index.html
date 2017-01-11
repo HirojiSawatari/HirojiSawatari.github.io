@@ -16,26 +16,17 @@
     
     
 
-    <meta name="description" content="在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。本文所有代码能获取的设备信息如下图所示：
-
-首先在manifest.xml添加以下权限：
-123456789&amp;lt;uses-permission android:name=&quot;android.p">
+    <meta name="description" content="在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android开发获取设备硬件相关信息 | Ka Tou Space">
 <meta property="og:url" content="http://yoursite.com/2016/11/22/2/index.html">
 <meta property="og:site_name" content="Ka Tou Space">
-<meta property="og:description" content="在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。本文所有代码能获取的设备信息如下图所示：
-
-首先在manifest.xml添加以下权限：
-123456789&amp;lt;uses-permission android:name=&quot;android.p">
+<meta property="og:description" content="在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。">
 <meta property="og:image" content="http://yoursite.com/\images\2_1.png">
-<meta property="og:updated_time" content="2016-12-19T03:55:08.798Z">
+<meta property="og:updated_time" content="2017-01-11T10:47:59.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发获取设备硬件相关信息 | Ka Tou Space">
-<meta name="twitter:description" content="在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。本文所有代码能获取的设备信息如下图所示：
-
-首先在manifest.xml添加以下权限：
-123456789&amp;lt;uses-permission android:name=&quot;android.p">
+<meta name="twitter:description" content="在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。">
 <meta name="twitter:image" content="http://yoursite.com/\images\2_1.png">
     
     
@@ -266,7 +257,7 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。本文所有代码能获取的设备信息如下图所示：</p>
+    <p>在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。<a id="more"></a>本文所有代码能获取的设备信息如下图所示：</p>
 <p><img src="\images\2_1.png" alt="Screenshot"></p>
 <p>首先在manifest.xml添加以下权限：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_WIFI_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CAMERA"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CHANGE_NETWORK_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CHANGE_WIFI_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.RESTART_PACKAGES"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_LOGS"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_PHONE_STATE"</span> /&gt;</span></div></pre></td></tr></table></figure>
