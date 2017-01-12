@@ -361,7 +361,7 @@ classes that you can use:
 </div>
             <footer class="footer">
 
-    <span class="footer__copyright">&copy; 2015-2017 <a href="http://www.katouspace.com/">Ka Tou (Sawatari Hiroji)</a> All Right Reserved | Powered by <a href="https://hexo.io/">Hexo</a> | Theme - <a href="https://github.com/someus/huno">Huno</a> Changed by Ka Tou</span>
+    <span class="footer__copyright">&copy; 2015-2017 <a href="http://www.katouspace.com/">Ka Tou (Sawatari Hiroji)</a> All Right Reserved | Powered by <a href="https://hexo.io/">Hexo</a> | Theme - <a href="https://github.com/someus/huno">Huno</a> Modified by Ka Tou</span>
     
 </footer>
         </div>
@@ -392,6 +392,10 @@ classes that you can use:
 <!--[if IE 6]>
   <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
 <![endif]-->
+
+  {% if theme.canvas_nest %}
+    <script type="text/javascript" src="{{ url_for(theme.js) }}/src/canvas-nest.min.js"></script>
+  {% endif %}
 
 </body>
 </html>

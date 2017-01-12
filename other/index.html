@@ -255,6 +255,22 @@ classes that you can use:
 
   </section>
 
+  <div class="ds-share flat" data-thread-key="{{ page.path }}" data-title="{{ page.title }}" data-content="" data-url="{{ page.permalink }}">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-32">
+      	
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      	
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+
   
   
 </article>
@@ -262,7 +278,7 @@ classes that you can use:
 
             <footer class="footer">
 
-    <span class="footer__copyright">&copy; 2015-2017 <a href="http://www.katouspace.com/">Ka Tou (Sawatari Hiroji)</a> All Right Reserved | Powered by <a href="https://hexo.io/">Hexo</a> | Theme - <a href="https://github.com/someus/huno">Huno</a> Changed by Ka Tou</span>
+    <span class="footer__copyright">&copy; 2015-2017 <a href="http://www.katouspace.com/">Ka Tou (Sawatari Hiroji)</a> All Right Reserved | Powered by <a href="https://hexo.io/">Hexo</a> | Theme - <a href="https://github.com/someus/huno">Huno</a> Modified by Ka Tou</span>
     
 </footer>
         </div>
@@ -293,6 +309,10 @@ classes that you can use:
 <!--[if IE 6]>
   <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
 <![endif]-->
+
+  {% if theme.canvas_nest %}
+    <script type="text/javascript" src="{{ url_for(theme.js) }}/src/canvas-nest.min.js"></script>
+  {% endif %}
 
 </body>
 </html>

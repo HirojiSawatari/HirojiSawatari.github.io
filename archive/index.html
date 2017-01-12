@@ -262,31 +262,15 @@ classes that you can use:
     <div class="tagslist">
         
             
+                <span><a href="/tags/感想/" title="感想">感想<sup>1</sup></a></span>
+            
+        
+            
                 <span><a href="/tags/求索路/" title="求索路">求索路<sup>1</sup></a></span>
             
         
             
-                <span><a href="/tags/古气候/" title="古气候">古气候<sup>1</sup></a></span>
-            
-        
-            
-                <span><a href="/tags/CESM/" title="CESM">CESM<sup>1</sup></a></span>
-            
-        
-            
-                <span><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></span>
-            
-        
-            
                 <span><a href="/tags/Java/" title="Java">Java<sup>1</sup></a></span>
-            
-        
-            
-                <span><a href="/tags/NCL/" title="NCL">NCL<sup>1</sup></a></span>
-            
-        
-            
-                <span><a href="/tags/感想/" title="感想">感想<sup>1</sup></a></span>
             
         
             
@@ -295,6 +279,22 @@ classes that you can use:
         
             
                 <span><a href="/tags/Web数据采集/" title="Web数据采集">Web数据采集<sup>1</sup></a></span>
+            
+        
+            
+                <span><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></span>
+            
+        
+            
+                <span><a href="/tags/古气候/" title="古气候">古气候<sup>1</sup></a></span>
+            
+        
+            
+                <span><a href="/tags/NCL/" title="NCL">NCL<sup>1</sup></a></span>
+            
+        
+            
+                <span><a href="/tags/CESM/" title="CESM">CESM<sup>1</sup></a></span>
             
         
             
@@ -318,7 +318,7 @@ classes that you can use:
 </div>
             <footer class="footer">
 
-    <span class="footer__copyright">&copy; 2015-2017 <a href="http://www.katouspace.com/">Ka Tou (Sawatari Hiroji)</a> All Right Reserved | Powered by <a href="https://hexo.io/">Hexo</a> | Theme - <a href="https://github.com/someus/huno">Huno</a> Changed by Ka Tou</span>
+    <span class="footer__copyright">&copy; 2015-2017 <a href="http://www.katouspace.com/">Ka Tou (Sawatari Hiroji)</a> All Right Reserved | Powered by <a href="https://hexo.io/">Hexo</a> | Theme - <a href="https://github.com/someus/huno">Huno</a> Modified by Ka Tou</span>
     
 </footer>
         </div>
@@ -349,6 +349,10 @@ classes that you can use:
 <!--[if IE 6]>
   <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
 <![endif]-->
+
+  {% if theme.canvas_nest %}
+    <script type="text/javascript" src="{{ url_for(theme.js) }}/src/canvas-nest.min.js"></script>
+  {% endif %}
 
 </body>
 </html>
