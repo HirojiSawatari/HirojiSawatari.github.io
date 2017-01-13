@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_4.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_5.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_6.png">
-<meta property="og:updated_time" content="2017-01-13T04:26:22.533Z">
+<meta property="og:updated_time" content="2017-01-13T15:55:21.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用Hexo在GitHub上搭建个人博客 | Ka Tou Space">
 <meta name="twitter:description" content="最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。">
@@ -319,9 +319,114 @@ classes that you can use:
 <p>然后解析新域名，向域名的DNS配置中添加以下两条记录：</p>
 <p><img src="\images\6_6.png" alt="Screenshot"></p>
 <p>其中记录类型为CNAME，记录值即为GitHub分配的博客原域名，主机记录分别为“@”和“www”，其余项默认即可。</p>
-<p>配置完毕后打开Git Shell执行发布命令，稍等几分钟后即可使用新域名进入博客主页。之后若执行“hexo clear”需备份CNAME文件。</p>
+<p>配置完毕后打开Git Shell执行发布命令，稍等几分钟后即可使用新域名进入博客主页。之后若执行“hexo clean”需备份CNAME文件。</p>
 
   </section>
+
+  
+
+<section class="post-donate">
+
+
+  <!-- css -->
+  <style type="text/css">
+    .center {
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("/images/btn_reward.gif") no-repeat;
+      _background: url("/images/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+  <!-- Donate Module -->
+  <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+    <div id="donate_board" class="donate_bar center">
+      
+      <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+      <span class="donate_txt">
+        若本文对您有帮助，请打赏鼓励本人！
+      </span> 
+    </div>
+
+    <!-- /btn_donate & tips -->
+
+    <!-- donate guide -->
+    
+    <div id="donate_guide" class="donate_bar center hidden">
+
+      <a href="/images/wechat.png" title="用微信扫一扫" class="fancybox" rel="article0">
+        <img src="/images/wechat.png" title="微信打赏" height="190px" width="auto"/>
+      </a>
+        
+      &nbsp;&nbsp;
+
+      <a href="/images/alipay.jpg" title="用支付宝扫一扫" class="fancybox" rel="article0">
+        <img src="/images/alipay.jpg" title="支付宝打赏" height="190px" width="auto"/>
+      </a>
+
+      <span class="donate_txt">
+        若本文对您有帮助，请打赏鼓励本人！
+      </span>
+
+    </div>
+    <!-- /donate guide -->
+
+    <!-- donate script -->
+    <script type="text/javascript">
+      document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+      }
+
+      function donate_on_web(){
+        $('#donate').submit();
+      }
+
+      var original_window_onload = window.onload;
+      window.onload = function () {
+        if (original_window_onload) {
+          original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+      }
+    </script>
+    <!-- /donate script -->
+  </div>
+  <!-- /Donate Module -->
+
+
+</section>
+
+
 
   
 
@@ -419,6 +524,8 @@ classes that you can use:
 <!--[if IE 6]>
   <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
 <![endif]-->
+
+    <script type="text/javascript" color="0,0,0" opacity='0.5' zIndex="-1" count="100" src="/js/canvas-nest.min.js"></script>
 
 </body>
 </html>

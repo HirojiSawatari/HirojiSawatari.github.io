@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\7_2.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\7_3.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\7_4.png">
-<meta property="og:updated_time" content="2017-01-13T04:35:53.766Z">
+<meta property="og:updated_time" content="2017-01-13T16:32:37.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个性化Huno主题 | Ka Tou Space">
 <meta name="twitter:description" content="本博客基于Hexo博客框架，主题为Huno。Huno主题作者已长时间未更新，而且与最新主题例如NexT相比，美观度不足且功能有所缺失。因此需要针对Huno主题的不足进行一些个性化的修改。">
@@ -300,8 +300,131 @@ classes that you can use:
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.post-meta__tags</span> &#123;</div><div class="line">  <span class="attribute">margin-left</span>: .<span class="number">4em</span>; &#125;</div></pre></td></tr></table></figure>
 <p>最后在small-icon路径下加入对应的小图标即可。最终效果如下所示：</p>
 <p><img src="\images\7_4.png" alt="Screenshot"></p>
+<h3 id="五、NesT背景特效"><a href="#五、NesT背景特效" class="headerlink" title="五、NesT背景特效"></a>五、NesT背景特效</h3><p>本博客背景的几何线条是采用来自NesT主题的效果，一个基于html5 canvas绘制的网页背景效果。此特效来自GitHub开源项目<a href="https://github.com/hustcc/canvas-nest.js" target="_blank" rel="external">canvas-nest.js</a>。本功能参考该博客：<a href="http://jinfang.life/posts/c00b4e03/" target="_blank" rel="external">为next主题添加nest背景特效</a>。</p>
+<p>首先下载<a href="https://github.com/hustcc/canvas-nest.js/blob/master/dist/canvas-nest.min.js" target="_blank" rel="external">canvas-nest.min.js</a>文件至source/js路径下，再打开layout/layout.ejs文件，将以下代码插入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>之间：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">color</span>=<span class="string">"0,0,0"</span> <span class="attr">opacity</span>=<span class="string">'0.5'</span> <span class="attr">zIndex</span>=<span class="string">"-1"</span> <span class="attr">count</span>=<span class="string">"100"</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/canvas-nest.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>代码中，color属性值代表线条颜色，opacity代表线条透明度（0-1），count代表线条数量，zIndex代表背景的z-index属性。</p>
+<h3 id="六、博客打赏功能"><a href="#六、博客打赏功能" class="headerlink" title="六、博客打赏功能"></a>六、博客打赏功能</h3><p>扫码支付这一功能运用得越来越广泛。博客中也可以添加“扫描支付宝、微信付款二维码支付”功能实现打赏功能。本功能实现参考此博客：<a href="http://colin1994.github.io/2016/06/02/hexo-copyright-and-donate/?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">为Hexo博客添加版权说明和打赏功能</a>。</p>
+<p>首先通过支付宝与微信手机客户端获取二者的支付二维码，拷贝至source/images目录下。再打开Huno主题根目录的_config.yml文件，添加以下代码：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">donate:</div><div class="line">  enable: true</div><div class="line">  text: 若本文对您有帮助，请打赏鼓励本人！</div></pre></td></tr></table></figure>
+<p>之后打开source/css/uno.css，添加post-donate样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.post-donate</span> &#123;</div><div class="line">  <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="number">#dddddd</span>;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">40px</span> <span class="number">0</span>; &#125;</div></pre></td></tr></table></figure>
+<p>再在layout/_partials下新建donate.ejs，添加以下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">page.comments</span>)&#123; %&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"post-donate"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">theme.donate</span>) &#123; %&gt;</span></div><div class="line">  <span class="comment">&lt;!-- css --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="xml"></span></div><div class="line">    .center &#123;</div><div class="line">      text-align: center;</div><div class="line">    &#125;</div><div class="line">    .hidden &#123;</div><div class="line">      display: none;</div><div class="line">    &#125;</div><div class="line">    .donate_bar a.btn_donate&#123;</div><div class="line">      display: inline-block;</div><div class="line">      width: 82px;</div><div class="line">      height: 82px;</div><div class="line">      background: url("/images/btn_reward.gif") no-repeat;</div><div class="line">      _background: url("/images/btn_reward.gif") no-repeat;</div><div class="line"></div><div class="line">      <span class="comment">&lt;!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif</span></div><div class="line">           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，</div><div class="line">         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，</div><div class="line">         嵌入其它博客时不一定要它们。 --&gt;</div><div class="line">      -webkit-transition: background 0s;</div><div class="line">      -moz-transition: background 0s;</div><div class="line">      -o-transition: background 0s;</div><div class="line">      -ms-transition: background 0s;</div><div class="line">      transition: background 0s;</div><div class="line">      <span class="comment">&lt;!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 --&gt;</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    .donate_bar a.btn_donate:hover&#123; background-position: 0px -82px;&#125;</div><div class="line">    .donate_bar .donate_txt &#123;</div><div class="line">      display: block;</div><div class="line">      color: #9d9d9d;</div><div class="line">      font: 14px/2 "Microsoft Yahei";</div><div class="line">    &#125;</div><div class="line">    .bold&#123; font-weight: bold; &#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- /css --&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- Donate Module --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"donate_module"</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- btn_donate &amp; tips --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"donate_board"</span> <span class="attr">class</span>=<span class="string">"donate_bar center"</span>&gt;</span></div><div class="line">      </div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"btn_donate"</span> <span class="attr">class</span>=<span class="string">"btn_donate"</span> <span class="attr">target</span>=<span class="string">"_self"</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span> <span class="attr">title</span>=<span class="string">"Donate 打赏"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"donate_txt"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%=</span> <span class="attr">theme.donate.text</span> %&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">span</span>&gt;</span> </div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- /btn_donate &amp; tips --&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- donate guide --&gt;</span></div><div class="line">    </div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"donate_guide"</span> <span class="attr">class</span>=<span class="string">"donate_bar center hidden"</span>&gt;</span></div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%- config.root %&gt;images/wechat.png"</span> <span class="attr">title</span>=<span class="string">"用微信扫一扫"</span> <span class="attr">class</span>=<span class="string">"fancybox"</span> <span class="attr">rel</span>=<span class="string">"article0"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;images/wechat.png"</span> <span class="attr">title</span>=<span class="string">"微信打赏"</span> <span class="attr">height</span>=<span class="string">"190px"</span> <span class="attr">width</span>=<span class="string">"auto"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        </div><div class="line">      &amp;nbsp;&amp;nbsp;</div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%- config.root %&gt;images/alipay.jpg"</span> <span class="attr">title</span>=<span class="string">"用支付宝扫一扫"</span> <span class="attr">class</span>=<span class="string">"fancybox"</span> <span class="attr">rel</span>=<span class="string">"article0"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;images/alipay.jpg"</span> <span class="attr">title</span>=<span class="string">"支付宝打赏"</span> <span class="attr">height</span>=<span class="string">"190px"</span> <span class="attr">width</span>=<span class="string">"auto"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"donate_txt"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%=</span> <span class="attr">theme.donate.text</span> %&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- /donate guide --&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- donate script --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">      <span class="built_in">document</span>.getElementById(<span class="string">'btn_donate'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        $(<span class="string">'#donate_board'</span>).addClass(<span class="string">'hidden'</span>);</div><div class="line">        $(<span class="string">'#donate_guide'</span>).removeClass(<span class="string">'hidden'</span>);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="function"><span class="keyword">function</span> <span class="title">donate_on_web</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        $(<span class="string">'#donate'</span>).submit();</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">var</span> original_window_onload = <span class="built_in">window</span>.onload;</div><div class="line">      <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (original_window_onload) &#123;</div><div class="line">          original_window_onload();</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'donate_board_wdg'</span>).className = <span class="string">'hidden'</span>;</div><div class="line">      &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- /donate script --&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- /Donate Module --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div></pre></td></tr></table></figure>
+<p>最后打开layout/_partials/article.ejs，在</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;/<span class="name">article</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>之前加入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">donate</span>') %&gt;</span></div></pre></td></tr></table></figure>
+<p>即可实现功能。</p>
 
   </section>
+
+  
+
+<section class="post-donate">
+
+
+  <!-- css -->
+  <style type="text/css">
+    .center {
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("/images/btn_reward.gif") no-repeat;
+      _background: url("/images/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+  <!-- Donate Module -->
+  <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+    <div id="donate_board" class="donate_bar center">
+      
+      <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+      <span class="donate_txt">
+        若本文对您有帮助，请打赏鼓励本人！
+      </span> 
+    </div>
+
+    <!-- /btn_donate & tips -->
+
+    <!-- donate guide -->
+    
+    <div id="donate_guide" class="donate_bar center hidden">
+
+      <a href="/images/wechat.png" title="用微信扫一扫" class="fancybox" rel="article0">
+        <img src="/images/wechat.png" title="微信打赏" height="190px" width="auto"/>
+      </a>
+        
+      &nbsp;&nbsp;
+
+      <a href="/images/alipay.jpg" title="用支付宝扫一扫" class="fancybox" rel="article0">
+        <img src="/images/alipay.jpg" title="支付宝打赏" height="190px" width="auto"/>
+      </a>
+
+      <span class="donate_txt">
+        若本文对您有帮助，请打赏鼓励本人！
+      </span>
+
+    </div>
+    <!-- /donate guide -->
+
+    <!-- donate script -->
+    <script type="text/javascript">
+      document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+      }
+
+      function donate_on_web(){
+        $('#donate').submit();
+      }
+
+      var original_window_onload = window.onload;
+      window.onload = function () {
+        if (original_window_onload) {
+          original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+      }
+    </script>
+    <!-- /donate script -->
+  </div>
+  <!-- /Donate Module -->
+
+
+</section>
+
+
 
   
 
@@ -399,6 +522,8 @@ classes that you can use:
 <!--[if IE 6]>
   <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
 <![endif]-->
+
+    <script type="text/javascript" color="0,0,0" opacity='0.5' zIndex="-1" count="100" src="/js/canvas-nest.min.js"></script>
 
 </body>
 </html>

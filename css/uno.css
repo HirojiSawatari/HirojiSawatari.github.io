@@ -1136,8 +1136,11 @@ hr {
 .post-comments {
   padding: 40px 0; }
 
-.post-share {
+.post-donate {
   border-top: 1px solid #dddddd;
+  padding: 40px 0; }
+
+.post-share {
   padding: 40px 0; }
 
 .post-meta {
