@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Ka Tou Space">
 <meta property="og:description" content="在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\2_1.png">
-<meta property="og:updated_time" content="2017-01-11T16:37:59.464Z">
+<meta property="og:updated_time" content="2017-01-13T03:29:57.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发获取设备硬件相关信息 | Ka Tou Space">
 <meta name="twitter:description" content="在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。">
@@ -312,7 +312,7 @@ classes that you can use:
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_imei = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_imei.setTextColor(Color.BLACK);</div><div class="line">p_imei.setText(<span class="string">"IMEI码："</span> + imei);</div><div class="line">pwTable.addView(p_imei);</div></pre></td></tr></table></figure>
 <p>通过以下代码获取手机MAC地址：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">WifiManager wifiMng = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);</div><div class="line">WifiInfo wifiInfor = wifiMng.getConnectionInfo();</div><div class="line">TextView p_mac = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_mac.setTextColor(Color.BLACK);</div><div class="line">p_mac.setText(<span class="string">"MAC地址："</span> + wifiInfor.getMacAddress());</div><div class="line">pwTable.addView(p_mac);</div></pre></td></tr></table></figure>
-<p>具体实际应用请见我的GitHub：<br><a href="https://github.com/HirojiSawatari/Sysmonitor/blob/master/src/hg/crx/sysmonitor/FragmentPage2.java" target="_blank" rel="external">https://github.com/HirojiSawatari/Sysmonitor/blob/master/src/hg/crx/sysmonitor/FragmentPage2.java</a></p>
+<p>具体实际应用请见我的GitHub：<a href="https://github.com/HirojiSawatari/Sysmonitor/blob/master/src/hg/crx/sysmonitor/FragmentPage2.java" target="_blank" rel="external">FragmentPage2.java</a></p>
 
   </section>
 
