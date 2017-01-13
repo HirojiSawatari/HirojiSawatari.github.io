@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_4.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_5.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_6.png">
-<meta property="og:updated_time" content="2017-01-11T16:41:34.762Z">
+<meta property="og:updated_time" content="2017-01-13T04:26:22.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用Hexo在GitHub上搭建个人博客 | Ka Tou Space">
 <meta name="twitter:description" content="最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。">
@@ -319,7 +319,7 @@ classes that you can use:
 <p>然后解析新域名，向域名的DNS配置中添加以下两条记录：</p>
 <p><img src="\images\6_6.png" alt="Screenshot"></p>
 <p>其中记录类型为CNAME，记录值即为GitHub分配的博客原域名，主机记录分别为“@”和“www”，其余项默认即可。</p>
-<p>配置完毕后打开Git Shell执行发布命令，稍等几分钟后即可使用新域名进入博客主页。</p>
+<p>配置完毕后打开Git Shell执行发布命令，稍等几分钟后即可使用新域名进入博客主页。之后若执行“hexo clear”需备份CNAME文件。</p>
 
   </section>
 
