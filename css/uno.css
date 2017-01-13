@@ -1071,6 +1071,9 @@ code {
   text-transform: uppercase;
   letter-spacing: 1px; }
 
+.footicon-wrap {
+  text-align: center; }
+
 .label {
   position: relative;
   display: inline-block;
@@ -1104,6 +1107,7 @@ code {
   color: #b3b3b3; }
 
 .footer__copyright {
+  text-align: center;
   display: block;
   margin-bottom: .7em; }
   .footer__copyright a {
