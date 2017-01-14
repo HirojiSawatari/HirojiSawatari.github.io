@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_4.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_5.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\6_6.png">
-<meta property="og:updated_time" content="2017-01-14T05:29:20.190Z">
+<meta property="og:updated_time" content="2017-01-14T05:49:41.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用Hexo在GitHub上搭建个人博客 | Ka Tou Space">
 <meta name="twitter:description" content="最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。">
@@ -97,10 +97,13 @@
                 <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
               
                 
-                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
               
                 
-                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+                <li class="navigation__item"><a href="/gallery" title="" class="">画廊</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
               
                 
                 <li class="navigation__item"><a href="/other" title="" class="">其他</a></li>
@@ -238,6 +241,7 @@ classes that you can use:
         <div class="content-wrapper__inner entry">
             
 
+
 <article class="post-container post-container--single">
 
   <header class="post-header">
@@ -261,7 +265,7 @@ classes that you can use:
           
             &#8226; 标签:
             <font class="tags">
-              <a class="tags-link" href="/tags/Hexo/">Hexo</a>
+              <a class="tags-link" href="/tags/Hexo/">Hexo</a>, <a class="tags-link" href="/tags/Static-Website/">Static Website</a>
             </font>
           
 
@@ -488,11 +492,22 @@ classes that you can use:
         </div>
     </div>
 
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css">            <!--引入fancybox的样式-->
+
     <!-- js files -->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/scale.fix.js"></script>
     
+    <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/js/jquery.mousewheel-3.0.6.pack.js"></script>  <!--带有鼠标滚动效果的库-->
+
+    <style type="text/css">
+      #content{width: 800px;margin: 20px auto;overflow: hidden;}
+      #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {background-image: url('/images/fancybox_sprite.png');}  /**更改fancybox默认的图片路径**/
+    </style>
 
     
 
@@ -527,5 +542,13 @@ classes that you can use:
 
     <script type="text/javascript" color="0,0,0" opacity='0.3' zIndex="-1" count="100" src="/js/canvas-nest.min.js"></script>
 
+
 </body>
+
+<script type="text/javascript">
+  $(function(){
+    $(".fancybox").fancybox();
+  })
+</script>
+
 </html>

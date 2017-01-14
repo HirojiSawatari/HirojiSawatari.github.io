@@ -25,4 +25,10 @@ $(document).ready(function() {
     $('.btn-mobile-menu__icon').toggleClass('icon-list icon-x-circle animated fadeIn');
   });
 
+  if($(".instagram").length) {
+    require(['/js/photo.js', '/js/jquery.fancybox.js', '/js/jquery.lazyload.js'], function(obj) {
+      obj.init();
+    });
+  }
+
 });

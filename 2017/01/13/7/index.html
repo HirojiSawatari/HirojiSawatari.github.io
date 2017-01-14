@@ -26,7 +26,8 @@
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\7_2.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\7_3.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\7_4.png">
-<meta property="og:updated_time" content="2017-01-14T05:29:42.697Z">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\7_5.png">
+<meta property="og:updated_time" content="2017-01-14T07:59:39.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个性化Huno主题 | Ka Tou Space">
 <meta name="twitter:description" content="本博客基于Hexo博客框架，主题为Huno。Huno主题作者已长时间未更新，而且与最新主题例如NexT相比，美观度不足且功能有所缺失。因此需要针对Huno主题的不足进行一些个性化的修改。">
@@ -96,10 +97,13 @@
                 <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
               
                 
-                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
               
                 
-                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+                <li class="navigation__item"><a href="/gallery" title="" class="">画廊</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
               
                 
                 <li class="navigation__item"><a href="/other" title="" class="">其他</a></li>
@@ -237,6 +241,7 @@ classes that you can use:
         <div class="content-wrapper__inner entry">
             
 
+
 <article class="post-container post-container--single">
 
   <header class="post-header">
@@ -260,7 +265,7 @@ classes that you can use:
           
             &#8226; 标签:
             <font class="tags">
-              <a class="tags-link" href="/tags/Hexo/">Hexo</a>
+              <a class="tags-link" href="/tags/Hexo/">Hexo</a>, <a class="tags-link" href="/tags/Static-Website/">Static Website</a>
             </font>
           
 
@@ -307,7 +312,17 @@ classes that you can use:
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">color</span>=<span class="string">"0,0,0"</span> <span class="attr">opacity</span>=<span class="string">'0.5'</span> <span class="attr">zIndex</span>=<span class="string">"-1"</span> <span class="attr">count</span>=<span class="string">"100"</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/canvas-nest.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>代码中，color属性值代表线条颜色，opacity代表线条透明度（0-1），count代表线条数量，zIndex代表背景的z-index属性。</p>
 <h3 id="六、博客打赏功能"><a href="#六、博客打赏功能" class="headerlink" title="六、博客打赏功能"></a>六、博客打赏功能</h3><p>扫码支付这一功能运用得越来越广泛。博客中也可以添加“扫描支付宝、微信付款二维码支付”功能实现打赏功能。本功能实现参考此博客：<a href="http://colin1994.github.io/2016/06/02/hexo-copyright-and-donate/?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">为Hexo博客添加版权说明和打赏功能</a>。</p>
-<p>首先通过支付宝与微信手机客户端获取二者的支付二维码，拷贝至source/images目录下。再打开Huno主题根目录的_config.yml文件，添加以下代码：</p>
+<h4 id="1、引入FancyBox插件"><a href="#1、引入FancyBox插件" class="headerlink" title="1、引入FancyBox插件"></a>1、引入FancyBox插件</h4><p>为实现点击图片弹出小窗口显示放大图片，而不是美观性不足的点击图片打开新页面显示放大图片，需要使用<a href="http://fancyapps.com/fancybox/" target="_blank" rel="external">FancyBox插件</a>。它是一款基于jQuery开发的类Lightbox插件。最终实现效果如下所示：</p>
+<p><img src="\images\7_5.png" alt="Screenshot"></p>
+<p>首先在官网下载FancyBox，下载完毕后将其中文件按文件类型分别复制到source文件夹中对应的css、js文件夹内。再打开layout/layout.ejs文件，在</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>之前写入以下内容引入FancyBox的css样式和js文件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"&lt;%- config.root %&gt;css/jquery.fancybox.css"</span>&gt;</span>            <span class="comment">&lt;!--引入fancybox的样式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/jquery-1.10.1.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/jquery.fancybox.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/jquery.fancybox.pack.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/jquery.mousewheel-3.0.6.pack.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  <span class="comment">&lt;!--带有鼠标滚动效果的库--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css"></span></div><div class="line">  <span class="selector-id">#content</span>&#123;<span class="attribute">width</span>: <span class="number">800px</span>;<span class="attribute">margin</span>: <span class="number">20px</span> auto;<span class="attribute">overflow</span>: hidden;&#125;</div><div class="line">  <span class="selector-id">#fancybox-loading</span>, <span class="selector-class">.fancybox-close</span>, <span class="selector-class">.fancybox-prev</span> <span class="selector-tag">span</span>, <span class="selector-class">.fancybox-next</span> <span class="selector-tag">span</span> &#123;<span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">'&lt;%- config.root %&gt;images/fancybox_sprite.png'</span>);&#125;  <span class="comment">/**更改fancybox默认的图片路径**/</span></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>接着在</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>标签之后输入以下内容以初始化 fancybox() 函数即成功引入FancyBox插件。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">  $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">".fancybox"</span>).fancybox();</div><div class="line">  &#125;)</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="2、添加打赏按钮及支付二维码"><a href="#2、添加打赏按钮及支付二维码" class="headerlink" title="2、添加打赏按钮及支付二维码"></a>2、添加打赏按钮及支付二维码</h4><p>首先通过支付宝与微信手机客户端获取二者的支付二维码，拷贝至source/images目录下。再打开Huno主题根目录的_config.yml文件，添加以下代码：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">donate:</div><div class="line">  enable: true</div><div class="line">  text: 若本文对您有帮助，请打赏鼓励本人！</div></pre></td></tr></table></figure>
 <p>之后打开source/css/uno.css，添加post-donate样式：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.post-donate</span> &#123;</div><div class="line">  <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="number">#dddddd</span>;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">40px</span> <span class="number">0</span>; &#125;</div></pre></td></tr></table></figure>
@@ -486,11 +501,22 @@ classes that you can use:
         </div>
     </div>
 
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css">            <!--引入fancybox的样式-->
+
     <!-- js files -->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/scale.fix.js"></script>
     
+    <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/js/jquery.mousewheel-3.0.6.pack.js"></script>  <!--带有鼠标滚动效果的库-->
+
+    <style type="text/css">
+      #content{width: 800px;margin: 20px auto;overflow: hidden;}
+      #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {background-image: url('/images/fancybox_sprite.png');}  /**更改fancybox默认的图片路径**/
+    </style>
 
     
 
@@ -525,5 +551,13 @@ classes that you can use:
 
     <script type="text/javascript" color="0,0,0" opacity='0.3' zIndex="-1" count="100" src="/js/canvas-nest.min.js"></script>
 
+
 </body>
+
+<script type="text/javascript">
+  $(function(){
+    $(".fancybox").fancybox();
+  })
+</script>
+
 </html>
