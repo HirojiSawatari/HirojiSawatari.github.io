@@ -1,13 +1,13 @@
 /**
  * @author littenli
  * @date 2014-03-10 version 0.2
- * @description ͼƬ��ʱ���أ���ͼ�滻��ͼƬ�����ϱ�����
- * @update ���ӷǿ���������ʱ����
+ * @description 图片延时加载，裂图替换，图片错误上报处理
+ * @update 增加非可视区域延时加载
  * @example $(".container").lazy(options);
- *          ����$(".container")�ڵ��ڵ�img�ڵ㣬��Ӧ��lazyload�����˽ڵ�Ϊimg�ڵ㣬ֻӦ�ô˽ڵ�
- *          options.srcSign {String} ��Ϊ��.img�ڵ�Լ����src��־��Ĭ��Ϊlazy-src����Ӧimg�ڵ�Ϊ��<img lazy-src="img/hello.jpg" />
- *          options.errCallBack {Function} ��Ϊ��.�ṩimg����ʧ�ܻص�����ҵ������ȥ��������ʧ���߼�
- *          options.container {Dom} �ṩ�����ڵ��ڿ��������ļ���������Ĭ��Ϊwindow
+ *          遍历$(".container")节点内的img节点，都应用lazyload；若此节点为img节点，只应用此节点
+ *          options.srcSign {String} 可为空.img节点约定的src标志，默认为lazy-src；响应img节点为：<img lazy-src="img/hello.jpg" />
+ *          options.errCallBack {Function} 可为空.提供img加载失败回调，供业务额外去处理加载失败逻辑
+ *          options.container {Dom} 提供容器节点内可视区域的加载能力，默认为window
  */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -32,14 +32,14 @@
             var container = options.container || $(window);
 
             /**
-             * @description src����
+             * @description src正常
              */
             var imgload = function (e, target) {
-                //todo: �ϱ�
+                //todo: 上报
             }
 
             /**
-             * @description srcʧЧ
+             * @description src失效
              */
             var imgerr = function (e, target, fn, src) {
                 if(target[0].src && (target[0].src.indexOf("img-err.png")>0 || target[0].src.indexOf("img-err2.png")>0)){
@@ -50,7 +50,7 @@
                 target[0].src = "/img/img-err.png";
 
                 fn();
-                //todo: �ϱ�
+                //todo: 上报
             };
 
             var tempImg = function(target){
@@ -63,7 +63,7 @@
                 target.hide();
             }
             /**
-             * @description src�滻��loading������������lazy-loading;
+             * @description src替换，loading过程中添加类lazy-loading;
              */
             var setSrc = function(target, srcSign, errCallBack){
 
@@ -71,7 +71,7 @@
 
                 if(options.cache == true){
                     console.log(target);
-                    //����localstorage
+                    //存进localstorage
                     var canvas1 = document.getElementById('canvas1');
                     var ctx1 = canvas1.getContext('2d');
                     var imageData;
@@ -101,7 +101,7 @@
             }
 
             /**
-             * @description ����
+             * @description 重组
              */
             opts.cache = [];
 
@@ -116,7 +116,7 @@
                 var imgArr = obj.find("img");
                 imgArr.each(function(index) {
                     var node = this.nodeName.toLowerCase(), url = $(this).attr(srcSign);
-                    //����
+                    //重组
                     var data = {
                         obj: imgArr.eq(index),
                         tag: node,
@@ -127,7 +127,7 @@
             }
 
 
-            //��̬��ʾ����
+            //动态显示数据
             var scrollHandle = function() {
                 var contHeight = container.height();
                 var contop;
@@ -143,9 +143,9 @@
 
                         if ((post >= 0 && post < contHeight) || (posb > 0 && posb <= contHeight)) {
                             if (url) {
-                                //��������������
+                                //在浏览器窗口内
                                 if (tag === "img") {
-                                    //�ı�src
+                                    //改变src
                                     setSrc(o, srcSign, errCallBack);
                                 }
                             }
@@ -155,9 +155,9 @@
                 });
             }
 
-            //�������ϼ�ִ��
+            //加载完毕即执行
             scrollHandle();
-            //����ִ��
+            //滚动执行
             container.bind("scroll", scrollHandle);
             container.bind("resize", scrollHandle);
 
