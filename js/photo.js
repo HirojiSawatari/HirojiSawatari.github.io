@@ -19,8 +19,8 @@ define([], function () {
             for (var i = begin; i < end && i < data.length; i++) {
                 var name = data[i].substring(0, data[i].length - 4);
                 li += '<li><div class="img-box">' +
-                    '<a class="fancybox" rel="article0" title='+ name +' href="https://github.com/HirojiSawatari/HirojiSawatari.github.io/tree/master/photos/' + data[i] + '?raw=true">' +
-                    '<img class="galleryimage" src="https://github.com/HirojiSawatari/HirojiSawatari.github.io/tree/master/photos/' + data[i] + '?raw=true" />' +
+                    '<a class="fancybox" rel="article0" title='+ name +' href="http://123.206.207.125/photos/' + data[i] + '?raw=true">' +
+                    '<img class="galleryimage" src="http://123.206.207.125/photos/' + data[i] + '?raw=true" />' +
                     '</a>' +
    	   	    '</li>';
             }
