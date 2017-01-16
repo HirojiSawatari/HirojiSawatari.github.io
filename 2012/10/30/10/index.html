@@ -38,7 +38,7 @@
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\10_14.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\10_15.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\10_16.png">
-<meta property="og:updated_time" content="2017-01-16T06:29:53.455Z">
+<meta property="og:updated_time" content="2017-01-16T09:49:42.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ENVI图像增强操作 | Ka Tou Space">
 <meta name="twitter:description" content="在ENVI中，可以进行图像增强操作以突出遥感图像的某种特征，扩大不同影像特征间的差别，使之更适合实际应用。">
@@ -307,7 +307,7 @@ classes that you can use:
 <p><img src="\images\10_7.png" alt="Screenshot"></p>
 <p>原理：拉普拉斯滤波是边缘增强滤波，它的运行不用考虑边缘的方向。拉普拉斯滤波强调图像中的最大值，它通过运用一个具有高中心值的变换核来完成（一般来说，外围南北向与东西向权重均为负值，角落为“0”）。ENVI中默认的拉普拉斯滤波使用一个大小为3x3，中心值为“4”，南北向和东西向均为“-1”的变换核。但是可以通过改变Kernel Size来改变卷积核的大小。例如，当卷积核为9x9时，此时使用的是中心值为“104”，南北向与东西向为“-（8-1/n）”的变换核。所有的拉普拉斯滤波卷积核的维数都必须是奇数。</p>
 <p>实验中，在对上一步骤所得图像进行拉普拉斯滤波处理后，会发现原图像的边缘被增强。将其与另外一张叠加一半原图信息的图像比较下，边缘增强效果体现得相当明显。此外，将Kernel Size设为9时，会发现卷积核大小为9x9时生成的遥感图像边缘增强程度远大于默认的Kernel Size为3时，即卷积核为3x3的情况。</p>
-<h3 id="三、中值滤波处理："><a href="#三、中值滤波处理：" class="headerlink" title="三、中值滤波处理："></a>三、中值滤波处理：</h3><p>同样打开工具栏中Filter-&gt;Convolutions and Morphology，在Convolutions and Morphology Tool中，选择Covolutions-&gt;Median，调整Kernel Size为3，再点击Quick Apply生成图像。</p>
+<h3 id="三、中值滤波处理"><a href="#三、中值滤波处理" class="headerlink" title="三、中值滤波处理"></a>三、中值滤波处理</h3><p>同样打开工具栏中Filter-&gt;Convolutions and Morphology，在Convolutions and Morphology Tool中，选择Covolutions-&gt;Median，调整Kernel Size为3，再点击Quick Apply生成图像。</p>
 <p><img src="\images\10_8.png" alt="Screenshot"></p>
 <p>保持Kernel Size为3的情况下，调整Image Add Back为50，点击Quick Apply生成图像。</p>
 <p><img src="\images\10_9.png" alt="Screenshot"></p>
@@ -315,7 +315,7 @@ classes that you can use:
 <p><img src="\images\10_10.png" alt="Screenshot"></p>
 <p>原理：中值滤波是对一个滑动窗口内的诸像素灰度值排序，用中值代替窗口中心像素的原来灰度值，因此它是一种非线性的图像平滑法。中值滤波在保留大于卷积核的边缘的同时，平滑图像，这种方法对于消除椒盐噪声或斑点非常有效。ENVI的中值滤波器用一个被滤波器的大小限定的邻近区的中值代替每一个中心像元值。默认的卷积核大小是3x3，即Kernel Size为3。但是可以通过改变Kernel Size来改变卷积核的大小。</p>
 <p>实验中，把第一项步骤所得遥感图像进行中值滤波处理，会发现图像经过处理之后被平滑了。将一张不叠加原图信息的通过中值滤波处理后的图像与另外一张叠加一半原图信息的图像比较下，会发现有斑点在叠加过的图像上能显现，而在另外一张图像上没有显现，这体现了中值滤波的图像平滑效果。此外，通过对在实验中生成的卷积核大小分别为3x3与9x9的两幅图进行对比可以发现，卷积核越大，对原图像的平滑程度也越大。</p>
-<h3 id="四、定向滤波提取线状信息："><a href="#四、定向滤波提取线状信息：" class="headerlink" title="四、定向滤波提取线状信息："></a>四、定向滤波提取线状信息：</h3><p>同样打开工具栏中Filter-&gt;Convolutions and Morphology，在Convolutions and Morphology Tool中，选择Covolutions-&gt;Directional，在Enter Directional Filter Angle输入框中输入0.00，再点击Quick Apply生成图像。</p>
+<h3 id="四、定向滤波提取线状信息"><a href="#四、定向滤波提取线状信息" class="headerlink" title="四、定向滤波提取线状信息"></a>四、定向滤波提取线状信息</h3><p>同样打开工具栏中Filter-&gt;Convolutions and Morphology，在Convolutions and Morphology Tool中，选择Covolutions-&gt;Directional，在Enter Directional Filter Angle输入框中输入0.00，再点击Quick Apply生成图像。</p>
 <p><img src="\images\10_11.png" alt="Screenshot"></p>
 <p>此时卷积核如图：</p>
 <p><img src="\images\10_12.png" alt="Screenshot"></p>
