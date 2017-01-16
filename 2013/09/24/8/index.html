@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      ArcGIS 10属性域与子类型操作方法 | Ka Tou Space 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Tou Ka">
+    
+    
+
+    <meta name="description" content="属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArcGIS 10属性域与子类型操作方法 | Ka Tou Space">
+<meta property="og:url" content="http://hirojisawatari.github.io/2013/09/24/8/index.html">
+<meta property="og:site_name" content="Ka Tou Space">
+<meta property="og:description" content="属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_1.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_2.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_3.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_4.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_5.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_6.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_7.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_8.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_9.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_10.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_11.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_12.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_13.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_14.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_15.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_16.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_17.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_18.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_19.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_20.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_21.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_22.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_23.png">
+<meta property="og:updated_time" content="2017-01-16T04:10:02.076Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ArcGIS 10属性域与子类型操作方法 | Ka Tou Space">
+<meta name="twitter:description" content="属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。">
+<meta name="twitter:image" content="http://hirojisawatari.github.io/\images\8_1.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/images/favicon2.ico">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+    <link rel="stylesheet" href="/css/instagram.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header id="head" class="panel-cover panel-cover--collapsed">
+
+
+
+  
+
+
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Ka Tou Space"><img src="/images/logo2.png" width="80" alt="Ka Tou Space logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Ka Tou Space</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          二十三年前、この腐敗した世界に堕とされた...
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/photo" title="" class="">画廊</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/other" title="" class="">其他</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    <!-- E-Mail -->
+      <li class="navigation__item">
+        <a href="mailto:ka_tou@outlook.com" title="E-Mail of Ka Tou">
+          <i class='icon icon-mail'></i>
+          <span class="label">E-Mail</span>
+        </a>
+      </li>
+
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/HirojiSawatari" title="Ka Tou on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+	<!-- Twitter -->
+      <li class="navigation__item">
+        <a href="https://twitter.com/sawatari_katou" title="Ka Tou on Twitter">
+          <i class='icon icon-social-twitter'></i>
+          <span class="label">Twitter</span>
+        </a>
+      </li>
+
+	<!-- Facebook -->
+      <li class="navigation__item">
+        <a href="https://facebook.com/sawatari.hiroji.9?refid=13&ref=bookmarks" title="Ka Tou on Facebook">
+          <i class='icon icon-social-facebook'></i>
+          <span class="label">Facebook</span>
+        </a>
+      </li>
+
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+    -->
+
+      <li class="navigation__item">
+        <a href="https://weibo.com/u/2196708441" title="Ka Tou on Weibo">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">ArcGIS 10属性域与子类型操作方法</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2013-09-24" class="post-meta__date date">2013-09-24</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/Tech-Blog/">Tech Blog</a>
+            </font>
+          
+
+          
+            &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/ArcGIS/">ArcGIS</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。<a id="more"></a></p>
+<h3 id="一、建立个人空间数据库"><a href="#一、建立个人空间数据库" class="headerlink" title="一、建立个人空间数据库"></a>一、建立个人空间数据库</h3><p>打开ArcCatalog，选定一个合适的位置建立个人空间数据库，此作业以“desktop/homework”文件夹为例，步骤如下所示：</p>
+<p><img src="\images\8_1.png" alt="Screenshot"></p>
+<p><img src="\images\8_2.png" alt="Screenshot"></p>
+<p>接着在新建立的个人空间数据库中建立要素数据集，并给其定义合适的地理坐标系，以便于后面的数据操作。步骤如下图所示：</p>
+<p><img src="\images\8_3.png" alt="Screenshot"></p>
+<p><img src="\images\8_4.png" alt="Screenshot"></p>
+<p><img src="\images\8_5.png" alt="Screenshot"></p>
+<h3 id="二、导入有关数据"><a href="#二、导入有关数据" class="headerlink" title="二、导入有关数据"></a>二、导入有关数据</h3><p>在执行相关分析操作前需往刚建立得到的个人空间数据库中导入相关数据，此处以示例面要素“USstates.shp”为例，操作步骤如下：</p>
+<p><img src="\images\8_6.png" alt="Screenshot"></p>
+<p><img src="\images\8_7.png" alt="Screenshot"></p>
+<p><img src="\images\8_8.png" alt="Screenshot"></p>
+<h3 id="三、建立属性域"><a href="#三、建立属性域" class="headerlink" title="三、建立属性域"></a>三、建立属性域</h3><p>打开ArcMap，加载刚刚导入的面要素，打开其属性表，并根据“AREA”字段建立柱状图，如下图所示：</p>
+<p><img src="\images\8_9.png" alt="Screenshot"></p>
+<p>由上图可以发现，美国50个州的面积最大为阿拉斯加576561.456，而大部分州的面积介于10000到100000之间，因此，可以通过建立属性域来筛选出面积在10000到100000之间的州。</p>
+<p>在上一步导入窗口可以发现，“AREA”字段的类型为双精度，因此根据此在ArcCatalog中建立属性域步骤如下图所示：</p>
+<p><img src="\images\8_10.png" alt="Screenshot"></p>
+<p><img src="\images\8_11.png" alt="Screenshot"></p>
+<p><img src="\images\8_12.png" alt="Screenshot"></p>
+<p><img src="\images\8_13.png" alt="Screenshot"></p>
+<p>设定属性域完成后，即可将图层在ArcMap中加载，打开编辑器，全选图层所有面要素，再选择编辑器-&gt;验证要素，则所有面要素中不符合属性域范围的要素会被选中，如下图所示：</p>
+<p><img src="\images\8_14.png" alt="Screenshot"></p>
+<h3 id="四、子类型操作"><a href="#四、子类型操作" class="headerlink" title="四、子类型操作"></a>四、子类型操作</h3><p>子类型是根据要素类的属性值将要素划分为更小的分类。因此，可以根据上步得出的对美国各州面积在10000到100000之间的范围对美国各州面要素进行子类型分类。</p>
+<p>首先通过上一步验证要素得出的结果，打开ArcMap，在属性表中建立新字段，然后打开编辑器，将被选中的，即字段“AREA”值不在10000到100000之间的要素字段值设为0，其余的设为1，如下图所示：</p>
+<p><img src="\images\8_15.png" alt="Screenshot"></p>
+<p><img src="\images\8_16.png" alt="Screenshot"></p>
+<p><img src="\images\8_17.png" alt="Screenshot"><img src="\images\8_18.png" alt="Screenshot"></p>
+<p><img src="\images\8_19.png" alt="Screenshot"></p>
+<p>然后关闭ArcMap，打开ArcCatalog，对该面要素图层进行子类型操作，子类型字段选择新建的“area_fanwei”，子类型编码为0的描述设为“面积在范围外”，为1的设为“面积在范围内”，如下图所示：</p>
+<p><img src="\images\8_20.png" alt="Screenshot"></p>
+<p><img src="\images\8_21.png" alt="Screenshot"></p>
+<p>点击确定后打开ArcMap，加载该图层打开属性表，即可发现原先“area_fanwei”字段内的数字被替换为中文，并且可以对其分级色彩如下图所示：</p>
+<p><img src="\images\8_22.png" alt="Screenshot"></p>
+<p><img src="\images\8_23.png" alt="Screenshot"></p>
+
+  </section>
+
+  
+
+<section class="post-donate">
+
+
+  <!-- css -->
+  <style type="text/css">
+    .center {
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("/images/btn_reward.gif") no-repeat;
+      _background: url("/images/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+  <!-- Donate Module -->
+  <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+    <div id="donate_board" class="donate_bar center">
+      
+      <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+      <span class="donate_txt">
+        若本文对您有帮助，请打赏鼓励本人！
+      </span> 
+    </div>
+
+    <!-- /btn_donate & tips -->
+
+    <!-- donate guide -->
+    
+    <div id="donate_guide" class="donate_bar center hidden">
+
+      <a href="/images/wechat.png" title="用微信扫一扫" class="fancybox" rel="article0">
+        <img src="/images/wechat.png" title="微信打赏" height="190px" width="auto"/>
+      </a>
+        
+      &nbsp;&nbsp;
+
+      <a href="/images/alipay.jpg" title="用支付宝扫一扫" class="fancybox" rel="article0">
+        <img src="/images/alipay.jpg" title="支付宝打赏" height="190px" width="auto"/>
+      </a>
+
+      <span class="donate_txt">
+        若本文对您有帮助，请打赏鼓励本人！
+      </span>
+
+    </div>
+    <!-- /donate guide -->
+
+    <!-- donate script -->
+    <script type="text/javascript">
+      document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+      }
+
+      function donate_on_web(){
+        $('#donate').submit();
+      }
+
+      var original_window_onload = window.onload;
+      window.onload = function () {
+        if (original_window_onload) {
+          original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+      }
+    </script>
+    <!-- /donate script -->
+  </div>
+  <!-- /Donate Module -->
+
+
+</section>
+
+
+
+  
+
+<section class="post-share">
+
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<span class="jiathis_txt">分享到：</span>
+	<a class="jiathis_button_qzone">QQ空间</a>
+	<a class="jiathis_button_tsina">新浪微博</a>
+	<a class="jiathis_button_tqq">腾讯微博</a>
+	<a class="jiathis_button_weixin">微信</a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+</section>
+
+
+  
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2013/09/24/8/" data-title="ArcGIS 10属性域与子类型操作方法" data-url="http://hirojisawatari.github.io/2013/09/24/8/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"katou"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embedbykt.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2015-2017 <a href="http://www.katouspace.com/">Ka Tou (Sawatari Hiroji)</a> All Right Reserved | Powered by <a href="https://hexo.io/">Hexo</a> | Theme - <a href="https://github.com/HirojiSawatari/Sawauno">Sawauno</a> base on <a href="https://github.com/someus/huno">Huno</a></span>
+    <br/>
+    
+    <div class="footicon-wrap">
+        <span>
+    	    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261136501'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1261136501%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>    
+        </span>
+    </div>
+
+</footer>
+        </div>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css">            <!--引入fancybox的样式-->
+
+    <!-- js files -->
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+    <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/js/jquery.mousewheel-3.0.6.pack.js"></script>  <!--带有鼠标滚动效果的库-->
+
+    <style type="text/css">
+      #content{width: 800px;margin: 20px auto;overflow: hidden;}
+      #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {background-image: url('/images/fancybox_sprite.png');}  /**更改fancybox默认的图片路径**/
+    </style>
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+    <script type="text/javascript" color="0,0,0" opacity='0.3' zIndex="-1" count="100" src="/js/canvas-nest.min.js"></script>
+
+
+</body>
+
+</html>
