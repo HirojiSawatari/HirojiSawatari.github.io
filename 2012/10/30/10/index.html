@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      ENVI图像增强操作 | Ka Tou Space 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Tou Ka">
+    
+    
+
+    <meta name="description" content="在ENVI中，可以进行图像增强操作以突出遥感图像的某种特征，扩大不同影像特征间的差别，使之更适合实际应用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ENVI图像增强操作 | Ka Tou Space">
+<meta property="og:url" content="http://hirojisawatari.github.io/2012/10/30/10/index.html">
+<meta property="og:site_name" content="Ka Tou Space">
+<meta property="og:description" content="在ENVI中，可以进行图像增强操作以突出遥感图像的某种特征，扩大不同影像特征间的差别，使之更适合实际应用。">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_1.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_2.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_3.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_4.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_5.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_6.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_7.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_8.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_9.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_10.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_11.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_12.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_13.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_14.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_15.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\10_16.png">
+<meta property="og:updated_time" content="2017-01-16T06:29:53.455Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ENVI图像增强操作 | Ka Tou Space">
+<meta name="twitter:description" content="在ENVI中，可以进行图像增强操作以突出遥感图像的某种特征，扩大不同影像特征间的差别，使之更适合实际应用。">
+<meta name="twitter:image" content="http://hirojisawatari.github.io/\images\10_1.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/images/favicon2.ico">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+    <link rel="stylesheet" href="/css/instagram.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header id="head" class="panel-cover panel-cover--collapsed">
+
+
+
+  
+
+
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Ka Tou Space"><img src="/images/logo2.png" width="80" alt="Ka Tou Space logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Ka Tou Space</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          二十三年前、この腐敗した世界に堕とされた...
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/photo" title="" class="">画廊</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/other" title="" class="">其他</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    <!-- E-Mail -->
+      <li class="navigation__item">
+        <a href="mailto:ka_tou@outlook.com" title="E-Mail of Ka Tou">
+          <i class='icon icon-mail'></i>
+          <span class="label">E-Mail</span>
+        </a>
+      </li>
+
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/HirojiSawatari" title="Ka Tou on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+	<!-- Twitter -->
+      <li class="navigation__item">
+        <a href="https://twitter.com/sawatari_katou" title="Ka Tou on Twitter">
+          <i class='icon icon-social-twitter'></i>
+          <span class="label">Twitter</span>
+        </a>
+      </li>
+
+	<!-- Facebook -->
+      <li class="navigation__item">
+        <a href="https://facebook.com/sawatari.hiroji.9?refid=13&ref=bookmarks" title="Ka Tou on Facebook">
+          <i class='icon icon-social-facebook'></i>
+          <span class="label">Facebook</span>
+        </a>
+      </li>
+
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+    -->
+
+      <li class="navigation__item">
+        <a href="https://weibo.com/u/2196708441" title="Ka Tou on Weibo">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">ENVI图像增强操作</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2012-10-30" class="post-meta__date date">2012-10-30</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/Tech-Blog/">Tech Blog</a>
+            </font>
+          
+
+          
+            &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/ENVI/">ENVI</a>, <a class="tags-link" href="/tags/RS/">RS</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>在ENVI中，可以进行图像增强操作以突出遥感图像的某种特征，扩大不同影像特征间的差别，使之更适合实际应用。<a id="more"></a>通过截取区域内灰度变化值大，边界明显，细节信息丰富的区域来实现高频信息提取操作。通过对截取图像进行拉普拉斯滤波操作，了解拉普拉斯滤波可以增强原图像的边缘线条。通过进行中值滤波操作，认识到中值滤波可以实现保留大于卷积核的边缘的同时平滑图像的操作。通过进行定向滤波操作以及改变相应角度，可以了解到随着角度的变化，相应方向的线状信息图像得到补充，而其余方向的线状信息而被削减。</p>
+<p>本文中以“lon_spot”文件为例进行图像增强操作。</p>
+<h3 id="一、高频信息提取"><a href="#一、高频信息提取" class="headerlink" title="一、高频信息提取"></a>一、高频信息提取</h3><p>首先用ENVI打开“lon_spot”文件，打开工具栏中Basic Tools-&gt;Resize Data，然后打开Spetial Subset-&gt;image寻找灰度值大的区域（即为图中灰度值变化程度大的区域），并调整所选区域的大小。</p>
+<p><img src="\images\10_1.png" alt="Screenshot"></p>
+<p>点选OK选择保存路径之后保存，保存文件名为“lon_spot.img”。</p>
+<p><img src="\images\10_2.png" alt="Screenshot"></p>
+<p>原理：低频一般是大范围大尺度的信息，也就是背景，而高频反映的是小范围细节信息。在此图中应选取边界明显，区域内灰度变化值大，细节信息丰富的区域。并将此区域截取下来作为后面实验步骤的素材。</p>
+<h3 id="二、Laplacian"><a href="#二、Laplacian" class="headerlink" title="二、Laplacian"></a>二、Laplacian</h3><p>打开刚建立的“lon_spot.img”文件，选择工具栏中Filter-&gt;Convolutions and Morphology，在Convolutions and Morphology Tool中，选择Covolutions-&gt;Laplacian，点击Quick Apply，生成图像。</p>
+<p><img src="\images\10_3.png" alt="Screenshot"></p>
+<p>此时卷积核如图：</p>
+<p><img src="\images\10_4.png" alt="Screenshot"></p>
+<p>再改变Image Add Back为50%，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_5.png" alt="Screenshot"></p>
+<p>保持Image Add Back为0%，，调整Kernel Size为9，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_6.png" alt="Screenshot"></p>
+<p>此时卷积核如图：</p>
+<p><img src="\images\10_7.png" alt="Screenshot"></p>
+<p>原理：拉普拉斯滤波是边缘增强滤波，它的运行不用考虑边缘的方向。拉普拉斯滤波强调图像中的最大值，它通过运用一个具有高中心值的变换核来完成（一般来说，外围南北向与东西向权重均为负值，角落为“0”）。ENVI中默认的拉普拉斯滤波使用一个大小为3x3，中心值为“4”，南北向和东西向均为“-1”的变换核。但是可以通过改变Kernel Size来改变卷积核的大小。例如，当卷积核为9x9时，此时使用的是中心值为“104”，南北向与东西向为“-（8-1/n）”的变换核。所有的拉普拉斯滤波卷积核的维数都必须是奇数。</p>
+<p>实验中，在对上一步骤所得图像进行拉普拉斯滤波处理后，会发现原图像的边缘被增强。将其与另外一张叠加一半原图信息的图像比较下，边缘增强效果体现得相当明显。此外，将Kernel Size设为9时，会发现卷积核大小为9x9时生成的遥感图像边缘增强程度远大于默认的Kernel Size为3时，即卷积核为3x3的情况。</p>
+<h3 id="三、中值滤波处理："><a href="#三、中值滤波处理：" class="headerlink" title="三、中值滤波处理："></a>三、中值滤波处理：</h3><p>同样打开工具栏中Filter-&gt;Convolutions and Morphology，在Convolutions and Morphology Tool中，选择Covolutions-&gt;Median，调整Kernel Size为3，再点击Quick Apply生成图像。</p>
+<p><img src="\images\10_8.png" alt="Screenshot"></p>
+<p>保持Kernel Size为3的情况下，调整Image Add Back为50，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_9.png" alt="Screenshot"></p>
+<p>再在Image Add Back为0的情况下，调整Kernel Size为9，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_10.png" alt="Screenshot"></p>
+<p>原理：中值滤波是对一个滑动窗口内的诸像素灰度值排序，用中值代替窗口中心像素的原来灰度值，因此它是一种非线性的图像平滑法。中值滤波在保留大于卷积核的边缘的同时，平滑图像，这种方法对于消除椒盐噪声或斑点非常有效。ENVI的中值滤波器用一个被滤波器的大小限定的邻近区的中值代替每一个中心像元值。默认的卷积核大小是3x3，即Kernel Size为3。但是可以通过改变Kernel Size来改变卷积核的大小。</p>
+<p>实验中，把第一项步骤所得遥感图像进行中值滤波处理，会发现图像经过处理之后被平滑了。将一张不叠加原图信息的通过中值滤波处理后的图像与另外一张叠加一半原图信息的图像比较下，会发现有斑点在叠加过的图像上能显现，而在另外一张图像上没有显现，这体现了中值滤波的图像平滑效果。此外，通过对在实验中生成的卷积核大小分别为3x3与9x9的两幅图进行对比可以发现，卷积核越大，对原图像的平滑程度也越大。</p>
+<h3 id="四、定向滤波提取线状信息："><a href="#四、定向滤波提取线状信息：" class="headerlink" title="四、定向滤波提取线状信息："></a>四、定向滤波提取线状信息：</h3><p>同样打开工具栏中Filter-&gt;Convolutions and Morphology，在Convolutions and Morphology Tool中，选择Covolutions-&gt;Directional，在Enter Directional Filter Angle输入框中输入0.00，再点击Quick Apply生成图像。</p>
+<p><img src="\images\10_11.png" alt="Screenshot"></p>
+<p>此时卷积核如图：</p>
+<p><img src="\images\10_12.png" alt="Screenshot"></p>
+<p>保持Image Add Back为0不变，在Enter Directional Filter Angle输入框中输入50.00，再点击Quick Apply生成图像。</p>
+<p><img src="\images\10_13.png" alt="Screenshot"></p>
+<p>此时卷积核如图：</p>
+<p><img src="\images\10_14.png" alt="Screenshot"></p>
+<p>再保持Enter Directional Filter Angle为0.00，改变Image Add Back为50%，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_15.png" alt="Screenshot"></p>
+<p>再保持Enter Directional Filter Angle为0.00，Image Add Back为0%，改变Kernel Size为9x9，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_16.png" alt="Screenshot"></p>
+<p>原理：通过规定角的大小从而改变变换核中的数值，以突出某方向的边界。定向滤波根据所选角度不同，加强的方向不同，线状信息不同。角度由规定的Enter Directional Filter Angle所决定。设Enter Directional Filter Angle为50.00时，西北方与东南方向的线状信息图像得到了补充。叠加一半原图信息后，对两图进行比较，能够更加体现东西方向线状信息被补充，南北方向线状信息被削减的特征。最后一幅图，通过改变Kernel Size的数值能够改变突出边界后所生成图像的平滑程度。定向滤波能够增强特定方向的地面形迹，如地理学中的水系，山脉走向等。</p>
+<p>在实验中，将第一项步骤所得图像进行定向滤波处理，设Enter Directional Filter Angle为0.00时，东西方向的线状信息图像得到了补充，南北方向的线状信息得到了一定的削减。设Enter Directional Filter Angle为50.00时，西北方与东南方向的线状信息图像得到了补充。叠加一半原图信息后，将其与不叠加原图信息的图像进行比较，能够更加体现东西方向线状信息被补充，南北方向线状信息被削减的特征。最后一幅图，通过改变Kernel Size的数值能够改变突出边界后所生成图像的平滑程度。</p>
+
+  </section>
+
+  
+
+<section class="post-donate">
+
+
+  <!-- css -->
+  <style type="text/css">
+    .center {
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("/images/btn_reward.gif") no-repeat;
+      _background: url("/images/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+  <!-- Donate Module -->
+  <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+    <div id="donate_board" class="donate_bar center">
+      
+      <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+      <span class="donate_txt">
+        若本文对您有帮助，请打赏鼓励本人！
+      </span> 
+    </div>
+
+    <!-- /btn_donate & tips -->
+
+    <!-- donate guide -->
+    
+    <div id="donate_guide" class="donate_bar center hidden">
+
+      <a href="/images/wechat.png" title="用微信扫一扫" class="fancybox" rel="article0">
+        <img src="/images/wechat.png" title="微信打赏" height="190px" width="auto"/>
+      </a>
+        
+      &nbsp;&nbsp;
+
+      <a href="/images/alipay.jpg" title="用支付宝扫一扫" class="fancybox" rel="article0">
+        <img src="/images/alipay.jpg" title="支付宝打赏" height="190px" width="auto"/>
+      </a>
+
+      <span class="donate_txt">
+        若本文对您有帮助，请打赏鼓励本人！
+      </span>
+
+    </div>
+    <!-- /donate guide -->
+
+    <!-- donate script -->
+    <script type="text/javascript">
+      document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+      }
+
+      function donate_on_web(){
+        $('#donate').submit();
+      }
+
+      var original_window_onload = window.onload;
+      window.onload = function () {
+        if (original_window_onload) {
+          original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+      }
+    </script>
+    <!-- /donate script -->
+  </div>
+  <!-- /Donate Module -->
+
+
+</section>
+
+
+
+  
+
+<section class="post-share">
+
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<span class="jiathis_txt">分享到：</span>
+	<a class="jiathis_button_qzone">QQ空间</a>
+	<a class="jiathis_button_tsina">新浪微博</a>
+	<a class="jiathis_button_tqq">腾讯微博</a>
+	<a class="jiathis_button_weixin">微信</a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+</section>
+
+
+  
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2012/10/30/10/" data-title="ENVI图像增强操作" data-url="http://hirojisawatari.github.io/2012/10/30/10/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"katou"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embedbykt.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2012-2017 <a href="http://www.katouspace.com/">Ka Tou (Sawatari Hiroji)</a> All Right Reserved | Powered by <a href="https://hexo.io/">Hexo</a> | Theme - <a href="https://github.com/HirojiSawatari/Sawauno">Sawauno</a> base on <a href="https://github.com/someus/huno">Huno</a></span>
+    <br/>
+    
+    <div class="footicon-wrap">
+        <span>
+    	    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261136501'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1261136501%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>    
+        </span>
+    </div>
+
+</footer>
+        </div>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css">            <!--引入fancybox的样式-->
+
+    <!-- js files -->
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+    <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/js/jquery.mousewheel-3.0.6.pack.js"></script>  <!--带有鼠标滚动效果的库-->
+
+    <style type="text/css">
+      #content{width: 800px;margin: 20px auto;overflow: hidden;}
+      #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {background-image: url('/images/fancybox_sprite.png');}  /**更改fancybox默认的图片路径**/
+    </style>
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+    <script type="text/javascript" color="0,0,0" opacity='0.3' zIndex="-1" count="100" src="/js/canvas-nest.min.js"></script>
+
+
+</body>
+
+</html>
