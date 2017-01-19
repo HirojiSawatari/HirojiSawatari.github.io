@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      ArcGIS 10根据DEM数据与小流域数据获取最短路径 | Ka Tou Space 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Tou Ka">
+    
+    
+
+    <meta name="description" content="在ArcGIS中，在已知起止点的情况下，利用数字高程模型数据与小流域数据，可以很方便地分析得到两点之间在空间上的最短距离路径。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArcGIS 10根据DEM数据与小流域数据获取最短路径 | Ka Tou Space">
+<meta property="og:url" content="http://hirojisawatari.github.io/2013/06/04/12/index.html">
+<meta property="og:site_name" content="Ka Tou Space">
+<meta property="og:description" content="在ArcGIS中，在已知起止点的情况下，利用数字高程模型数据与小流域数据，可以很方便地分析得到两点之间在空间上的最短距离路径。">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_1.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_2.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_3.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_4.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_5.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_6.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_7.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_8.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_9.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_10.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_11.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_12.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_13.png">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\12_14.png">
+<meta property="og:updated_time" content="2017-01-17T04:41:26.935Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ArcGIS 10根据DEM数据与小流域数据获取最短路径 | Ka Tou Space">
+<meta name="twitter:description" content="在ArcGIS中，在已知起止点的情况下，利用数字高程模型数据与小流域数据，可以很方便地分析得到两点之间在空间上的最短距离路径。">
+<meta name="twitter:image" content="http://hirojisawatari.github.io/\images\12_1.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/images/favicon2.ico">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+    <link rel="stylesheet" href="/css/instagram.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header id="head" class="panel-cover panel-cover--collapsed">
+
+
+
+  
+
+
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Ka Tou Space"><img src="/images/logo2.png" width="80" alt="Ka Tou Space logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Ka Tou Space</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          二十三年前、この腐敗した世界に堕とされた...
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/photo" title="" class="">画廊</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/other" title="" class="">其他</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    <!-- E-Mail -->
+      <li class="navigation__item">
+        <a href="mailto:ka_tou@outlook.com" title="E-Mail of Ka Tou">
+          <i class='icon icon-mail'></i>
+          <span class="label">E-Mail</span>
+        </a>
+      </li>
+
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/HirojiSawatari" title="Ka Tou on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+	<!-- Twitter -->
+      <li class="navigation__item">
+        <a href="https://twitter.com/sawatari_katou" title="Ka Tou on Twitter">
+          <i class='icon icon-social-twitter'></i>
+          <span class="label">Twitter</span>
+        </a>
+      </li>
+
+	<!-- Facebook -->
+      <li class="navigation__item">
+        <a href="https://facebook.com/sawatari.hiroji.9?refid=13&ref=bookmarks" title="Ka Tou on Facebook">
+          <i class='icon icon-social-facebook'></i>
+          <span class="label">Facebook</span>
+        </a>
+      </li>
+
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+    -->
+
+      <li class="navigation__item">
+        <a href="https://weibo.com/u/2196708441" title="Ka Tou on Weibo">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">ArcGIS 10根据DEM数据与小流域数据获取最短路径</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2013-06-04" class="post-meta__date date">2013-06-04</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/Tech-Blog/">Tech Blog</a>
+            </font>
+          
+
+          
+            &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/ArcGIS/">ArcGIS</a>, <a class="tags-link" href="/tags/GIS/">GIS</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>在ArcGIS中，在已知起止点的情况下，利用数字高程模型数据与小流域数据，可以很方便地分析得到两点之间在空间上的最短距离路径。<a id="more"></a></p>
+<h3 id="一、导入数据"><a href="#一、导入数据" class="headerlink" title="一、导入数据"></a>一、导入数据</h3><p>打开ArcGIS，将dem(高程数据) 、startPot (路径源点数据) 、endPot (路径终点数据) 、river (小流域数据)导入后如下图所示：</p>
+<p><img src="\images\12_1.png" alt="Screenshot"></p>
+<h3 id="二、设置环境"><a href="#二、设置环境" class="headerlink" title="二、设置环境"></a>二、设置环境</h3><p>点击工具栏中的“地理处理”-&gt;“环境”，将“处理范围”设定为“与图层dem相同”，并且将“栅格分析”中的“最大输入数”同样设定为“与图层dem相同”，同时展开工作空间，设置合理的工作路径。再选择工具栏中的“自定义”-&gt;“拓展模块”，勾选“Spatial Analyst”。</p>
+<h3 id="三、坡度计算"><a href="#三、坡度计算" class="headerlink" title="三、坡度计算"></a>三、坡度计算</h3><p>打开“ArcToolbox”-&gt;“Spatial Analyst工具”-&gt;“表面分析”-&gt;“坡度”，输入栅格设定为“dem”，窗口如下图所示：</p>
+<p><img src="\images\12_2.png" alt="Screenshot"></p>
+<p>点击确认生成坡度图层“Slope_dem4”，再对此图数据进行重分类。选择“重分类”-&gt;“重分类”，输入栅格选择“Slope_dem4”，再点击分类按钮，将列设为相等间隔的十列，点击确定生成重分类之后的坡度图层“Reclass_Slop4”，坡度越大数值越大，如下图所示：</p>
+<p><img src="\images\12_3.png" alt="Screenshot"></p>
+<h3 id="四、起伏度计算"><a href="#四、起伏度计算" class="headerlink" title="四、起伏度计算"></a>四、起伏度计算</h3><p>打开“ArcToolbox”-&gt;“Spatial Analyst工具”-&gt;“邻域分析”-&gt;“块统计”，输入栅格设置为“dem”，邻域分析设置为矩形，高度和宽度均设为11像元，统计类型设为“RANGE”，如下图所示：</p>
+<p><img src="\images\12_4.png" alt="Screenshot"></p>
+<p>点击确定生成起伏度图层“BlockSt_dem3”，选择“重分类”-&gt;“重分类”，输入栅格选择“BlockSt_dem3”，再点击分类按钮，将列设为相等间隔的十列，点击确定生成重分类之后的起伏度数据“Reclass_Bloc4”，起伏度越大数值越大，如下图所示：</p>
+<p><img src="\images\12_5.png" alt="Screenshot"></p>
+<h3 id="五、河流成本计算"><a href="#五、河流成本计算" class="headerlink" title="五、河流成本计算"></a>五、河流成本计算</h3><p>选择“重分类”-&gt;“重分类”，输入栅格“river”，按下图将该图层进行重分类。</p>
+<p><img src="\images\12_6.png" alt="Screenshot"></p>
+<p>点击确定生成河流成本数据“Reclass_rive4”，即数值越大成本越高。</p>
+<p><img src="\images\12_7.png" alt="Screenshot"></p>
+<h3 id="六、成本加权"><a href="#六、成本加权" class="headerlink" title="六、成本加权"></a>六、成本加权</h3><p>选择栅格计算器，先将坡度数据（Reclass_Slop4）和起伏度数据（Reclass_Bloc4）按照0.6：0.4 权重合并，然后与河流成本作等权重的加和合并，窗口如下图所示：</p>
+<p><img src="\images\12_8.png" alt="Screenshot"></p>
+<p>点击确定后生成成本栅格数据“raster8”，如下图所示：</p>
+<p><img src="\images\12_9.png" alt="Screenshot"></p>
+<h3 id="七、寻找最短路径"><a href="#七、寻找最短路径" class="headerlink" title="七、寻找最短路径"></a>七、寻找最短路径</h3><p>打开“ArcToolbox”-&gt;“Spatial Analyst工具”，打开距离分析，选择成本距离，选择要素源数据为“startPot”，成本栅格数据设置为“raster8”，并且设置输出回溯链接栅格数据，如下图所示：</p>
+<p><img src="\images\12_10.png" alt="Screenshot"></p>
+<p>点击确定后生成距离栅格数据“CostDis_star3”：</p>
+<p><img src="\images\12_11.png" alt="Screenshot"></p>
+<p>以及回溯链接栅格数据“direction_start”：</p>
+<p><img src="\images\12_12.png" alt="Screenshot"></p>
+<p>打开“ArcToolbox”-&gt;“Spatial Analyst工具”，打开距离分析，选择成本路径，目标数据选择endPot，并且导入刚生成的距离栅格数据和回溯链接栅格数据，如下图所示：</p>
+<p><img src="\images\12_13.png" alt="Screenshot"></p>
+<p>点击确定后即生成最短路径如下图所示：</p>
+<p><img src="\images\12_14.png" alt="Screenshot"></p>
+
+  </section>
+
+  
+
+<section class="post-donate">
+
+
+  <!-- css -->
+  <style type="text/css">
+    .center {
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("/images/btn_reward.gif") no-repeat;
+      _background: url("/images/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+  <!-- Donate Module -->
+  <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+    <div id="donate_board" class="donate_bar center">
+      
+      <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+      <span class="donate_txt">
+        若本文对您有帮助，请打赏鼓励本人！
+      </span> 
+    </div>
+
+    <!-- /btn_donate & tips -->
+
+    <!-- donate guide -->
+    
+    <div id="donate_guide" class="donate_bar center hidden">
+
+      <a href="/images/wechat.png" title="用微信扫一扫" class="fancybox" rel="article0">
+        <img src="/images/wechat.png" title="微信打赏" height="190px" width="auto"/>
+      </a>
+        
+      &nbsp;&nbsp;
+
+      <a href="/images/alipay.jpg" title="用支付宝扫一扫" class="fancybox" rel="article0">
+        <img src="/images/alipay.jpg" title="支付宝打赏" height="190px" width="auto"/>
+      </a>
+
+      <span class="donate_txt">
+        若本文对您有帮助，请打赏鼓励本人！
+      </span>
+
+    </div>
+    <!-- /donate guide -->
+
+    <!-- donate script -->
+    <script type="text/javascript">
+      document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+      }
+
+      function donate_on_web(){
+        $('#donate').submit();
+      }
+
+      var original_window_onload = window.onload;
+      window.onload = function () {
+        if (original_window_onload) {
+          original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+      }
+    </script>
+    <!-- /donate script -->
+  </div>
+  <!-- /Donate Module -->
+
+
+</section>
+
+
+
+  
+
+<section class="post-share">
+
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<span class="jiathis_txt">分享到：</span>
+	<a class="jiathis_button_qzone">QQ空间</a>
+	<a class="jiathis_button_tsina">新浪微博</a>
+	<a class="jiathis_button_tqq">腾讯微博</a>
+	<a class="jiathis_button_weixin">微信</a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+</section>
+
+
+  
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2013/06/04/12/" data-title="ArcGIS 10根据DEM数据与小流域数据获取最短路径" data-url="http://hirojisawatari.github.io/2013/06/04/12/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"katou"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embedbykt.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2012-2017 <a href="http://www.katouspace.com/">Ka Tou (Sawatari Hiroji)</a> All Right Reserved | Powered by <a href="https://hexo.io/">Hexo</a> | Theme - <a href="https://github.com/HirojiSawatari/Sawauno">Sawauno</a> base on <a href="https://github.com/someus/huno">Huno</a></span>
+    <br/>
+    
+    <div class="footicon-wrap">
+        <span>
+    	    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261136501'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1261136501%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>    
+        </span>
+    </div>
+
+</footer>
+        </div>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css">            <!--引入fancybox的样式-->
+
+    <!-- js files -->
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+    <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/js/jquery.mousewheel-3.0.6.pack.js"></script>  <!--带有鼠标滚动效果的库-->
+
+    <style type="text/css">
+      #content{width: 800px;margin: 20px auto;overflow: hidden;}
+      #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {background-image: url('/images/fancybox_sprite.png');}  /**更改fancybox默认的图片路径**/
+    </style>
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+    <script type="text/javascript" color="0,0,0" opacity='0.3' zIndex="-1" count="100" src="/js/canvas-nest.min.js"></script>
+
+
+</body>
+
+</html>
