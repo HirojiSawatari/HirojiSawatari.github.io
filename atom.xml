@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ka Tou Space</title>
+  <subtitle>二十三年前、この腐敗した世界に堕とされた...</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://hirojisawatari.github.io/"/>
+  <updated>2017-01-16T02:22:01.518Z</updated>
+  <id>http://hirojisawatari.github.io/</id>
+  
+  <author>
+    <name>Tou Ka</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>个性化Huno主题</title>
+    <link href="http://hirojisawatari.github.io/2017/01/13/7/"/>
+    <id>http://hirojisawatari.github.io/2017/01/13/7/</id>
+    <published>2017-01-13T03:05:34.000Z</published>
+    <updated>2017-01-16T02:22:01.518Z</updated>
+    
+    <content type="html"><![CDATA[<p>本博客基于Hexo博客框架，主题为Huno。Huno主题作者已长时间未更新，而且与最新主题例如NexT相比，美观度不足且功能有所缺失。因此需要针对Huno主题的不足进行一些个性化的修改。<a id="more"></a></p>
+<h3 id="一、Logo旋转"><a href="#一、Logo旋转" class="headerlink" title="一、Logo旋转"></a>一、Logo旋转</h3><p>网站logo默认是没用响应动画特效的。参考NexT主题，可以将logo加入鼠标移入时旋转效果，最终效果见本网站logo。本功能参考该博客：<a href="http://baiya.me/2016/05/22/Hexo%20Next%E4%B8%BB%E9%A2%98%E5%A4%B4%E5%83%8F%E6%94%B9%E5%9C%86%E8%A7%92%E5%B9%B6%E5%AE%9E%E7%8E%B0%E9%BC%A0%E6%A0%87%E7%A7%BB%E5%85%A5%E6%97%B6%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/" target="_blank" rel="external">Hexo Next主题头像改圆角并实现鼠标移入时旋转效果</a>。</p>
+<p>首先进入主题目录打开source/css/uno.css，找到定义logo的样式panel-cover__logo，加上以下属性：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">-webkit-transition</span>: <span class="selector-tag">-webkit-transform</span> 1<span class="selector-tag">s</span>;</div><div class="line"><span class="selector-tag">-ms-transition</span>: <span class="selector-tag">-ms-transform</span> 1<span class="selector-tag">s</span>;</div><div class="line"><span class="selector-tag">-moz-transition</span>: <span class="selector-tag">-moz-transform</span> 1<span class="selector-tag">s</span>;</div><div class="line"><span class="selector-tag">-o-transition</span>: <span class="selector-tag">-o-transform</span> 1<span class="selector-tag">s</span>;</div></pre></td></tr></table></figure>
+<p>再定义新样式panel-cover__logo:hover即可：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.panel-cover__logo</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">rotate</span>(360deg);</div><div class="line">  <span class="attribute">-ms-transform</span>:<span class="built_in">rotate</span>(360deg);</div><div class="line">  <span class="attribute">-moz-transform</span>:<span class="built_in">rotate</span>(360deg);</div><div class="line">  <span class="attribute">-o-transform</span>:<span class="built_in">rotate</span>(360deg);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="二、多说评论显示博主"><a href="#二、多说评论显示博主" class="headerlink" title="二、多说评论显示博主"></a>二、多说评论显示博主</h3><p>本博客评论系统采用多说，但多说默认是不显示博主标识的。在评论较多的情况下这有可能使得评论列表较为混乱。因此需对博主的回复加上相应标识。本功能的实现参考此博客：<a href="https://myhloli.com/duoshuo-ua-and-admin-tab.html" target="_blank" rel="external">多说评论框UA显示/博主标记</a>。最终效果如下所示：</p>
+<p><img src="\images\7_1.png" alt="Screenshot"></p>
+<p>首先需本地化多说核心脚本<a href="https://static.duoshuo.com/embed.js" target="_blank" rel="external">embed.js</a>，即将embed.js下载到本地调用，下载后打开embed.js，在首行加入以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sskadmin</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> ssk = <span class="string">''</span>;</div><div class="line">	<span class="keyword">if</span>(e.user_id==【你的多说id】)&#123;</div><div class="line">		ssk = <span class="string">'&lt;span class="sskadmin"&gt;博主'</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ssk+<span class="string">"&lt;/span&gt; "</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后在embed.js搜索：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data-qqt-account=<span class="string">"'+s+'"</span>&gt;<span class="string">'+p(n.name)+"")+""</span></div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data-qqt-account=<span class="string">"'+s+'"</span>&gt;<span class="string">'+p(n.name)+"") +"&lt;span class="\"ua\""&gt;" + sskadmin(e.author) + "&lt;/span&gt;" + ""</span></div></pre></td></tr></table></figure>
+<p>最后将以下代码添加至<a href="http://katou.duoshuo.com/admin/settings/" target="_blank" rel="external">多说自定义css</a>中即可：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">span</span><span class="selector-class">.ua</span>&#123;</div><div class="line">	<span class="attribute">margin</span>: <span class="number">0</span> <span class="number">1px</span><span class="meta">!important</span>;</div><div class="line">	<span class="attribute">color</span>:<span class="number">#FFFFFF</span><span class="meta">!important</span>;</div><div class="line">	<span class="comment">/*text-transform: Capitalize!important;</span></div><div class="line">	float: right!important;</div><div class="line">	line-height: 18px!important;*/</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.sskadmin</span>&#123;</div><div class="line">        <span class="attribute">background-color</span>: <span class="number">#3399FF</span><span class="meta">!important</span>;</div><div class="line">	<span class="attribute">border-color</span>: <span class="number">#01B171</span><span class="meta">!important</span>;</div><div class="line">	<span class="attribute">border-radius</span>: <span class="number">4px</span>;</div><div class="line">	<span class="attribute">padding</span>: <span class="number">0</span> <span class="number">5px</span><span class="meta">!important</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="三、不同文章显示不同侧边栏图片"><a href="#三、不同文章显示不同侧边栏图片" class="headerlink" title="三、不同文章显示不同侧边栏图片"></a>三、不同文章显示不同侧边栏图片</h3><p>默认情况下Huno主题只能定义一张侧边栏图片，即无论切换到任何文章，侧边栏图片只能是一张。这样就会使人觉得十分单调。为了使阅读不同文章时显示与文章主题相对应的侧边栏图片，需要进行以下修改。</p>
+<p>打开定义侧边栏样式的文件layout/_partials/side-panel.ejs，在判断页面是否为主页的代码下加入以下内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">is_post</span>()) &#123; %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">page.title</span>+'' == <span class="string">'文章1'</span>) &#123; %&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"> </span></div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"head"</span>).style.background=<span class="string">"url(/images/background-cover1.jpg) bottom center no-repeat #666666"</span>;</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"head"</span>).style.backgroundSize=<span class="string">"cover"</span>;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span> </div><div class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; <span class="attr">else</span> <span class="attr">if</span> (<span class="attr">page.title</span>+'' == <span class="string">'文章2'</span>) &#123; %&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"> </span></div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"head"</span>).style.background=<span class="string">"url(/images/background-cover2.jpg) center center no-repeat #666666"</span>;</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"head"</span>).style.backgroundSize=<span class="string">"cover"</span>;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span> </div><div class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div></pre></td></tr></table></figure>
+<p>其中“backgroundSize=”cover””保证在页面缩放时侧边栏图片保持不变。最后需在对应位置，即images文件夹下存放相应的图片。效果如下所示：</p>
+<p><img src="\images\7_2.png" alt="Screenshot"></p>
+<p><img src="\images\7_3.png" alt="Screenshot"></p>
+<h3 id="四、博客列表显示对应的分类与标签"><a href="#四、博客列表显示对应的分类与标签" class="headerlink" title="四、博客列表显示对应的分类与标签"></a>四、博客列表显示对应的分类与标签</h3><p>Huno主题默认的博客列表不显示博客的分类和标签，不利于读者直观地寻找其所需要查找的博客。添加此功能需在定义博客列表样式的文件layout/_partials/side-panel.ejs中，定义摘要信息的标签之下插入以下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post-meta__tags tags"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">post.categories</span> &amp;&amp; <span class="attr">post.categories.length</span> &gt;</span> 0)&#123; %&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">font</span> <span class="attr">class</span>=<span class="string">"categories"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/images/small-icon/cat.png"</span> <span class="attr">title</span>=<span class="string">"categories"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">list_categories</span>(<span class="attr">post.categories</span>, &#123;</span></div><div class="line">      <span class="attr">show_count:</span> <span class="attr">false</span>,</div><div class="line">      <span class="attr">class:</span> '<span class="attr">categories</span>',</div><div class="line">      <span class="attr">style:</span> '<span class="attr">none</span>'</div><div class="line">    &#125;) %&gt;</div><div class="line">    &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp</div><div class="line">    <span class="tag">&lt;/<span class="name">font</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">post.tags</span> &amp;&amp; <span class="attr">post.tags.length</span> &gt;</span> 0)&#123; %&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/images/small-icon/tag.png"</span> <span class="attr">title</span>=<span class="string">"tags"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">font</span> <span class="attr">class</span>=<span class="string">"categories"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">list_tags</span>(<span class="attr">post.tags</span>, &#123;</span></div><div class="line">      <span class="attr">show_count:</span> <span class="attr">false</span>,</div><div class="line">      <span class="attr">style:</span> '<span class="attr">none</span>',</div><div class="line">      <span class="attr">class:</span> '<span class="attr">tags</span>'</div><div class="line">    &#125;) %&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">font</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>然后在uno.css中加入对应的样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.post-meta__tags</span> &#123;</div><div class="line">  <span class="attribute">margin-left</span>: .<span class="number">4em</span>; &#125;</div></pre></td></tr></table></figure>
+<p>最后在small-icon路径下加入对应的小图标即可。最终效果如下所示：</p>
+<p><img src="\images\7_4.png" alt="Screenshot"></p>
+<h3 id="五、Nest背景特效"><a href="#五、Nest背景特效" class="headerlink" title="五、Nest背景特效"></a>五、Nest背景特效</h3><p>本博客背景的几何线条是采用来自NexT主题的效果，一个基于html5 canvas绘制的网页背景效果。此特效来自GitHub开源项目<a href="https://github.com/hustcc/canvas-nest.js" target="_blank" rel="external">canvas-nest.js</a>。本功能参考该博客：<a href="http://jinfang.life/posts/c00b4e03/" target="_blank" rel="external">为next主题添加nest背景特效</a>。</p>
+<p>首先下载<a href="https://github.com/hustcc/canvas-nest.js/blob/master/dist/canvas-nest.min.js" target="_blank" rel="external">canvas-nest.min.js</a>文件至source/js路径下，再打开layout/layout.ejs文件，将以下代码插入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>之间：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">color</span>=<span class="string">"0,0,0"</span> <span class="attr">opacity</span>=<span class="string">'0.5'</span> <span class="attr">zIndex</span>=<span class="string">"-1"</span> <span class="attr">count</span>=<span class="string">"100"</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/canvas-nest.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>代码中，color属性值代表线条颜色，opacity代表线条透明度（0-1），count代表线条数量，zIndex代表背景的z-index属性。</p>
+<h3 id="六、博客打赏功能"><a href="#六、博客打赏功能" class="headerlink" title="六、博客打赏功能"></a>六、博客打赏功能</h3><p>扫码支付这一功能运用得越来越广泛。博客中也可以添加“扫描支付宝、微信付款二维码支付”功能实现打赏功能。本功能实现参考此博客：<a href="http://colin1994.github.io/2016/06/02/hexo-copyright-and-donate/?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">为Hexo博客添加版权说明和打赏功能</a>。</p>
+<h4 id="1、引入FancyBox插件"><a href="#1、引入FancyBox插件" class="headerlink" title="1、引入FancyBox插件"></a>1、引入FancyBox插件</h4><p>为实现点击图片弹出小窗口显示放大图片，而不是美观性不足的点击图片打开新页面显示放大图片，需要使用<a href="http://fancyapps.com/fancybox/" target="_blank" rel="external">FancyBox插件</a>。它是一款基于jQuery开发的类Lightbox插件。最终实现效果如下所示：</p>
+<p><img src="\images\7_5.png" alt="Screenshot"></p>
+<p>首先在官网下载FancyBox，下载完毕后将其中文件按文件类型分别复制到source文件夹中对应的css、js文件夹内。再打开layout/layout.ejs文件，在</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>之前写入以下内容引入FancyBox的css样式和js文件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"&lt;%- config.root %&gt;css/jquery.fancybox.css"</span>&gt;</span>            <span class="comment">&lt;!--引入fancybox的样式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/jquery-1.10.1.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/jquery.fancybox.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/jquery.fancybox.pack.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/jquery.mousewheel-3.0.6.pack.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  <span class="comment">&lt;!--带有鼠标滚动效果的库--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css"></span></div><div class="line">  <span class="selector-id">#content</span>&#123;<span class="attribute">width</span>: <span class="number">800px</span>;<span class="attribute">margin</span>: <span class="number">20px</span> auto;<span class="attribute">overflow</span>: hidden;&#125;</div><div class="line">  <span class="selector-id">#fancybox-loading</span>, <span class="selector-class">.fancybox-close</span>, <span class="selector-class">.fancybox-prev</span> <span class="selector-tag">span</span>, <span class="selector-class">.fancybox-next</span> <span class="selector-tag">span</span> &#123;<span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">'&lt;%- config.root %&gt;images/fancybox_sprite.png'</span>);&#125;  <span class="comment">/**更改fancybox默认的图片路径**/</span></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>接着在</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>标签之后输入以下内容以初始化 fancybox() 函数即成功引入FancyBox插件。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">  $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">".fancybox"</span>).fancybox();</div><div class="line">  &#125;)</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="2、添加打赏按钮及支付二维码"><a href="#2、添加打赏按钮及支付二维码" class="headerlink" title="2、添加打赏按钮及支付二维码"></a>2、添加打赏按钮及支付二维码</h4><p>首先通过支付宝与微信手机客户端获取二者的支付二维码，拷贝至source/images目录下。再打开Huno主题根目录的_config.yml文件，添加以下代码：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">donate:</div><div class="line">  enable: true</div><div class="line">  text: 若本文对您有帮助，请打赏鼓励本人！</div></pre></td></tr></table></figure>
+<p>之后打开source/css/uno.css，添加post-donate样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.post-donate</span> &#123;</div><div class="line">  <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="number">#dddddd</span>;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">40px</span> <span class="number">0</span>; &#125;</div></pre></td></tr></table></figure>
+<p>再在layout/_partials下新建donate.ejs，添加以下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">page.comments</span>)&#123; %&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"post-donate"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">theme.donate</span>) &#123; %&gt;</span></div><div class="line">  <span class="comment">&lt;!-- css --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="xml"></span></div><div class="line">    .center &#123;</div><div class="line">      text-align: center;</div><div class="line">    &#125;</div><div class="line">    .hidden &#123;</div><div class="line">      display: none;</div><div class="line">    &#125;</div><div class="line">    .donate_bar a.btn_donate&#123;</div><div class="line">      display: inline-block;</div><div class="line">      width: 82px;</div><div class="line">      height: 82px;</div><div class="line">      background: url("/images/btn_reward.gif") no-repeat;</div><div class="line">      _background: url("/images/btn_reward.gif") no-repeat;</div><div class="line"></div><div class="line">      <span class="comment">&lt;!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif</span></div><div class="line">           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，</div><div class="line">         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，</div><div class="line">         嵌入其它博客时不一定要它们。 --&gt;</div><div class="line">      -webkit-transition: background 0s;</div><div class="line">      -moz-transition: background 0s;</div><div class="line">      -o-transition: background 0s;</div><div class="line">      -ms-transition: background 0s;</div><div class="line">      transition: background 0s;</div><div class="line">      <span class="comment">&lt;!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 --&gt;</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    .donate_bar a.btn_donate:hover&#123; background-position: 0px -82px;&#125;</div><div class="line">    .donate_bar .donate_txt &#123;</div><div class="line">      display: block;</div><div class="line">      color: #9d9d9d;</div><div class="line">      font: 14px/2 "Microsoft Yahei";</div><div class="line">    &#125;</div><div class="line">    .bold&#123; font-weight: bold; &#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- /css --&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- Donate Module --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"donate_module"</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- btn_donate &amp; tips --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"donate_board"</span> <span class="attr">class</span>=<span class="string">"donate_bar center"</span>&gt;</span></div><div class="line">      </div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"btn_donate"</span> <span class="attr">class</span>=<span class="string">"btn_donate"</span> <span class="attr">target</span>=<span class="string">"_self"</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span> <span class="attr">title</span>=<span class="string">"Donate 打赏"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"donate_txt"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%=</span> <span class="attr">theme.donate.text</span> %&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">span</span>&gt;</span> </div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- /btn_donate &amp; tips --&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- donate guide --&gt;</span></div><div class="line">    </div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"donate_guide"</span> <span class="attr">class</span>=<span class="string">"donate_bar center hidden"</span>&gt;</span></div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%- config.root %&gt;images/wechat.png"</span> <span class="attr">title</span>=<span class="string">"用微信扫一扫"</span> <span class="attr">class</span>=<span class="string">"fancybox"</span> <span class="attr">rel</span>=<span class="string">"article0"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;images/wechat.png"</span> <span class="attr">title</span>=<span class="string">"微信打赏"</span> <span class="attr">height</span>=<span class="string">"190px"</span> <span class="attr">width</span>=<span class="string">"auto"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        </div><div class="line">      &amp;nbsp;&amp;nbsp;</div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%- config.root %&gt;images/alipay.jpg"</span> <span class="attr">title</span>=<span class="string">"用支付宝扫一扫"</span> <span class="attr">class</span>=<span class="string">"fancybox"</span> <span class="attr">rel</span>=<span class="string">"article0"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;images/alipay.jpg"</span> <span class="attr">title</span>=<span class="string">"支付宝打赏"</span> <span class="attr">height</span>=<span class="string">"190px"</span> <span class="attr">width</span>=<span class="string">"auto"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"donate_txt"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%=</span> <span class="attr">theme.donate.text</span> %&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- /donate guide --&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- donate script --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">      <span class="built_in">document</span>.getElementById(<span class="string">'btn_donate'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        $(<span class="string">'#donate_board'</span>).addClass(<span class="string">'hidden'</span>);</div><div class="line">        $(<span class="string">'#donate_guide'</span>).removeClass(<span class="string">'hidden'</span>);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="function"><span class="keyword">function</span> <span class="title">donate_on_web</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        $(<span class="string">'#donate'</span>).submit();</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">var</span> original_window_onload = <span class="built_in">window</span>.onload;</div><div class="line">      <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (original_window_onload) &#123;</div><div class="line">          original_window_onload();</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'donate_board_wdg'</span>).className = <span class="string">'hidden'</span>;</div><div class="line">      &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- /donate script --&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- /Donate Module --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div></pre></td></tr></table></figure>
+<p>最后打开layout/_partials/article.ejs，在</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;/<span class="name">article</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>之前加入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">donate</span>') %&gt;</span></div></pre></td></tr></table></figure>
+<p>即可实现功能。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本博客基于Hexo博客框架，主题为Huno。Huno主题作者已长时间未更新，而且与最新主题例如NexT相比，美观度不足且功能有所缺失。因此需要针对Huno主题的不足进行一些个性化的修改。
+    
+    </summary>
+    
+      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
+    
+    
+      <category term="Hexo" scheme="http://hirojisawatari.github.io/tags/Hexo/"/>
+    
+      <category term="Static Website" scheme="http://hirojisawatari.github.io/tags/Static-Website/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用Hexo在GitHub上搭建个人博客</title>
+    <link href="http://hirojisawatari.github.io/2017/01/11/6/"/>
+    <id>http://hirojisawatari.github.io/2017/01/11/6/</id>
+    <published>2017-01-11T13:40:51.000Z</published>
+    <updated>2017-01-16T02:22:11.619Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。<a id="more"></a></p>
+<p><img src="\images\6_1.png" alt="Screenshot"></p>
+<h3 id="一、在GitHub上建立博客源码仓库"><a href="#一、在GitHub上建立博客源码仓库" class="headerlink" title="一、在GitHub上建立博客源码仓库"></a>一、在GitHub上建立博客源码仓库</h3><p>首先，在GitHub上建立一个空仓库用来存放博客源码，仓库命名方式必须为“GitHub账户名.github.io”。</p>
+<p><img src="\images\6_2.png" alt="Screenshot"></p>
+<p>同时，安装<a href="https://desktop.github.com/" target="_blank" rel="external">GitHub客户端</a>到本地。安装本地后打开客户端，登录账号。</p>
+<h3 id="二、安装Hexo"><a href="#二、安装Hexo" class="headerlink" title="二、安装Hexo"></a>二、安装Hexo</h3><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo</a>是一个快速简洁且高效的博客框架。在使用Hexo之前需要安装<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>以及其npm管理模块。</p>
+<p>安装Node.js完毕后，打开GitHub客户端中的Git Shell，输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
+<p>Hexo安装完毕后先建立一个存储博客的文件夹，再进入文件夹路径，输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init &lt;folder&gt;</div></pre></td></tr></table></figure>
+<p><img src="\images\6_3.png" alt="Screenshot"></p>
+<p>输入完毕后hexo项目即初始化成功。然后进入博客仓库目录，输入以下命令安装依赖模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install</div></pre></td></tr></table></figure>
+<p>安装完毕后输入以下命令即可以运行Hexo服务端，在浏览器输入<a href="http://127.0.0.1:4000" target="_blank" rel="external">http://127.0.0.1:4000</a>即可以看见初始状态的博客页面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
+<p><img src="\images\6_4.png" alt="Screenshot"></p>
+<h3 id="三、安装Hexo主题"><a href="#三、安装Hexo主题" class="headerlink" title="三、安装Hexo主题"></a>三、安装Hexo主题</h3><p>初始主题个人觉得不是很美观。试用了几个主题后我还是决定使用<a href="https://github.com/letiantian/huno" target="_blank" rel="external">Huno</a>主题。</p>
+<p>安装Huno主题首先需要打开Git Shell，在博客仓库目录执行以下命令，从而将主题下载到博客仓库中的theme/huno目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/letiantian/huno.git theme/huno</div></pre></td></tr></table></figure>
+<p>主题下载完毕后打开博客根目录的配置文件_config.yml，修改theme为theme: huno，应用新主题。输入huno s指令重启服务端后即可生效。</p>
+<h3 id="四、提交仓库至GitHub"><a href="#四、提交仓库至GitHub" class="headerlink" title="四、提交仓库至GitHub"></a>四、提交仓库至GitHub</h3><p>打开根目录配置文件_config.yml，将deploy改为如下所示：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">  <span class="attribute">type</span>: git</div><div class="line">  <span class="attribute">repository</span>: <span class="attribute">https</span>:<span class="comment">//github.com/HirojiSawatari/HirojiSawatari.github.io.git</span></div><div class="line">  <span class="attribute">branch</span>: master</div></pre></td></tr></table></figure>
+<p>其中repository项的值为之前建立的博客源码仓库地址，可从下图所示位置获取。</p>
+<p><img src="\images\6_5.png" alt="Screenshot"></p>
+<p>配置部署完毕后修改url值配置统一资源定位符。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">url</span>: <span class="attribute">http</span>:<span class="comment">//hirojisawatari.github.io</span></div></pre></td></tr></table></figure>
+<p>全部配置完毕后执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<p>再执行以下命令生成静态站点并发布，即可在互联网上打开新建的博客了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
+<h3 id="五、发布博文"><a href="#五、发布博文" class="headerlink" title="五、发布博文"></a>五、发布博文</h3><p>在博客仓库执行以下命令即可以自动在source/_posts目录下生成对应的markdown文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &lt;filename&gt;</div></pre></td></tr></table></figure>
+<p>初始markdown文件内结构如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: test</div><div class="line">date: 2011-1-1</div><div class="line">tags:</div><div class="line">  - aaa</div><div class="line"><span class="section">categories: AAA</span></div><div class="line">---</div></pre></td></tr></table></figure>
+<p>其中title项为文章的标题；date项为文章建立日期，可以自定义；tags项为文章标签，可设置为多个，多个标签通过键入回车键分隔；categories项为分类，只能设置一个。正文需在最后键入回车键后编写。</p>
+<p>若需生成在首页博文列表可见的摘要信息，则在文章适当位置处键入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--more--&gt;</span></div></pre></td></tr></table></figure>
+<p>之前的内容即可展示在首页博文目录中。</p>
+<p>文章编写完毕后执行以下命令即可提交至服务器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
+<p>同时，在编写过程中可以执行以下命令在本地服务器查看实时效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo s</div></pre></td></tr></table></figure>
+<h3 id="六、自定义域名"><a href="#六、自定义域名" class="headerlink" title="六、自定义域名"></a>六、自定义域名</h3><p>原本的域名是GitHub分配的域名，个性化不足。因此我决定注册一个自己的域名。注册完自己的域名后需要将新域名与博客绑定。打开博客仓库目录中public目录，新建“CNAME”文件，在该文件中写入注册的新域名。</p>
+<p>然后解析新域名，向域名的DNS配置中添加以下两条记录：</p>
+<p><img src="\images\6_6.png" alt="Screenshot"></p>
+<p>其中记录类型为CNAME，记录值即为GitHub分配的博客原域名，主机记录分别为“@”和“www”，其余项默认即可。</p>
+<p>配置完毕后打开Git Shell执行发布命令，稍等几分钟后即可使用新域名进入博客主页。之后若执行“hexo clean”需备份CNAME文件。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。
+    
+    </summary>
+    
+      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
+    
+    
+      <category term="Hexo" scheme="http://hirojisawatari.github.io/tags/Hexo/"/>
+    
+      <category term="Static Website" scheme="http://hirojisawatari.github.io/tags/Static-Website/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搭完blog后的一些闲话</title>
+    <link href="http://hirojisawatari.github.io/2016/12/19/4/"/>
+    <id>http://hirojisawatari.github.io/2016/12/19/4/</id>
+    <published>2016-12-19T11:34:05.000Z</published>
+    <updated>2017-01-14T05:23:04.922Z</updated>
+    
+    <content type="html"><![CDATA[<p>我并不是一个喜欢写文章的人，这是我的一个缺点。然而我是一个经常有意无意表露出自己内心想法的人，这也是我的一个缺点。<a id="more"></a></p>
+<p>最近一直在玩GitHub，也把自己以前做的项目和最近写的一些代码都上传了上去。闲下来的时候也喜欢登上自己的GitHub账号，欣赏自己的主页，享受着成就感，满足着虚荣心。尽管实际上这些代码很low，甚至项目中有的功能都没能实现。</p>
+<p>前天晚上，我在观摩别人的GitHub账号的时候发现了一个现象，一般大牛们都有自己的个人主页，而且个人主页的代码仓库居然可以保存在GitHub账号下。一个个人主页既可以以后拿出来装逼，而且还能丰富下我那个干货不足的代码仓库，最重要的是，这个主页是免费的。何乐而不为？</p>
+<p>说干就干，趁着周日，我花了一天的时间试着熟悉Hexo博客框架，挑选着各种眼花缭乱的theme，笨拙地操作着以前根本没用过的Git shell。终于在昨天晚上，人生中第一个真正属于我自己的网站完整地展现在了我面前的Sony VAIO Pro 13的屏幕上。我翘起二郎腿，叼着一根硬白金万宝路，忍受着困意，自豪地点击着每一个控件，全然不知此时已是19号的凌晨。</p>
+<p>但是，一觉醒来，今天早上，我再次看着自己的博客，看着上面仅有的从QQ空间和CSDN上挪过来的三篇文章，深知自己是一个喜欢心血来潮但是没有恒心的人的我不由得想，会不会明年的今天，后年的今天，若干年后的今天，这个页面上仍然只有这三篇文章。</p>
+<p>正如刚开始提到的，我不是一个喜欢写文章的人，小学时在祖父近乎严苛的教育下我对作文有着深深的恐惧。尽管那时候曾被语文老师评为“小作家”之一，但我也知道，我当时的家庭作业都是在身边祖父的指点和批评下完成的，在没有祖父的考场上，我的作文一无是处。</p>
+<p>但是我又是一个习惯将自己的内心想法暴露在外的人。有什么让自己开心，使自己骄傲的事情习惯扔到空间或者朋友圈炫耀，而遇到难过甚至愤怒的事情则需要找好几个人倾诉。这样做的后果是很容易让别人觉得我是个没有城府的人。比如，我现在被老板送到北京，周末出去玩乐定个位发到朋友圈，一定会有人觉得我是在炫耀；又比如我有次被人批评了，我很不理解找了几个人吐槽，很有可能中间就有人觉得其实确实是我的错，我到处吐槽其实是无理取闹。</p>
+<p>想到这些，再看自己的博客主页，顿时觉得它意义重大。一方面，为了不让我的博客永远只有三篇文章，应当至少偶尔或者定期写点东西为好，权当锻炼自己早已失去的写作水平。至于文章内容，除了习惯性的开发文档外，就是所谓另一方面的问题了。另一方面，为了能有东西可写，平时有意义的事情还是用真正属于自己的博客来记录吧。我自己的喜悦与快乐其实并没有必要与其他人分享，而且并不是所有人都觉得我分享的是喜悦。至于不爽的事情，就让它随风飘逝吧。</p>
+<p>2016年12月19日夜于北京</p>
+<p>2017年1月10日补充：花了30来块钱买了两个域名：katouspace.com、katou.space，现在好歹也像个正规网站了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我并不是一个喜欢写文章的人，这是我的一个缺点。然而我是一个经常有意无意表露出自己内心想法的人，这也是我的一个缺点。
+    
+    </summary>
+    
+      <category term="Informal Essay" scheme="http://hirojisawatari.github.io/categories/Informal-Essay/"/>
+    
+    
+      <category term="Experience" scheme="http://hirojisawatari.github.io/tags/Experience/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Scrapy爬虫 + Tkinter爬取天猫热门商品</title>
+    <link href="http://hirojisawatari.github.io/2016/12/19/3/"/>
+    <id>http://hirojisawatari.github.io/2016/12/19/3/</id>
+    <published>2016-12-18T16:10:23.000Z</published>
+    <updated>2017-01-14T05:17:10.336Z</updated>
+    
+    <content type="html"><![CDATA[<p>每当双十一、双十二，看着淘宝、天猫、京东网页上琳琅满目的商品，经常有人会因为选择困难症不知道该购买什么好。而且购物网站商品的排列顺序经常会受到人为控制。因此，一个具有通过输入关键字，筛选相关热门产品并按热门程度排序的程序是有存在意义的。<a id="more"></a>本程序以天猫为例，使用Python语言开发，利用Scrapy框架爬取网页信息，利用Tkinter框架构建程序GUI。源代码已上传至GitHub：<a href="https://github.com/HirojiSawatari/FindGoods" target="_blank" rel="external">https://github.com/HirojiSawatari/FindGoods</a><br>最终界面如下所示：</p>
+<p><img src="\images\3_1.png" alt="Screenshot"></p>
+<h3 id="一、框架安装"><a href="#一、框架安装" class="headerlink" title="一、框架安装"></a>一、框架安装</h3><p>Tkinter框架为内置模块，无需额外安装，而Scrapy框架安装方法见官方链接：<a href="https://doc.scrapy.org/en/latest/intro/install.html" target="_blank" rel="external">https://doc.scrapy.org/en/latest/intro/install.html</a></p>
+<h3 id="二、Scrapy配置"><a href="#二、Scrapy配置" class="headerlink" title="二、Scrapy配置"></a>二、Scrapy配置</h3><p>构建项目后，由于天猫具有反爬取措施，首先需要在配置文件settings.py中输入以下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 绕过天猫robots.txt</span></div><div class="line">ROBOTSTXT_OBEY = <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="comment"># 禁止cookies,防止被ban</span></div><div class="line">COOKIES_ENABLED = <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="comment"># 伪装chrome</span></div><div class="line">USER_AGENT = <span class="string">'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'</span></div></pre></td></tr></table></figure>
+<p>同时，为了输出爬取得到的信息，同样需要在setting.py中输入输出文件信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Output .csv</span></div><div class="line">FEED_URI = <span class="string">u'goods.csv'</span></div><div class="line">FEED_FORMAT = <span class="string">'CSV'</span></div></pre></td></tr></table></figure>
+<p>配置文件配置完毕。</p>
+<h3 id="三、开始爬取"><a href="#三、开始爬取" class="headerlink" title="三、开始爬取"></a>三、开始爬取</h3><p>首先建立spider，爬取之前，设置name，爬取网站url等信息，并设置爬取时间间隔防止被ban。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">name = <span class="string">"FindGoods"</span></div><div class="line">download_delay = <span class="number">4</span></div><div class="line">allowed_domains = [<span class="string">"tmall.com"</span>]</div><div class="line">start_urls = [</div><div class="line">    <span class="string">"https://www.tmall.com/"</span></div><div class="line">]</div></pre></td></tr></table></figure>
+<p>确定我们需要爬取的商品相关信息。观察天猫搜素结果页，我们可以获取到的信息包括商品名称、店铺名称、价格、月成交量和评论数。为了实现之后点击item跳转购买界面的功能，我们还应当获取该商品购买界面的url信息。此外，我们还需预留分数字段以存储根据商品成交量和评论数计算得到的分数信息。确定爬取信息之后定义item.py如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">name = Field()</div><div class="line">shop = Field()</div><div class="line">price = Field()</div><div class="line">trading = Field()</div><div class="line">review = Field()</div><div class="line">url = Field()</div><div class="line">score = Field()</div></pre></td></tr></table></figure>
+<p>继续观察天猫搜素结果页，我们可以通过审查页面要素得到我们需得到的商品信息在页面中的位置。Scrapy中页面位置信息通过xpath获取。由于天猫电器城情况特殊，我们还需要单独对电子产品页面进行单独分析。最终分析得到的要素爬取xpath信息如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">gifts = sel.xpath(<span class="string">'//*[@id="J_ItemList"]/div[@class="product  "]'</span>)</div><div class="line"><span class="keyword">for</span> gift <span class="keyword">in</span> gifts:</div><div class="line">    name = gift.xpath(<span class="string">'div/p[@class="productTitle"]/a/@title'</span>).extract()</div><div class="line">    <span class="comment"># 天猫电器城HTML结构不同</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> name:</div><div class="line">        name = gift.xpath(<span class="string">'div/div[@class="productTitle productTitle-spu"]/a[1]/text()'</span>).extract()</div><div class="line"></div><div class="line">    shop = gift.xpath(<span class="string">'div/div[@class="productShop"]/a[@class="productShop-name"]/text()'</span>).extract()</div><div class="line">    price = gift.xpath(<span class="string">'div/p[@class="productPrice"]/em/@title'</span>).extract()</div><div class="line">    trading = gift.xpath(<span class="string">'div/p[@class="productStatus"]/span[1]/em/text()'</span>).extract()</div><div class="line">    review = gift.xpath(<span class="string">'div/p[@class="productStatus"]/span[2]/a/text()'</span>).extract()</div><div class="line">    url = gift.xpath(<span class="string">'div/p[@class="productTitle"]/a/@href'</span>).extract()</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> url:</div><div class="line">        url = gift.xpath(<span class="string">'div/div[@class="productTitle productTitle-spu"]/a[1]/@href'</span>).extract()</div></pre></td></tr></table></figure>
+<p>获取信息后需要存储，同时计算商品评分。我们此处评分标准采用（月交易量×2+评论数）的方法计算。因为在html中获取的月交易量信息和评论数信息可能带有中文字符，例如“万”、“笔”等，我们还需剔除这些无关信息后转换为float数据类型进行计算。具体代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># sys.getfilesystemencoding()获得本地编码（mbcs编码）</span></div><div class="line">item[<span class="string">'name'</span>] = [na.encode(sys.getfilesystemencoding()) <span class="keyword">for</span> na <span class="keyword">in</span> name]</div><div class="line"></div><div class="line"><span class="comment"># 去掉商店名末尾的\n换行符（有两个\n）</span></div><div class="line">tempshop = str(shop[<span class="number">0</span>].encode(sys.getfilesystemencoding()))</div><div class="line">item[<span class="string">'shop'</span>] = tempshop.strip(<span class="string">'\n'</span>)</div><div class="line"></div><div class="line">item[<span class="string">'price'</span>] = price</div><div class="line">item[<span class="string">'url'</span>] = <span class="string">'https:'</span> + url[<span class="number">0</span>]</div><div class="line"></div><div class="line"><span class="comment"># 天猫电器城少数商品无交易量信息</span></div><div class="line">tradnum = <span class="number">0</span></div><div class="line"><span class="keyword">if</span> trading:</div><div class="line">    <span class="comment"># 在搜索页无法获取交易量详细数字，需转化</span></div><div class="line">    tradstr = str(trading[<span class="number">0</span>].encode(sys.getfilesystemencoding()))</div><div class="line">    item[<span class="string">'trading'</span>] = tradstr</div><div class="line">    <span class="comment"># “笔”字在字符串中的下标</span></div><div class="line">    biindex = tradstr.index(<span class="string">'\xb1\xca'</span>)</div><div class="line">    <span class="comment"># 除去“笔”</span></div><div class="line">    tradstr = tradstr[:biindex]</div><div class="line">    <span class="comment"># 判断是否有“万”字</span></div><div class="line">    <span class="keyword">if</span> <span class="string">'\xcd\xf2'</span> <span class="keyword">in</span> tradstr:</div><div class="line">        <span class="comment"># “万”字在字符串中的下标</span></div><div class="line">        wanindex = tradstr.index(<span class="string">'\xcd\xf2'</span>)</div><div class="line">        <span class="comment"># 除去“万”字</span></div><div class="line">        tradstr = tradstr[:wanindex]</div><div class="line">        tradnum = tradnum + string.atof(tradstr) * <span class="number">10000</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="comment"># 没有“万”字</span></div><div class="line">        tradnum = tradnum + string.atof(tradstr)</div><div class="line"></div><div class="line"><span class="comment"># 天猫电器城无评论数信息</span></div><div class="line">revinum = <span class="number">0</span></div><div class="line"><span class="keyword">if</span> review:</div><div class="line">    <span class="comment"># 在搜索页无法获取评论数详细数字，需转化</span></div><div class="line">    revistr = str(review[<span class="number">0</span>].encode(sys.getfilesystemencoding()))</div><div class="line">    item[<span class="string">'review'</span>] = revistr</div><div class="line">    <span class="comment"># 判断是否有“万”字</span></div><div class="line">    <span class="keyword">if</span> <span class="string">'\xcd\xf2'</span> <span class="keyword">in</span> revistr:</div><div class="line">        <span class="comment"># “万”字在字符串中的下标</span></div><div class="line">        wanindex2 = revistr.index(<span class="string">'\xcd\xf2'</span>)</div><div class="line">        <span class="comment"># 除去“万”字</span></div><div class="line">        revistr = revistr[:wanindex2]</div><div class="line">        revinum = revinum + string.atof(revistr) * <span class="number">10000</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="comment"># 没有“万”字</span></div><div class="line">        revinum = revinum + string.atof(revistr)</div><div class="line"></div><div class="line"><span class="comment"># 计算评分</span></div><div class="line">score = revinum + (tradnum * <span class="number">2</span>)</div><div class="line">item[<span class="string">'score'</span>] = round(score)</div><div class="line"><span class="keyword">yield</span>(item)</div></pre></td></tr></table></figure>
+<p>一页商品信息是不够的，因此我们观察后两页url可以发现，“s=60”表示第二页，“s=120”表示第三页，且“q=”后面的信息为商品关键字信息。因此我们可以依此设置后两页url并进行递归实现对后两页商品信息的自动爬取。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 提取商品名</span></div><div class="line">good = response.url[(response.url.index(<span class="string">"q="</span>) + <span class="number">2</span>):response.url.index(<span class="string">"&amp;type=p&amp;v"</span>)]</div><div class="line">next_page_urls = [</div><div class="line">    <span class="string">"https://list.tmall.com/search_product.htm?spm=a220m.1000858.0.0.0HVJLN&amp;s=60&amp;q="</span> + good + <span class="string">"&amp;sort=s&amp;style=g&amp;from=mallfp..pc_1_searchbutton&amp;type=pc#J_Filter"</span>,</div><div class="line">    <span class="string">"https://list.tmall.com/search_product.htm?spm=a220m.1000858.0.0.Zt2HlG&amp;s=120&amp;q="</span> + good + <span class="string">"&amp;sort=s&amp;style=g&amp;from=mallfp..pc_1_searchbutton&amp;type=pc#J_Filter"</span></div><div class="line">]</div><div class="line"><span class="comment"># 递归获取后两页</span></div><div class="line"><span class="keyword">for</span> next_page_url <span class="keyword">in</span> next_page_urls:</div><div class="line">    <span class="keyword">yield</span> Request(next_page_url, callback=self.parse)</div></pre></td></tr></table></figure>
+<p>爬虫构建完毕，在根目录建立runscrapy.py并输入以下代码后，执行该文件即可实现爬取相关信息并存储信息至根目录goods.csv的功能。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> scrapy <span class="keyword">import</span> cmdline</div><div class="line"></div><div class="line">cmdline.execute(<span class="string">"scrapy crawl FindGoods"</span>.split())</div></pre></td></tr></table></figure>
+<p>爬虫功能构建完毕。</p>
+<h3 id="四、GUI构建"><a href="#四、GUI构建" class="headerlink" title="四、GUI构建"></a>四、GUI构建</h3><p>为了界面美观，我们使用Tkinter为该爬虫程序构建了一个GUI，即main.py。需包括以下功能：</p>
+<h4 id="1、关键词输入与执行爬虫"><a href="#1、关键词输入与执行爬虫" class="headerlink" title="1、关键词输入与执行爬虫"></a>1、关键词输入与执行爬虫</h4><p>关键词输入框构建代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 关键字输入框</span></div><div class="line">var = StringVar()</div><div class="line">e = Entry(root, textvariable=var).grid(row=<span class="number">2</span>)</div></pre></td></tr></table></figure>
+<p>确认按钮构建代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 确认按钮</span></div><div class="line">Button(root, text=<span class="string">"开始查询"</span>, command=startSpider).grid(row=<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<p>爬虫执行函数如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">startSpider</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># 获取文本框内容</span></div><div class="line">    good = var.get()</div><div class="line">    <span class="comment"># 关键字保存至临时文件</span></div><div class="line">    temp = open(<span class="string">'tempgoods.temp'</span>, <span class="string">'w'</span>)</div><div class="line">    temp.write(good.encode(sys.getfilesystemencoding()))</div><div class="line">    temp.close()</div><div class="line"></div><div class="line">    <span class="comment"># 清空goods.csv</span></div><div class="line">    <span class="keyword">if</span> os.path.exists(<span class="string">'goods.csv'</span>):</div><div class="line">        csvfile = open(<span class="string">'goods.csv'</span>, <span class="string">'w'</span>)</div><div class="line">        csvfile.truncate()</div><div class="line"></div><div class="line">    <span class="comment"># 开始爬虫程序</span></div><div class="line">    os.system(<span class="string">"runscrapy.py"</span>)</div></pre></td></tr></table></figure>
+<p>同时，为了让爬虫按照给定的关键字进行爬取，需要让爬虫读取通过该临时文件传递过来的关键字信息。因此对goodspider.py进行以下修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">temp = open(<span class="string">'tempgoods.temp'</span>, <span class="string">'r'</span>)</div><div class="line">good = temp.read()</div><div class="line">temp.close()</div><div class="line"><span class="comment"># 天猫搜索该商品第一页</span></div><div class="line">url = <span class="string">"https://list.tmall.com/search_product.htm?q="</span> + good + <span class="string">"&amp;type=p&amp;vmarket=&amp;spm=875.7931836%2FA.a2227oh.d100&amp;from=mallfp..pc_1_searchbutton"</span></div></pre></td></tr></table></figure>
+<h4 id="2、爬取结果显示"><a href="#2、爬取结果显示" class="headerlink" title="2、爬取结果显示"></a>2、爬取结果显示</h4><p>爬取结果通过TreeView控件显示。控件实现代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 结果csv表格</span></div><div class="line">tree = ttk.Treeview(root, show=<span class="string">"headings"</span>, columns=(<span class="string">'店名'</span>, <span class="string">'商品名'</span>, <span class="string">'购买链接'</span>, <span class="string">'价格'</span>, <span class="string">'评分'</span>, <span class="string">'月交易量'</span>, <span class="string">'评论数'</span>))</div><div class="line"><span class="comment"># 表格滚动条</span></div><div class="line">ysb = ttk.Scrollbar(root, orient=<span class="string">'vertical'</span>, command=tree.yview)</div><div class="line">xsb = ttk.Scrollbar(root, orient=<span class="string">'horizontal'</span>, command=tree.xview)</div><div class="line">tree.configure(yscroll=ysb.set, xscroll=xsb.set)</div><div class="line"></div><div class="line">tree.column(<span class="string">'店名'</span>, width=<span class="number">100</span>, anchor=<span class="string">'center'</span>)</div><div class="line">tree.column(<span class="string">'商品名'</span>, width=<span class="number">250</span>, anchor=<span class="string">'center'</span>)</div><div class="line">tree.column(<span class="string">'购买链接'</span>, width=<span class="number">125</span>, anchor=<span class="string">'center'</span>)</div><div class="line">tree.column(<span class="string">'价格'</span>, width=<span class="number">50</span>, anchor=<span class="string">'center'</span>)</div><div class="line">tree.column(<span class="string">'评分'</span>, width=<span class="number">65</span>, anchor=<span class="string">'center'</span>)</div><div class="line">tree.column(<span class="string">'月交易量'</span>, width=<span class="number">55</span>, anchor=<span class="string">'center'</span>)</div><div class="line">tree.column(<span class="string">'评论数'</span>, width=<span class="number">55</span>, anchor=<span class="string">'center'</span>)</div><div class="line">tree.heading(<span class="string">'店名'</span>, text=<span class="string">'店名'</span>)</div><div class="line">tree.heading(<span class="string">'商品名'</span>, text=<span class="string">'商品名'</span>)</div><div class="line">tree.heading(<span class="string">'购买链接'</span>, text=<span class="string">'购买链接'</span>)</div><div class="line">tree.heading(<span class="string">'价格'</span>, text=<span class="string">'价格'</span>)</div><div class="line">tree.heading(<span class="string">'评分'</span>, text=<span class="string">'评分'</span>)</div><div class="line">tree.heading(<span class="string">'月交易量'</span>, text=<span class="string">'月交易量'</span>)</div><div class="line">tree.heading(<span class="string">'评论数'</span>, text=<span class="string">'评论数'</span>)</div><div class="line">vbar = ttk.Scrollbar(root, orient=VERTICAL, command=tree.yview)</div><div class="line">tree.configure(yscrollcommand=vbar.set)</div><div class="line"></div><div class="line"><span class="comment"># 初始化表格数据</span></div><div class="line">refreshTree()</div></pre></td></tr></table></figure>
+<h4 id="3、结果表格的刷新"><a href="#3、结果表格的刷新" class="headerlink" title="3、结果表格的刷新"></a>3、结果表格的刷新</h4><p>每次爬取结束获取新的信息后需要对结果表格内容进行更新。而且得到的商品信息需要根据各商品的得分进行从大到小的排序。更新函数如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">refreshTree</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># 清空</span></div><div class="line">    items = tree.get_children()</div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</div><div class="line">        tree.delete(item)</div><div class="line">    <span class="comment"># 读取csv</span></div><div class="line">    <span class="keyword">if</span> os.path.exists(<span class="string">'goods.csv'</span>):</div><div class="line">        csvfile = file(<span class="string">'goods.csv'</span>, <span class="string">'rb'</span>)</div><div class="line">        <span class="keyword">if</span> csvfile:</div><div class="line">            lines = []</div><div class="line">            reader = csv.reader(csvfile)</div><div class="line">            i = <span class="number">0</span></div><div class="line">            <span class="comment"># 转存至数组</span></div><div class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> reader:</div><div class="line">                <span class="comment"># 不输出第一行</span></div><div class="line">                <span class="keyword">if</span> i &gt; <span class="number">0</span>:</div><div class="line">                    lines.append(line)</div><div class="line">                i = i + <span class="number">1</span></div><div class="line"></div><div class="line">            <span class="comment"># 冒泡排序</span></div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(lines) - <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>):</div><div class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> range(j):</div><div class="line">                    <span class="keyword">if</span> string.atof(lines[k][<span class="number">4</span>]) &lt; string.atof(lines[k + <span class="number">1</span>][<span class="number">4</span>]):</div><div class="line">                        lines[k], lines[k + <span class="number">1</span>] = lines[k + <span class="number">1</span>], lines[k]</div><div class="line">            i = <span class="number">0</span></div><div class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> lines:</div><div class="line">                tree.insert(<span class="string">''</span>, i, values=(</div><div class="line">                    line[<span class="number">0</span>].decode(sys.getfilesystemencoding()), line[<span class="number">1</span>].decode(sys.getfilesystemencoding()),</div><div class="line">                    line[<span class="number">2</span>].decode(sys.getfilesystemencoding()), line[<span class="number">3</span>].decode(sys.getfilesystemencoding()),</div><div class="line">                    line[<span class="number">4</span>].decode(sys.getfilesystemencoding()), line[<span class="number">5</span>].decode(sys.getfilesystemencoding()),</div><div class="line">                    line[<span class="number">6</span>].decode(sys.getfilesystemencoding())))</div><div class="line">                i = i + <span class="number">1</span></div></pre></td></tr></table></figure>
+<h4 id="4、点击表格内商品直接跳转至购买界面"><a href="#4、点击表格内商品直接跳转至购买界面" class="headerlink" title="4、点击表格内商品直接跳转至购买界面"></a>4、点击表格内商品直接跳转至购买界面</h4><p>TreeView点击监听代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 监听Click</span></div><div class="line">tree.bind(<span class="string">"&lt;Double-1&gt;"</span>, onDBClick)</div><div class="line">跳转函数代码如下：</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">onDBClick</span><span class="params">(event)</span>:</span></div><div class="line">    <span class="comment"># 点击跳转天猫</span></div><div class="line">    item = tree.selection()[<span class="number">0</span>]</div><div class="line">    info = tree.item(item, <span class="string">"values"</span>)</div><div class="line">    url = info[<span class="number">2</span>]</div><div class="line">    webbrowser.open_new(url)</div></pre></td></tr></table></figure>
+<p>以上就是构建该项目的全部步骤。执行main.py即可实现项目的启动。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;每当双十一、双十二，看着淘宝、天猫、京东网页上琳琅满目的商品，经常有人会因为选择困难症不知道该购买什么好。而且购物网站商品的排列顺序经常会受到人为控制。因此，一个具有通过输入关键字，筛选相关热门产品并按热门程度排序的程序是有存在意义的。
+    
+    </summary>
+    
+      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
+    
+    
+      <category term="Python" scheme="http://hirojisawatari.github.io/tags/Python/"/>
+    
+      <category term="Web Crawler" scheme="http://hirojisawatari.github.io/tags/Web-Crawler/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android开发获取设备硬件相关信息</title>
+    <link href="http://hirojisawatari.github.io/2016/11/22/2/"/>
+    <id>http://hirojisawatari.github.io/2016/11/22/2/</id>
+    <published>2016-11-22T14:25:00.000Z</published>
+    <updated>2017-01-14T05:16:00.728Z</updated>
+    
+    <content type="html"><![CDATA[<p>在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。<a id="more"></a>本文所有代码能获取的设备信息如下图所示：</p>
+<p><img src="\images\2_1.png" alt="Screenshot"></p>
+<p>首先在manifest.xml添加以下权限：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_WIFI_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CAMERA"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CHANGE_NETWORK_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CHANGE_WIFI_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.RESTART_PACKAGES"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_LOGS"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_PHONE_STATE"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p>下面开始逐一获取设备相关信息分条目添加至某一FragmentPage中的LinearLayout pwTable中。<br>通过以下代码获取设备型号：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_model = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_model.setTextColor(Color.BLACK);</div><div class="line">p_model.setText(<span class="string">"手机型号："</span> + android.os.Build.MODEL);</div><div class="line">pwTable.addView(p_model);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取手机品牌：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_brand = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_brand.setTextColor(Color.BLACK);</div><div class="line">p_brand.setText(<span class="string">"手机品牌："</span> + android.os.Build.BRAND);</div><div class="line">pwTable.addView(p_brand);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取手机制造商，此条目信息通常情况与手机品牌一致：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_company = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_company.setTextColor(Color.BLACK);</div><div class="line">p_company.setText(<span class="string">"制造商："</span> + android.os.Build.MANUFACTURER);</div><div class="line">pwTable.addView(p_company);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取安卓版本信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_and = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_and.setTextColor(Color.BLACK);</div><div class="line">p_and.setText(<span class="string">"Android版本号："</span> + android.os.Build.VERSION.RELEASE);</div><div class="line">pwTable.addView(p_and);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU型号信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_cpuname = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_cpuname.setTextColor(Color.BLACK);</div><div class="line">p_cpuname.setText(<span class="string">"CPU型号："</span> + android.os.Build.HARDWARE);</div><div class="line">pwTable.addView(p_cpuname);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU架构信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_cputype = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_cputype.setTextColor(Color.BLACK);</div><div class="line">p_cputype.setText(<span class="string">"CPU架构："</span> + android.os.Build.CPU_ABI);</div><div class="line">pwTable.addView(p_cputype);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU核心数信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> cores;</div><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">	cores = <span class="keyword">new</span> File(<span class="string">"/sys/devices/system/cpu/"</span>).listFiles(CPU_FILTER).length;</div><div class="line">&#125; <span class="keyword">catch</span>(SecurityException e)&#123;</div><div class="line">	cores = <span class="number">0</span>;</div><div class="line">&#125; <span class="keyword">catch</span>(NullPointerException e)&#123;</div><div class="line">	cores = <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line">TextView p_cpucore = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_cpucore.setTextColor(Color.BLACK);</div><div class="line">p_cpucore.setText(<span class="string">"CPU核心数："</span> + cores);</div><div class="line">pwTable.addView(p_cpucore);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU最高频率信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> maxRate1 = <span class="number">0</span>;</div><div class="line"><span class="keyword">double</span> temp;</div><div class="line">String maxRate = <span class="string">"0"</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	FileReader fr1 = <span class="keyword">new</span> FileReader(<span class="string">"/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"</span>);</div><div class="line">	BufferedReader br1 = <span class="keyword">new</span> BufferedReader(fr1);</div><div class="line">	String text1 = br1.readLine();</div><div class="line">	maxRate1 = Integer.parseInt(text1);</div><div class="line">	temp = maxRate1 / <span class="number">1000.0</span>;</div><div class="line">	maxRate = String.format(<span class="string">"%.1f"</span>, temp);</div><div class="line">	br1.close();</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	<span class="comment">// TODO 自动生成的 catch 块</span></div><div class="line">&#125;</div><div class="line">TextView p_cpurate = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_cpurate.setTextColor(Color.BLACK);</div><div class="line">p_cpurate.setText(<span class="string">"CPU最高频率："</span> + maxRate + <span class="string">"MHz"</span>);</div><div class="line">pwTable.addView(p_cpurate);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU最低频率信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> minRate1 = <span class="number">0</span>;</div><div class="line">String minRate = <span class="string">"0"</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	FileReader fr2 = <span class="keyword">new</span> FileReader(<span class="string">"/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq"</span>);</div><div class="line">	BufferedReader br2 = <span class="keyword">new</span> BufferedReader(fr2);</div><div class="line">	String text2 = br2.readLine();</div><div class="line">	minRate1 = Integer.parseInt(text2);</div><div class="line">	temp = minRate1 / <span class="number">1000.0</span>;</div><div class="line">	minRate = String.format(<span class="string">"%.1f"</span>, temp);</div><div class="line">	br2.close();</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	<span class="comment">// TODO 自动生成的 catch 块</span></div><div class="line">&#125;</div><div class="line">TextView p_cpurate2 = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_cpurate2.setTextColor(Color.BLACK);</div><div class="line">p_cpurate2.setText(<span class="string">"CPU最低频率："</span> + minRate + <span class="string">"MHz"</span>);</div><div class="line">pwTable.addView(p_cpurate2);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取CPU温度：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">String text4 = <span class="string">"0"</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	FileReader fr4 = <span class="keyword">new</span> FileReader(<span class="string">"/sys/class/thermal/thermal_zone9/subsystem/thermal_zone9/temp"</span>);</div><div class="line">	BufferedReader br4 = <span class="keyword">new</span> BufferedReader(fr4);</div><div class="line">	text4 = br4.readLine();</div><div class="line">	br4.close();</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	<span class="comment">// TODO 自动生成的 catch 块</span></div><div class="line">&#125;</div><div class="line">TextView p_temp = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_temp.setTextColor(Color.BLACK);</div><div class="line">p_temp.setText(<span class="string">"CPU温度："</span> + text4 + <span class="string">"℃"</span>);</div><div class="line">pwTable.addView(p_temp);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取RAM大小信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> memorySize = <span class="number">0</span>;</div><div class="line">String ramSize = <span class="string">"0"</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	FileReader fr3 = <span class="keyword">new</span> FileReader(<span class="string">"/proc/meminfo"</span>);</div><div class="line">	BufferedReader br3 = <span class="keyword">new</span> BufferedReader(fr3);</div><div class="line">	String memoryLine = br3.readLine();</div><div class="line">	String subMemoryLine = memoryLine.substring(memoryLine.indexOf(<span class="string">"MemTotal:"</span>));</div><div class="line">	memorySize = Integer.parseInt(subMemoryLine.replaceAll(<span class="string">"\\D+"</span>, <span class="string">""</span>));</div><div class="line">	temp = memorySize / <span class="number">1000000.0</span>;</div><div class="line">	ramSize = String.format(<span class="string">"%.1f"</span>, temp);</div><div class="line">	br3.close();</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	<span class="comment">// TODO 自动生成的 catch 块</span></div><div class="line">&#125;</div><div class="line">TextView p_ram = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_ram.setTextColor(Color.BLACK);</div><div class="line">p_ram.setText(<span class="string">"RAM大小："</span> + ramSize + <span class="string">"GB"</span>);</div><div class="line">pwTable.addView(p_ram);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取ROM大小信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">StatFs stat = <span class="keyword">new</span> StatFs(Environment.getExternalStorageDirectory().getPath());</div><div class="line"><span class="keyword">long</span> blockSize = stat.getBlockSize();</div><div class="line"><span class="keyword">long</span> totalBlocks = stat.getBlockCount();</div><div class="line"><span class="keyword">long</span> romSize1 = blockSize * totalBlocks;</div><div class="line">temp = romSize1 / <span class="number">1000000000.0</span>;</div><div class="line">String romSize = String.format(<span class="string">"%.1f"</span>, temp);</div><div class="line">TextView p_rom = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_rom.setTextColor(Color.BLACK);</div><div class="line">p_rom.setText(<span class="string">"ROM大小："</span> + romSize + <span class="string">"GB"</span>);</div><div class="line">pwTable.addView(p_rom);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取电池容量信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">PowerProfile pp = <span class="keyword">new</span> PowerProfile(getActivity());</div><div class="line"><span class="keyword">int</span> batteryRate = (<span class="keyword">int</span>) pp.getBatteryCapacity();</div><div class="line">TextView p_batteryrate = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_batteryrate.setTextColor(Color.BLACK);</div><div class="line">p_batteryrate.setText(<span class="string">"电池容量："</span> + batteryRate + <span class="string">"mAh"</span>);</div><div class="line">pwTable.addView(p_batteryrate);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取前置摄像头像素信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_front = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_front.setTextColor(Color.BLACK);</div><div class="line">p_front.setText(<span class="string">"前置摄像头像素："</span> + CameraUtils.getCameraPixels(CameraUtils.HasFrontCamera()));</div><div class="line">pwTable.addView(p_front);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取后置摄像头像素信息： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_back = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_back.setTextColor(Color.BLACK);</div><div class="line">p_back.setText(<span class="string">"后置摄像头像素："</span> + CameraUtils.getCameraPixels(CameraUtils.HasBackCamera()));</div><div class="line">pwTable.addView(p_back);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取屏幕分辨率信息（有虚拟按键时会有误差）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">WindowManager windowManager = getActivity().getWindowManager();    </div><div class="line">Display display = windowManager.getDefaultDisplay();    </div><div class="line"><span class="keyword">int</span> screenWidth = screenWidth = display.getWidth();    </div><div class="line"><span class="keyword">int</span> screenHeight = screenHeight = display.getHeight();</div><div class="line">TextView p_screen = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_screen.setTextColor(Color.BLACK);</div><div class="line">p_screen.setText(<span class="string">"屏幕分辨率："</span> + screenHeight + <span class="string">"×"</span> + screenWidth);</div><div class="line">pwTable.addView(p_screen);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取本机号码信息（双卡手机此方法只能获取卡1号码）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_num = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_num.setTextColor(Color.BLACK);</div><div class="line">p_num.setText(<span class="string">"本机号码："</span> + num);</div><div class="line">pwTable.addView(p_num);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取运营商名称（同样此方法只能获取卡1运营商）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_nm = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_nm.setTextColor(Color.BLACK);</div><div class="line">p_nm.setText(<span class="string">"运营商名称："</span> + nm);</div><div class="line">pwTable.addView(p_nm);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取IMEI码（同样获取的是卡1的IMEI码）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TextView p_imei = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_imei.setTextColor(Color.BLACK);</div><div class="line">p_imei.setText(<span class="string">"IMEI码："</span> + imei);</div><div class="line">pwTable.addView(p_imei);</div></pre></td></tr></table></figure>
+<p>通过以下代码获取手机MAC地址：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">WifiManager wifiMng = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);</div><div class="line">WifiInfo wifiInfor = wifiMng.getConnectionInfo();</div><div class="line">TextView p_mac = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_mac.setTextColor(Color.BLACK);</div><div class="line">p_mac.setText(<span class="string">"MAC地址："</span> + wifiInfor.getMacAddress());</div><div class="line">pwTable.addView(p_mac);</div></pre></td></tr></table></figure>
+<p>具体实际应用请见我的GitHub：<a href="https://github.com/HirojiSawatari/Sysmonitor/blob/master/src/hg/crx/sysmonitor/FragmentPage2.java" target="_blank" rel="external">FragmentPage2.java</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。
+    
+    </summary>
+    
+      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
+    
+    
+      <category term="Android" scheme="http://hirojisawatari.github.io/tags/Android/"/>
+    
+      <category term="Java" scheme="http://hirojisawatari.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>十三世纪上半叶蒙古高原气候变化特征与成因分析</title>
+    <link href="http://hirojisawatari.github.io/2016/10/07/5/"/>
+    <id>http://hirojisawatari.github.io/2016/10/07/5/</id>
+    <published>2016-10-07T13:31:44.000Z</published>
+    <updated>2017-01-14T05:10:56.757Z</updated>
+    
+    <content type="html"><![CDATA[<p>摘要：利用通用地球系统模式CESM的过去2000年气候模拟试验结果，在与历史重建资料以及观测/再分析资料进行对比验证的基础上，分析了蒙古帝国扩张时期，即十三世纪上半叶蒙古高原气候变化的特征并初步探讨了其成因。<a id="more"></a>结果表明：蒙古高原地区在公元1200至1250年间气候较为温暖湿润。地表温度的变化全区一致增暖，其变化在多年际尺度上主要受气候系统内部变率影响，而在年代际尺度上主要受太阳辐射变化影响。降水量的变化同样呈现全区一致增加，且由北向南距平值逐渐增大，其主要受太阳辐射影响。</p>
+<p>关键词：气候变化；气候模拟；蒙古帝国；区域差异；成因分析</p>
+<h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h3><p>近年来全球气候极端事件频发，气候变化研究已成为科学界关注的焦点。IPCC第五次评估报告指出，未来气候变化的加剧很有可能带来更多的极端天气与气候事件，从而对人类生存环境以及经济发展造成严重威胁[1]。如何应对气候的剧烈变化已成为人类社会可持续发展中的重大课题。探究历史时期气候变化与社会变迁之间的关系，能够为应对当前及未来全球气候变化提供参考和借鉴[2]，增强对当代气候变化影响与人类社会适应的理解[3]。因此，探究社会变迁背后的自然气候因素已成为当前全球变化研究的前沿热点[4-5]。</p>
+<p>国内外越来越多的研究发现，历史上多个时间尺度的人口迁徙、经济波动、社会动乱乃至朝代更替等社会事件与相应时期的气候变化存在着密切而又复杂的对应关系[6-9]。气候的变化可能导致战争、人口波动、文明的衰落与崩溃，同时也有可能促进创造性的发明、社会变革以及文明的兴盛[10]。目前已有学者对历史上某一具体时期社会变迁背后的气候因素进行了研究。Yancheva等[11]使用雷州半岛湖光岩钻孔代用资料分析了16000年以来东亚季风的变化，并指出中国唐朝的衰亡与当时冬季风增强、夏季风减弱造成的干旱气候有因果关系；Zheng等[12]通过探究晚明时期低温冷害、极端旱灾对社会的影响程度，证明明朝灭亡与明末时期的低温干旱气候有一定关系。但是，目前大部分的研究都是针对政权的衰亡，对于朝代兴盛过程中的气候因素探究很少。</p>
+<p>蒙古帝国（1206-1259年），正式国号为大蒙古国，是一个横跨欧亚两大洲的全球性帝国，其在鼎盛时期疆域面积达3300万平方公里。蒙古帝国建立后屡次对外扩张，武力兴盛时期曾发动三次西征。1219年成吉思汗开始第一次西征，1223年蒙古军队到达黑海北岸。1227年成吉思汗去世，其继任者窝阔台继续征伐，并在1238年夺取莫斯科，1240年攻陷基辅，并在1241年入侵地处中欧的布达佩斯[13]。三次西征中蒙古帝国累计侵吞40多个国家。蒙古族为游牧民族，“其畜之所多，则马牛羊”，因此对牲畜的管理技术较为成熟。加以蒙古草原旷野万里，蒙古人自幼驰骋在草原上，其骑术熟练，故骑兵特别发达[14]。然而骑兵的组建受制于马匹的数量与质量，马匹是否充足健壮则与草原牧草生长情况密切相关，而牧草的生长直接受制于气候环境。目前已有相关研究表明，蒙古帝国的建立以及随后的三次西征都主要发生在中世纪暖期中[15]，并且，蒙古高原地区在十三世纪上半叶属于相对较温暖的时期[16]，同时经历了从未有过的持续湿润性气候[17]。尽管已有研究通过气候模拟表明中国区域在工业时代以前的气候变化主要受自然因素影响[18]，但是，至今尚无学者对十三世纪上半叶这一特定历史时期气候的形成原因进行过深入分析。</p>
+<p>气候模拟是研究气候变化的成因和机理的有效手段，虽然其存在初始场、强迫场、次网格过程参数化等因素所带来的误差[19]，但其较高的时空分辨率可以弥补仅用代用资料研究的不足，使我们能够更加细致地认识气候变化的时空特征，并且可以探讨不同外强迫因子与气候系统内部变率对气候变化的影响。因此，本文利用通用地球系统模式（Community Earth System Model, CESM）进行了多个过去2000年瞬变积分气候模拟试验，在验证模拟结果合理性的基础上，依据模拟资料分析了十三世纪上半叶蒙古高原地区的气候特点及其成因，并探究了气候变化与蒙古帝国扩张的关系。</p>
+<h3 id="2-模拟试验与结果验证"><a href="#2-模拟试验与结果验证" class="headerlink" title="2 模拟试验与结果验证"></a>2 模拟试验与结果验证</h3><h4 id="2-1-模拟试验"><a href="#2-1-模拟试验" class="headerlink" title="2.1 模拟试验"></a>2.1 模拟试验</h4><p>通用地球系统模式是由美国国家大气研究中心（National Center for Atmospheric Research, NCAR）在2010年发布的[20]。我们利用该模式已完成8个过去2000年的气候模拟试验，模式分辨率为3.75°×3.75°。本文利用其中的4个单因子敏感性试验、1个控制试验（Control experiment, Ctrl）和1个全强迫试验（All Forcings experiment, AF）的结果进行分析。4个单因子试验包括太阳辐射敏感性试验（Total Solar Irradiation experiment, TSI）、火山活动敏感性试验（Volcanic eruptions experiment, Vol）、温室气体敏感性试验（Greenhouse gas experiment, GHGs）以及土地利用/覆盖敏感性试验（Land Use and Land Cover Change experiment, LUCC）（表1）。试验的外强迫条件包括地球轨道参数[21]、太阳辐射[22]、火山活动[23]、温室气体[23]以及土地利用/覆盖[25]，具体试验详见参考文献[27]。此外，由于气候变化对社会的影响存在一定的滞后性[28]，因此本文分析时先对各试验结果以及外强迫因子序列进行了5年滑动处理。</p>
+<p><img src="\images\5_1.png" alt="Table1"></p>
+<h4 id="2-2-模拟结果验证"><a href="#2-2-模拟结果验证" class="headerlink" title="2.2 模拟结果验证"></a>2.2 模拟结果验证</h4><p>为了验证模拟结果的可靠性，本文使用现代观测/再分析资料以及重建资料与全强迫试验（AF）的模拟结果进行了对比（表2）。首先采用美国国家环境预报中心的观测/再分析资料[29]（National Centers for Environmental Prediction, 简称NCEP）与模式模拟的蒙古高原（37°46′~53°08′N，87°40′~122°15′E）年均地表气温进行对比，然后使用美国气候预测中心的降水集合分析资料[30]（Climate prediction center Merged Analysis of Precipitation,简称CMAP)进行年降水量的对比，最后采用杨保等[31]重建的过去2000年中国区域温度距平序列和史峰等[32]重建的过去1000年中国区域温度距平序列与模式模拟的温度序列进行对比。</p>
+<p><img src="\images\5_2.png" alt="Table2"></p>
+<p>图1a、1b分别为全强迫试验AF模拟的1979-2000年蒙古高原地区地表气温和观测/再分析资料NCEP（1979-2000年）的气候平均态，图1c、1d分别为全强迫试验AF模拟的1979-2000年蒙古高原地区降水和观测/再分析资料CMAP（1979-2000年）的气候平均态，四幅图均有 11×6共66个网格点。由于NCEP与CMAP空间分辨率为2.5°×2.5°，为了便于与模式模拟结果进行对比，首先将NCEP和CMAP资料进行高斯格点插值，使其转化为模式相同的分辨率（3.75°×3.75°）。此处模式模拟数据未经过滑动处理。从图中可以发现模拟结果与观测/再分析资料空间分布形态较为相似，图1a、1b的相关系数为0.97，图1c、1d的相关系数为0.91，均通过0.05的显著性检验。因此CESM能够较好模拟蒙古高原区域地表温度和降水量的空间分布特征。</p>
+<p><img src="\images\5_3.png" alt="Fig1"></p>
+<p>图2为公元1000至1500年中国区域平均温度距平时间序列（相对于1851-1950年）。其中绿线为杨保等人重建的温度距平序列（Yang序列），蓝线是史峰等人重建的温度距平序列（Shi序列），红线为全强迫试验得到的温度距平序列（AF序列）。灰色阴影部分是对两条重建序列分别做出的±2倍标准差范围，代表重建资料的不确定性。由于两条重建序列时间分辨率均为10年，因此先将AF模拟的温度距平插值成对应的10年分辨率。从图中可以发现AF在1160年后的温度波动变化与两条重建序列的温度波动较为一致，且AF序列均位于灰色阴影部分内。另外1000至1500年AF与Yang和Shi的相关系数均为0.49，均达到99%置信度。由此可知，CESM模拟的温度变化较为合理。</p>
+<p><img src="\images\5_4.png" alt="Fig2"></p>
+<h3 id="3-结果分析"><a href="#3-结果分析" class="headerlink" title="3 结果分析"></a>3 结果分析</h3><h4 id="3-1-气候特征"><a href="#3-1-气候特征" class="headerlink" title="3.1 气候特征"></a>3.1 气候特征</h4><p>根据不同学者对过去全球气候的研究[34-37]，大部分学者都认为十三世纪上半叶属于中世纪暖期。图3a、3b分别为根据全强迫试验AF的模拟结果得到的1200-1250年均地表气温与平均降水量相对于1150-1300年的距平空间分布图。从图3a中可以发现该时间段蒙古高原全区年均地表气温相对于前后50年明显偏高，幅度约0.2到0.4℃，说明十三世纪上半叶蒙古高原气候处于典型中世纪暖期时间段内，地表温度维持在较高的水平上。此外，尽管全区温度均为正距平，但仍存在区域差异，在今蒙古国北部及西南部温度距平超过0.4℃。</p>
+<p>而由图3b可知该时间段蒙古高原区域年均降水量相对于前后50年有明显的增加，全区平均增幅约为8到16mm/a，占该时期蒙古高原年平均降水量的5%左右。且由北向南距平值逐渐增大，代表蒙古高原南部更为湿润。另外蒙古高原中部相对于其东、西部降水量增幅更为明显。因此，十三世纪上半叶蒙古高原地区处在中世纪暖期的相对温暖湿润的气候环境之中。</p>
+<p>根据史料，公元1220年成吉思汗决定将蒙古帝国首都由蒙古高原东北部的曲雕阿兰（Avarga）迁至中部的哈拉和林（Karakorum）[13,38]。从图3b中可以发现，哈拉和林相对于曲雕阿兰气候更为湿润。而随着降水量的增加，一年生植物的生长期、植物高度、叶长、生物量等均会增加[39]，降水量每增加1mm，牧草气候生产力增加12.1kg?hm-2a-1[39]，且降水量对牧草气候生产力的影响远大于温度的影响[41]。由此可以推测，十三世纪上半叶哈拉和林附近相对曲雕阿兰水草可能更为丰盛，从而有利于马匹数量和质量的提高以及骑兵部队的组建。</p>
+<p><img src="\images\5_5.png" alt="Fig3"></p>
+<h4 id="3-2-成因分析"><a href="#3-2-成因分析" class="headerlink" title="3.2 成因分析"></a>3.2 成因分析</h4><h5 id="3-2-1-地表温度"><a href="#3-2-1-地表温度" class="headerlink" title="3.2.1 地表温度"></a>3.2.1 地表温度</h5><p>为了探讨蒙古高原十三世纪上半叶地表温度变化的形成原因及区域差异，对各试验的年均地表温度5年滑动距平场进行EOF分解。其中全强迫试验AF的地表温度EOF分解第一模态由图4a表示，其解释方差为69.2%。根据North等[42]的EOF分解特征值样本误差估计检验方法，第一模态可以通过North检验，即能被独立区分。由图4a可以发现，地表温度的第一模态表现出全区一致性，且北部变率大于南部，中部变率大于东西部。整个研究区域最大变率中心位于蒙古国北部贝加尔湖附近。蒙古高原西南部温度变化幅度较小。</p>
+<p>之后，本文对比了全强迫试验、控制试验以及四个单因子试验的年均地表温度5年滑动平均距平场的EOF第一模态。控制试验与各个单因子试验第一模态均通过了North检验。其中控制试验Ctrl（图4b）和太阳辐射敏感性试验TSI（图4c）与全强迫试验AF（图4a）的空间相关系数分别为0.63和0.64，均通过0.05的显著性检验，并表现出了全区一致性，变率中心均在蒙古国北部区域，与AF第一模态表现一致。而火山活动敏感性试验Vol（图4d）、温室气体敏感性试验GHGs（图4e）和土地利用/覆盖敏感性试验LUCC（图4f）与全强迫试验AF的空间相关性为0.10、-0.47和0.53，不能通过0.05的显著性检验。因此忽略此三个外强迫因子的作用。</p>
+<p>此外对全强迫试验、控制试验以及四个单因子试验第一模态的PC序列进行功率谱分析（图5），考虑此前对原始序列进行了五年滑动后发现，全强迫试验AF的PC1序列具有6年、8年以及13年的显著周期（图5a），而控制试验Ctrl具有对应的6年、8年显著周期（图5b），太阳辐射试验TSI具有对应的13年周期（图5c），上述周期均达到95%置信度。综上所述，全强迫试验年均地表气温的EOF1空间分布型，即十三世纪上半叶蒙古高原温暖气候主要受太阳辐射和地球气候系统内部变率所影响，且多年际周期主要受地球气候系统内部变率影响，年代际周期主要受太阳辐射影响。</p>
+<p><img src="\images\5_6.png" alt="Fig4"></p>
+<p><img src="\images\5_7.png" alt="Fig5"></p>
+<h5 id="3-2-2-降水量"><a href="#3-2-2-降水量" class="headerlink" title="3.2.2 降水量"></a>3.2.2 降水量</h5><p>为了分析蒙古高原十三世纪上半叶降水量变化的形成原因及区域差异，对年均降水量5年滑动平均的距平场进行EOF分解。图6a为全强迫试验AF的降水量EOF分解的第一特征模态，解释方差为26.7%，且通过North检验。由图6a可以发现，降水量的第一模态表现出南北反向的变化特性，即今蒙古国地区与内蒙古地区呈现出相反的变化趋势。整个研究区域变率中心分别在蒙古高原东、西、南部地区。中部地区变率较小。</p>
+<p>之后，本文对比了全强迫试验、控制试验以及四个单因子试验的年均降水量5年滑动平均距平场的EOF第一模态。控制试验与各个单因子试验第一模态均通过了North检验。在各个试验的EOF第一模态中，太阳辐射敏感性试验TSI（图6c）表现出了与全强迫试验AF第一模态（图6a）相似的南北反向特征。计算得到与全强迫试验第一模态的空间相关系数为0.55，且通过0.05的显著性检验。而控制试验Ctrl（图6b）、火山活动敏感性试验Vol（图6d）、温室气体敏感性试验GHGs（图6e）与土地利用/覆盖敏感性试验LUCC（图6f）与全强迫试验AF的空间相关性为0.35、0.33、0.07与0.16，均未通过0.05的显著性检验，因此不存在显著关系。</p>
+<p>此外对全强迫试验、控制试验以及四个单因子试验第一模态的PC序列进行功率谱分析（图7），考虑到此前对原始序列进行了五年滑动后发现，全强迫试验AF的PC1序列具有7年以及10年周期（图7a），太阳辐射试验TSI具有对应的7年周期（图7c），火山活动试验Vol具有对应的10年周期（图7d），上述周期均达到95%置信度。但Vol与AF的空间相关系数未通过0.05的显著性检验，结合上述结论可知，全强迫试验年均降水量的EOF1空间分布型主要受太阳辐射所影响，且其主要影响年代际周期变化。</p>
+<p><img src="\images\5_8.png" alt="Fig6"></p>
+<p><img src="\images\5_9.png" alt="Fig7"></p>
+<h5 id="3-2-3-太阳辐射量对比"><a href="#3-2-3-太阳辐射量对比" class="headerlink" title="3.2.3 太阳辐射量对比"></a>3.2.3 太阳辐射量对比</h5><p>综上结果可知，蒙古高原地区在研究时间段内地表温度与降水量变化均受到太阳辐射的影响，因此利用Shapiro等[22]在2000年重建的太阳辐射年平均值结果，将本文研究时间段与前后50年，即1150-1300年进行对比。可以发现，全球在1200-1250年受到的年平均太阳辐射量约为1365W/m2，而在1150-1300年受到的年平均太阳辐射量约为1363.5W/m2。观察该时间段内太阳辐射重建序列以及全强迫试验AF中得到的蒙古高原年平均地表气温和年降水量序列，温度与降水量序列的变化趋势与太阳辐射序列有一定的一致性。此外计算得到太阳辐射序列与年平均地表气温序列相关系数为0.53，与年降水量序列为0.52，均通过0.05的显著性检验。因此可以发现，该时间段内全球太阳辐射强度处于较高水平上，较强的太阳辐射对温度与降水起到了一定的影响作用。</p>
+<p><img src="\images\5_10.png" alt="Fig8"></p>
+<h3 id="4-结论与讨论"><a href="#4-结论与讨论" class="headerlink" title="4 结论与讨论"></a>4 结论与讨论</h3><p>本文利用通用地球系统模式CESM的多个过去2000年气候模拟试验的模拟结果，探究了十三世纪上半叶蒙古高原地区温度以及降水量空间分布特征及成因，以及与蒙古帝国扩张及迁都的关系，主要结论如下：</p>
+<p>（1）CESM模拟的气温和降水与重建资料和观测/再分析资料显著相关，模拟的蒙古高原地区地表温度和降水的气候平均态与观测/再分析资料的空间相关系数分别达到0.97和0.91，模拟的中国区域地表气温与多条重建序列的波动变化较为一致。</p>
+<p>（2）十三世纪上半叶蒙古高原气候处于典型中世纪暖期，年均地表温度与年均降水量均维持在较高的水平上。温度方面，此时蒙古高原全区年均地表气温相对于前后50年明显偏高，偏高幅度约为0.2到0.4℃，且在今蒙古国北部及西南部温度距平超过0.4℃；降水量方面，此时蒙古高原区域年均降水量相对于前后50年有明显的增加，全区平均增幅约为8mm/a。且由北向南距平值逐渐增大，代表蒙古高原南部更为湿润。此外蒙古高原中部相对于其东、西部降水量增幅更为明显。</p>
+<p>（3）蒙古高原地区地表气温的变化在十三世纪上半叶呈现出全区一致性增暖，且北部变率大于南部，中部变率大于东、西部。其主控因子是太阳辐射及地球气候系统内部变率，且多年际周期主要受地球气候系统内部变率的影响，而年代际周期主要受太阳辐射的影响。从降水量的变化来看，在该时期蒙古高原地区呈现出南北反向变化的特征，且中部变率较小。太阳辐射外强迫因子对降水量年代际变化起主导作用。</p>
+<p>此外，从分析的结果中可以看出，十三世纪上半叶蒙古高原气候较为温暖湿润，且哈拉和林相对于旧都曲雕阿兰气候更为湿润。降水量的增加有利于牧草的生长及生物量的增加，因此哈拉和林附近相对曲雕阿兰水草更为丰盛，从而可能对蒙古帝国决定迁都产生了一定影响。丰盛的粮草使得蒙古骑兵及马匹健壮充足，有利于骑兵部队的组建与训练。而蒙古军队主要依靠骑兵征战，因此气候变化很有可能为蒙古帝国的兴盛创造了条件。</p>
+<p>以上结论与推断只是对模式模拟结果的初步分析，关于各个外强迫因子及气候系统内部变率影响地表气温和降水量的过程和机理，以及气候变化对社会经济政治影响的验证还有待进一步深入研究。</p>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p>[1]IPCC：Climate Change 2013：The physical science basis[M/OL]．Cambridge：Cambridge University Press．in press. 2013-09-30．<a href="http://www.climatechange2013.org．" target="_blank" rel="external">http://www.climatechange2013.org．</a><br>[2]PAGES．Science plan and implementation strategy[R]∥IGBP Report No. 57．Stockholm：IGBP Secretariat，2009：67．<br>[3]IHOPE．Developing an Integrated History and Future of People on Earth (IHOPE)：Research Plan (IGBP Report No. 59) [EB/OL]．<a href="http://www.stockholmresilience.org/ihope，2010．" target="_blank" rel="external">http://www.stockholmresilience.org/ihope，2010．</a><br>[4]方修琦，葛全胜，郑景云．环境演变对中华文明影响研究的进展与展望[J]．古地理学报，2004，6(1)：85-94．<br>[5]原宗子．中国环境史在建立新世界历史中的任务[M]∥王利华．中国历史上的环境与社会．北京：生活-读书-新知三联书店，2007．<br>[6]Richard S J，Wagner T S．Climate change and violent conflict in Europe over the last millennium[J]．Climatic Change，2010，99：65-79．<br>[7]Büntgen U，Tegel W，Nicolussi K，et al．2500 years of European climate variability and human susceptibility[J]．Science，2011，331(6017)：578-582．<br>[8]Haug G H，Günther D，Peterson L C，et al．Climate and the collapse of Maya civilization[J]．Science，2003，299(5613)：1731-1735．<br>[9]Burke M B，Miguel E，Satyanath S，et al．Warming increases the risk of civil war in Africa[J]．Proceedings of the National Academy of Sciences of the United States of America，2009，106(49)：20670-20674．<br>[10]Costanza R，Graumlich L，Steffen W，et al．Sustainability or collapse：What can we learn from integrating the history of humans and the rest of nature? [J]．Ambio，2007，36：522-527．<br>[11]Yancheva G，Nowaczyk N R，Jens M，et al．Influence of the intertropical convergence zone on the East Asian monsoon[J]．Nature，2007，445：74-77．<br>[12]Zheng J Y，Xiao L B，Fang X Q，et al．How climate change impacted the collapse of the Ming Dynasty[J]．Climatic Change，2014，127：169-182．<br>[13]Hoang M．Genghis Khan[M]，Saqi Books，London，1990．<br>[14]纳古单夫．蒙古马与古代蒙古骑兵作战艺术[J]．内蒙古社会科学，1994，4：64-71．<br>[15]吴文祥，葛全胜，郑景云，等．气候变化因素在蒙古西征中的可能作用研究[J]．第四纪研究，2009，29(4)：724-732．<br>[16]D’arrigo R，Jacoby G，Frank D，et al．1738 years of Mongolian temperature variability inferred from a tree-ring width chronology of Siberian pine[J]．Geophysical Research Letters，2001，28(3)：543–546．<br>[17]Pederson N，Hessl A E，Baatarbileg N，et al．Pluvials，droughts，the Mongol Empire，and modern Mongolia[J]．PNAS，2014，111(12)：4375-4379．<br>[18]Jiang D，Yu G，Zhao P，et al．Paleoclimate Modeling in China：A Review[J]．Advances in Atmospheric Sciences，2015，32：250-275．<br>[19]Zhou T，Yu R．Twentieth century surface air temperature over China and the globe simulated by coupled climate models[J]．Journal of Climate，2006，19(22)：5843-5858．<br>[20]Vertenstein M，Craig T，Middleton A，et al．CESM1.0.4 user’s guide[R]．National Center for Atmospheric Research，Boulder，CO．2012．<br>[21]Berger A．Long-term variations of daily insolation and quaternary climate changes[J]．Journal of the Atmospheric Sciences，1978，35(12)：2362-2367．<br>[22]Shapiro A I，Schmutz W，Rozanov E，et al．A new approach to the long-term reconstruction of the solar irradiance leads to large historical solar forcing[J]．Astronomy &amp; Astrophysics，2011，529(67)：1-8．<br>[23]Gao C，Robock A，Ammann C．Volcanic forcing of climate over the past 1500 years：An improved ice core-based index for climate models[J]．Journal of Geophysical Research：Atmospheres，2008，113(23)：1-15．<br>[24]MacFarling M C，Etheridge D，Trudinger C，et al．Law Dome CO2，CH4 and N2O ice core records extended to 2000 years BP[J]．Geophysical Research Letters，2006，33(14)：1-4．<br>[25]Kaplan J O，Krumhardt K M，Zimmermann N．The prehistoric and preindustrial deforestation of Europe[J]．Quaternary Science Reviews，2009，28(27~28)：3016-3034．<br>[26]Rosenbloom N A，Otto-Bliesner B L，Brady E C，et al．Simulating the mid-Pliocene Warm Period with the CCSM 4 model[J]．Geoscientific Model Development，2013，6(2)：549-561．<br>[27]王志远，刘健．过去2000年全球典型暖期特征与机制的模拟研究[J]．第四纪研究，2014，34(6)：1136-1145．<br>[28]赵红军．气候变化是否影响了我国过去两千年间的农业社会稳定？——一个基于气候变化重建数据及经济发展历史数据的实证研究[J]．经济学，2012(2)：691-722．<br>[29]Kalnay E，Kanamitsu M，Kistler R，et al．The NCEP/ NCAR 40-year reanalysis project[J]．Bulletin of the American Meteorological Society，1996，77：437-471．<br>[30]Xie P，Arkin P A．An Intercomparison of gauge observations and satellite estimates of onthlyprecipitation[J]．Journal of Applied Meteorology，1995，34(5)：1143-1160．<br>[31]Yang B，Braeuning A，Johnson K R，et al．General characteristics of temperature variation in China during the last two millennia[J]．Geophysical Research Letters，2002，29(9)：381-384．<br>[32]Shi F，Yang B，Gunten L．Preliminary multiproxy surface air temperature field reconstruction for China over the past millennium[J]．Science China：Earth Sciences，2012，55(12)：2058-2067．<br>[33]王江林，杨保．北半球及其各大洲过去1200年温度变化的若干特征[J]．第四纪研究，2014，34(6)：1146-1155．<br>[34]刘健，高建慧，王苏民．中世纪暖期温度变化的模拟[J]．湖泊科学，2006，18(2)：97-105．<br>[35]Mann M E，Jones P D．Global surface temperatures over the past two millennia[J]．Geophysical Research Letters，2003，30(15)：5-9．<br>[36]葛全胜，刘健，方修琦，等．过去2000年冷暖变化的基本特征与主要暖期[J]．地理学报，2013，68 (5)：579-592．<br>[37]Soon W，Baliunas S，Idso C，et al．Reconstructing climatic and environmental changes of the past 1000 years：reappraisal[J]．Energy and Environment，2003，14(2)：233-296．<br>[38]包桂红．草原光辉：哈拉和林与元上都[J]．大众考古，2014，11：57-62．<br>[39]闫建成，梁存柱，付晓玥，等．草原与荒漠一年生植物性状对降水变化的响应[J]．草业学报，2013，22(1)：68-76．<br>[40]赵慧颖．气候变化对典型草原区牧草气候生产潜力的影响[J]．中国农业气象，2007，28(3)：281-284．<br>[41]韩芳，牛建民，刘朋涛，等．气候变化对内蒙古荒漠草原牧草气候生产力的影响[J]．中国草地学报，2010，32(5)：57-65．<br>[42]North G R，Bell T L，Cahalan R F et al．Sampling errors in the estimation of empirical orthogonal functions[J]．Monthly Weather Review，1982，110(7)：699-706．<br>[43]况雪源，刘健，王红丽，等．近千年来中国区域降水模拟与重建资料的对比分析[J]．地球科学进展，2009，24(2)：159-171．<br>[44]况雪源，刘健，王红丽，等．近千年来中国气温模拟与重建资料的对比分析[J]．第四纪研究，2011，31(1)：48-56．<br>[45]刘健，Hans von Storch，陈星，等．近千年全球气候变化的长积分模拟试验[J]．地球科学进展，2005，20(5)：561-567．<br>[46]严蜜，王志远，刘健．中国过去1500年典型暖期气候的模拟研究[J]．第四纪研究，2014，34(6)：1166-1175． </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;摘要：利用通用地球系统模式CESM的过去2000年气候模拟试验结果，在与历史重建资料以及观测/再分析资料进行对比验证的基础上，分析了蒙古帝国扩张时期，即十三世纪上半叶蒙古高原气候变化的特征并初步探讨了其成因。
+    
+    </summary>
+    
+      <category term="Academic Thesis" scheme="http://hirojisawatari.github.io/categories/Academic-Thesis/"/>
+    
+    
+      <category term="Paleoclimate" scheme="http://hirojisawatari.github.io/tags/Paleoclimate/"/>
+    
+      <category term="NCL" scheme="http://hirojisawatari.github.io/tags/NCL/"/>
+    
+      <category term="CESM" scheme="http://hirojisawatari.github.io/tags/CESM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>求索路（一）</title>
+    <link href="http://hirojisawatari.github.io/2015/05/25/1/"/>
+    <id>http://hirojisawatari.github.io/2015/05/25/1/</id>
+    <published>2015-05-25T12:27:58.000Z</published>
+    <updated>2017-01-14T05:14:54.758Z</updated>
+    
+    <content type="html"><![CDATA[<p>路漫漫其修远兮，吾将上下而求索。<a id="more"></a></p>
+<p>一个月前的今天，祖父毫无征兆地突然去世；一个月后的今天，我收拾行李即将离开辽师。躺在空荡荡的床上，望着嬉笑着的室友，突然想写点什么。</p>
+<p>一切要从三年前说起。</p>
+<p>大二上学期，我做了一些现在看起来愚蠢至极的决定，整天浑浑噩噩，不务正业，从而造成了许多无法挽回的恶果，其中之一就是挂掉了线性代数。挂科也就意味着我上大学以来追求保研，然后混个研究生文凭的美梦完全化为泡影，我的未来顿时陷入迷茫之中。</p>
+<p>其实除了保研，还有另外几条路可走。比如就业，比如考研。于是在那年寒假，在我处于人生三岔口的关键时刻，我跟我父母还有祖父一起不断斟酌各条道路的利弊。当时我倾向于在大连找工作，因为当时我在县城一家婚纱摄影店打工，一天能赚两百，所以我自以为是地觉得赚钱挺容易。另外会点日语会点编程在大连软件园混口饭吃不是问题（这也是我高中毕业填志愿时的想法）。其实主要是我一直非常厌学，不想继续念书，更不想彻夜复习考研。然而我的家人，特别是我祖父，强烈建议我考研，从而追求更高的平台。还记得那段时间睡前我祖父都会跟我在床上讨论考研的事情（祖母去世后我就重新和祖父一起睡）。面对枕边耄耋之年的祖父期待的目光，回忆起高考出分那天母亲不甘的泪水和父亲失望的眼神，以及在我填志愿当天晚上去世的祖母，最终还是决定为了祖父，为了父母（当时我完全没有觉得考研是为了自己）放手一搏，咬牙走上考研这条路。</p>
+<p>既然决定考研，那就得选择学校。我当时的选择标准按主次有以下三条：<br>1、离家近。当时我祖母去世仅仅一年半，深深地感到生命的稍纵即逝和时间的弥足珍贵，所以想在研究生三年多陪陪我祖父和外祖母，多陪陪家人。<br>2、地理信息系统（GIS）专业排名高。因为我从小在祖父无意的引导之下对地理学有着浓厚的兴趣，而且本科学GIS也是我自己的选择，所以研究生我还想继续钻研本专业。另外，我当时比较自负，觉得自己的水平去个一般的学校亏了（笑）。<br>3、考试数学尽量简单。我高考就砸在数学上，而且挂科也是挂的数学，所以一直对数学有很深的阴影。</p>
+<p>筛选下来，于是我的考研目标就只剩下了一个，那就是地处离家不远的南京，GIS仅有的三个A+学校之一，专业排名全国第二，而且复试才考高数的南京师范大学。其实我在之后还曾纠结过南京大学，因为南大是曾经录取我祖父的学校（尽管由于政审没过没能去成），比较有纪念意义。我当时也跟我祖父讨论过这个问题，他却让我看看两个学校报考专业的性价比再做决定。最终考虑了专业排名和数学之后我还是放弃了南大。</p>
+<p>决定了学校，就得开始制定计划。我当时刚刚擦线通过英语四级，胡乱报了个日语辅修班很少认真学，并且沉迷于网游中，学习状态不是很好。我当时自己也觉得”要是这样下去能考上才怪”。于是我决定从戒掉网游开始。我从高一开始迷恋上地下城与勇士（DNF）五六年不能自拔，这也是我高考砸锅的主要原因，但是我也深知网瘾就像疑难杂症一样难以根除。我记得当时我一边打着DNF一边想着怎么才能玩腻它（笑）。最终我决定”以毒攻毒”，反正大二拿不到任何荣誉了，干脆花一个学期彻底玩到吐（现在觉得当时真是给自己疯玩找借口）。大二下学期，我除了数据结构课（考研要考）以外只要有机会就逃课打游戏，还经常打电话拉上龙兄、恰明和明富帅上线陪我刷图（老是麻烦他们真是不好意思）。尽管如此，当别人给我介绍新游戏，例如dota2、炉石时我则会克制住自己不去尝试。这样的日子一直到大三上学期的国庆节，我终于毫无留恋地卸载了自己电脑上的DNF。</p>
+<p>戒掉DNF之后我猛然发现此时离考研只有一年多一点的时间了，而当年六月份的六级考试因为我在疯玩意料之中地没过，同时日语辅修也即将结业。考虑自己的种种现状，当时我脑中只有一句话：”是时候好好干一场了”。我当时给自己未来一年半的大学生活制定了一个规划，并记在了自己手机的备忘录中（原文档在我手机给我父亲后不慎丢失），大概的计划是这样的：<br>        1、13年11月，通过日语辅修结业考<br>        2、13年12月，准备英语六级<br>        3、14年1月~2月，自学Object-C<br>        4、14年3月，备考蓝桥杯<br>        5、14年4月~6月，准备超图竞赛<br>        6、14年6月，准备英语六级（如有必要）<br>        7、14年7月~15年1月，准备考研<br>        8、15年2月~3月，准备实习<br>        9、15年7月，准备日语N2</p>
+<p>之后的一年半我基本上就是按照这个计划进行的。在执行这个计划的过程中，除了第六条无需执行外，我发现当时对自己的个人能力预估过高，秉着”好钢用在刀刃上”的原则，我接连放弃了第五、八条，调整了第九条，并且提前了准备考研的时间。</p>
+<p>14年2月24号上午十点，当我刚刚走下晚点了一晚上的飞机，匆匆赶到AutoCAD课上，打开数据结构课本的那一刻，意味着我为期一年多的考研生活的正式开始。在这一年里，表哥老陈作为过来人给予了我莫大的帮助，能得到中科院前辈的考研经验也是我的荣幸，感激之情没齿难忘。尽管有表哥的保驾护航，然而考研这段时间对于上学以来从来没有真正用功读过书的我来说仍然倍感煎熬。但是，陆陆续续发生的下面几件事使我领悟到自己脚下的这条道路是正确的，从而不断鞭策我前进。</p>
+<p>第一件事，准确来说并不是发生在我准备考研的时间段中。13年11月的某天，一次偶然的机会我和高中同窗，在武大同样学GIS的东哥讨论起了专业课程，东哥把他的GIS算法课件发给了我。我花了几个小时通读了一遍那些PPT，看完后对比我自己学的那些所谓编程课，深深地为自己的前途感到担忧，不禁一阵苦笑。</p>
+<p>第二件事，发生在14年3月份，为了能有更多时间准备考研，我找到超图竞赛指导老师准备放弃竞赛，他问我原因时我便如实交代。由于辽师GIS专业建系十几年来没有一个人考上985、211学校的学硕，所以他一直对我能不能考上南师持强烈怀疑态度（我也知道没几个老师真正相信我能考上），哪怕我通过了初试，在家准备复试的时候，他仍然不相信我能被录取。现在我每次回想起来都会冷笑。</p>
+<p>第三件事，就是五月底我作为城环学院的代表独自和计信学院的几个同学一起去北京参加蓝桥杯总决赛。我当时觉得自己玩C玩得滴溜转，至少在城环是这样。但是去了一趟北京，我才感觉”人外有人，山外有山”。和我一个房间的老黄是玩Java的，我曾自学了一点安卓开发，自以为能看懂他写的东西，可是真正去看就像看天书；考试的时候我自以为题目简单，就随着性子答题，不注意题目细节，等到看到结果的时候只能哑然失笑。</p>
+<p>花了一年多的时间，经历了一波三折，15年4月2号，我终于接到了被南师GIS专业录取的消息。我脑中不断闪现从高考失利，祖母去世之后经历的种种酸甜苦辣，不禁感慨万千。我第一时间把消息告诉了我的父母和祖父，与他们一起分享我的喜悦。同时，我也准备学习我的祖父，在本科毕业时记录下这段对于我来说难以忘怀的经历。</p>
+<p>但是，当我松下一直绷紧的神经没多久，晴天霹雳从天而至。在我告诉我祖父我的硕士导师的第二天，15年4月25号早上9点半，祖父在外出会老友的路上突发心脏病猝然离世，而前一天就是他八十三岁生日。他是我的人生的启蒙老师，也一直把我当做他的骄傲，我这几年也一直追随着他当年求学的道路。我刚刚按照他的期望走出低谷，迈上正轨，他却没能继续陪我走下去，没能看到我真正出人头地的那一天。本来准备带着他九月份去南师一游，可惜这个愿望永远无法实现了，这无疑是我这二十二年中最大的遗憾。</p>
+<p>祖父母的相继去世，意味着我人生前十年与祖父母共同生活的童年时光成为了只属于我一个人的美好回忆，也宣告了我人生第一章节的正式落幕。我将永远记得二零一四年和二零一五年，因为这两年是我人生的转折点，我的价值观在这两年被彻底颠覆，我的为人处世在这两年也有所改变。第二章已经开始，漫漫人生路仍需前进，我会在祖父母的注视之下，在父母亲人的陪伴之中继续求索。</p>
+<p>皓月当空，晚风习习。明日离校，百感交集。悠悠往事，记忆犹新。遂成此文，聊以慰藉。</p>
+<p>2015年5月25日夜于大连</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;路漫漫其修远兮，吾将上下而求索。
+    
+    </summary>
+    
+      <category term="Informal Essay" scheme="http://hirojisawatari.github.io/categories/Informal-Essay/"/>
+    
+    
+      <category term="Memoir" scheme="http://hirojisawatari.github.io/tags/Memoir/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用主成分分析评价全国31个省市自治区综合发展实力</title>
+    <link href="http://hirojisawatari.github.io/2013/11/20/13/"/>
+    <id>http://hirojisawatari.github.io/2013/11/20/13/</id>
+    <published>2013-11-20T08:11:32.000Z</published>
+    <updated>2017-01-19T07:01:10.099Z</updated>
+    
+    <content type="html"><![CDATA[<p>主成份分析的主要目的是希望用较少的变量去解释原来资料中的大部分变异，将我们手中许多相关性很高的变量转化成彼此相互独立或不相关的变量。通常是选出比原始变量个数少、能解释大部分资料中的变异的几个新变量，即所谓主成份，并用以解释资料的综合性指标。<a id="more"></a>由此可见，主成份分析实际上是一种降维方法。</p>
+<p>主成份分析与因子分析的用途如下：（1）用于多元回归分析，解决共线性问题。如前所述，利用主成份分析提取出主要信息，然后使用提取出的主成份代替原变量进行分析，就可以避开原变量的共线性问题。（2）多指标综合评价时突出重点进行评价。当针对多种相关指标前提下，需要对于对于指标进行化简，然后用“主成份指标”进行加权评价，可以有效解决“主观权重”问题，并能够突出重点。（3）用于多指标聚类分析。存在相关关系密切的多种指标进行聚类分析时，需要在主成份分析的基础上进一步作出聚类分析，使类别划分更合理，更易得到合理的解释。</p>
+<h3 id="一、数据收集与整理"><a href="#一、数据收集与整理" class="headerlink" title="一、数据收集与整理"></a>一、数据收集与整理</h3><p>利用《中国统计年鉴2012》，收集进行地区评级所需要的原始数据。原始数据表如下图所示：</p>
+<p><img src="\images\13_1.png" alt="Screenshot"></p>
+<h3 id="二、标准化处理"><a href="#二、标准化处理" class="headerlink" title="二、标准化处理"></a>二、标准化处理</h3><p>由于原始数据种类及单位不同，因此为消除量纲的影响，采用“标准差标准化”方法，将原始数据标准化。</p>
+<p>打开spss，加载原始数据后，点击菜单栏—&gt;“分析”—&gt;“描述统计”—&gt;“描述”，打开描述性窗口，变量框中选择原始数据中所有变量，再点击“选项”按钮，在弹出的“描述：选项”对话框中勾选“标准差”，点击继续后在描述性主窗口中勾选“将标准化得分另存为变量”，再点击确定后得到标准化结果表格，表格如下所示：</p>
+<p><img src="\images\13_2.png" alt="Screenshot"></p>
+<h3 id="三、主成分分析"><a href="#三、主成分分析" class="headerlink" title="三、主成分分析"></a>三、主成分分析</h3><p>点击spss菜单栏中“分析”—&gt;“降维”—&gt;“因子分析”，打开因子分析对话框，变量框中选择标准化处理过后得到表格中所有变量，再点击“描述”按钮，打开“因子分析：描述统计”窗口，勾选“原始分析结果”、“系数”、“KMO和Bartlett的球形度检验”，点击继续后点击因子分析主窗口中“抽取”按钮，打开“因子分析：抽取”窗口，勾选“碎石图”，取消勾选“未旋转的因子解”，点击继续后点击因子分析主窗口中“评分”按钮，打开“因子分析：因子得分”窗口，勾选“保存为变量”，方法选择“回归”，并勾选“显示因子得分系数矩阵”，点击继续后再点击因子分析主窗口的“确定”按钮完成因子分析操作。得到KMO和Bartlett的检验表格，如下所示：</p>
+<p><img src="\images\13_3.png" alt="Screenshot"></p>
+<p>结果显示，KMO统计量值为0.822，表明“主成分分析”效果尚可，可以继续进行分析。</p>
+<p>在上一步完成因子分析操作后即可得到相关系数矩阵如下图所示：</p>
+<p><img src="\images\13_4.png" alt="Screenshot"></p>
+<p>由SPSS输出的“碎石图”如下图所示：</p>
+<p><img src="\images\13_5.png" alt="Screenshot"></p>
+<p>根据主成份分析特征值（Eigenvalue)大于1作为主成份选择依据，选择两个主成份FAC1_1和FAC2_1。方差累积贡献率达到85.133%，能够反映原始15个变量的绝大部分方差特征。总方差表格如下图所示：</p>
+<p><img src="\images\13_6.png" alt="Screenshot"></p>
+<p>成分矩阵表格如下图所示，可以看出FAC1_1和FAC2_1分别代表的原始变量特征：</p>
+<p><img src="\images\13_7.png" alt="Screenshot"></p>
+<p>得分系数表格如下图所示：</p>
+<p><img src="\images\13_8.png" alt="Screenshot"></p>
+<p>在标准化处理表格的末尾会得到两列新值，即为FAC1_1和FAC2_1的值，如下所示：</p>
+<p><img src="\images\13_9.png" alt="Screenshot"></p>
+<h3 id="四、数据计算"><a href="#四、数据计算" class="headerlink" title="四、数据计算"></a>四、数据计算</h3><p>根据解释的总方差表格可求得FAC1_1和FAC2_1的权重系数分别为0.854768与0.145231，即可在Excel中计算，公式为“=0.854768<em> FAC1_1+0.145231</em> FAC2_1”，得到全国各省综合发展实力评分表格，排序后如下图所示：</p>
+<p><img src="\images\13_10.png" alt="Screenshot"></p>
+<p>根据数据可以将综合发展实力评分划分为四个等级进行区分，及最高级（评分大于1），次高级（评分介于0到1），较低级（评分介于-1到0），低级（评分小于-1），并可以在ArcGIS中制作专题图，如下所示：</p>
+<p><img src="\images\13_11.png" alt="Screenshot"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;主成份分析的主要目的是希望用较少的变量去解释原来资料中的大部分变异，将我们手中许多相关性很高的变量转化成彼此相互独立或不相关的变量。通常是选出比原始变量个数少、能解释大部分资料中的变异的几个新变量，即所谓主成份，并用以解释资料的综合性指标。
+    
+    </summary>
+    
+      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
+    
+    
+      <category term="SPSS" scheme="http://hirojisawatari.github.io/tags/SPSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArcGIS 10关系类及注释类操作方法</title>
+    <link href="http://hirojisawatari.github.io/2013/10/10/9/"/>
+    <id>http://hirojisawatari.github.io/2013/10/10/9/</id>
+    <published>2013-10-10T07:13:24.000Z</published>
+    <updated>2017-01-16T06:06:27.320Z</updated>
+    
+    <content type="html"><![CDATA[<p>地理数据库中的关系类用于管理一个类（要素类或表）中的对象与另一个类中的对象之间的关联。而注释类则通过标注要素某一字段用于识别要素。<a id="more"></a></p>
+<h3 id="一、建立个人空间数据库"><a href="#一、建立个人空间数据库" class="headerlink" title="一、建立个人空间数据库"></a>一、建立个人空间数据库</h3><p>打开ArcCatalog，选定合适的位置建立个人空间数据库，这次在“desktop/homework”路径下建立个人空间数据库，步骤如下所示：</p>
+<p><img src="\images\9_1.png" alt="Screenshot"></p>
+<p><img src="\images\9_2.png" alt="Screenshot"></p>
+<p>接着在新建立的个人空间数据库中建立要素数据集，并给其定义合适的地理坐标系，以便于后面的数据操作。步骤如下图所示：</p>
+<p><img src="\images\9_3.png" alt="Screenshot"></p>
+<p><img src="\images\9_4.png" alt="Screenshot"></p>
+<p><img src="\images\9_5.png" alt="Screenshot"></p>
+<h3 id="二、添加操作要素"><a href="#二、添加操作要素" class="headerlink" title="二、添加操作要素"></a>二、添加操作要素</h3><p>在执行相关分析操作前需往刚建立得到的个人空间数据库中添加相关数据，此处以新建立一个面状要素类和点状要素类为例，在建立要素类的同时建立好后面操作所需要的相应字段，操作步骤如下图所示：</p>
+<p><img src="\images\9_6.png" alt="Screenshot"></p>
+<p><img src="\images\9_7.png" alt="Screenshot"><img src="\images\9_8.png" alt="Screenshot"></p>
+<p><img src="\images\9_9.png" alt="Screenshot"><img src="\images\9_10.png" alt="Screenshot"></p>
+<p>建立面要素类时需添加“s_name”字段记录每个面要素的名字，建立点要素类时需添加“p_name”字段记录每个点要素的名字，以及“s_name”字段记录点要素所在面要素的名字。</p>
+<p>在ArcCatalog建立完要素类之后即可在ArcMap中编辑新建的点要素类与面要素类，编辑后如图所示：</p>
+<p><img src="\images\9_11.png" alt="Screenshot"></p>
+<p><img src="\images\9_12.png" alt="Screenshot"></p>
+<h3 id="三、建立复合关系类"><a href="#三、建立复合关系类" class="headerlink" title="三、建立复合关系类"></a>三、建立复合关系类</h3><p>打开ArcCatalog，在刚才建立的空间数据库中建立新关系类，关联刚才建立的两个要素类，步骤如下图所示：</p>
+<p><img src="\images\9_13.png" alt="Screenshot"><img src="\images\9_14.png" alt="Screenshot"></p>
+<p><img src="\images\9_15.png" alt="Screenshot"><img src="\images\9_16.png" alt="Screenshot"></p>
+<p>建立完成后打开ArcMap，点击“识别”，选取任意要素，可发现点要素与面要素已经关联，如下图所示：</p>
+<p><img src="\images\9_17.png" alt="Screenshot"></p>
+<h3 id="四、新建注释类"><a href="#四、新建注释类" class="headerlink" title="四、新建注释类"></a>四、新建注释类</h3><p>打开ArcCatalog，在刚才建立的空间数据库中建立新注记要素类，并将其与点要素类的“p_name”字段进行连接，步骤如下图所示：</p>
+<p><img src="\images\9_18.png" alt="Screenshot"></p>
+<p><img src="\images\9_19.png" alt="Screenshot"></p>
+<p>点击确定后即生成新的注记要素类如下图所示：</p>
+<p><img src="\images\9_20.png" alt="Screenshot"></p>
+<p>同时在标记要素类的属性窗口中设置好注记要素类所显示的参考比例：</p>
+<p><img src="\images\9_21.png" alt="Screenshot"></p>
+<p>打开ArcMap，加载点要素类、面要素类以及注记要素类，全选点要素类中的要素，再右键点选点要素类名-&gt;选择-&gt;注记所选要素，步骤及结果如下图所示：</p>
+<p><img src="\images\9_22.png" alt="Screenshot"></p>
+<p><img src="\images\9_23.png" alt="Screenshot"></p>
+<p><img src="\images\9_24.png" alt="Screenshot"></p>
+<h3 id="五、转换注释类"><a href="#五、转换注释类" class="headerlink" title="五、转换注释类"></a>五、转换注释类</h3><p>在ArcMap窗口中内容表中，右键单击需要转换的注释类的数据类，此时以面要素数据类为例，首先右键点击面要素类名-&gt;标记要素，将面要素标记：</p>
+<p><img src="\images\9_25.png" alt="Screenshot"></p>
+<p>再点击“将标注转换为注记”，点击确定后即生成新的注释类，步骤及结果如下图所示：</p>
+<p><img src="\images\9_26.png" alt="Screenshot"></p>
+<p><img src="\images\9_27.png" alt="Screenshot"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;地理数据库中的关系类用于管理一个类（要素类或表）中的对象与另一个类中的对象之间的关联。而注释类则通过标注要素某一字段用于识别要素。
+    
+    </summary>
+    
+      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
+    
+    
+      <category term="GIS" scheme="http://hirojisawatari.github.io/tags/GIS/"/>
+    
+      <category term="ArcGIS" scheme="http://hirojisawatari.github.io/tags/ArcGIS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArcGIS 10属性域与子类型操作方法</title>
+    <link href="http://hirojisawatari.github.io/2013/09/24/8/"/>
+    <id>http://hirojisawatari.github.io/2013/09/24/8/</id>
+    <published>2013-09-24T08:39:08.000Z</published>
+    <updated>2017-01-16T06:06:37.230Z</updated>
+    
+    <content type="html"><![CDATA[<p>属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。<a id="more"></a></p>
+<h3 id="一、建立个人空间数据库"><a href="#一、建立个人空间数据库" class="headerlink" title="一、建立个人空间数据库"></a>一、建立个人空间数据库</h3><p>打开ArcCatalog，选定一个合适的位置建立个人空间数据库，此作业以“desktop/homework”文件夹为例，步骤如下所示：</p>
+<p><img src="\images\8_1.png" alt="Screenshot"></p>
+<p><img src="\images\8_2.png" alt="Screenshot"></p>
+<p>接着在新建立的个人空间数据库中建立要素数据集，并给其定义合适的地理坐标系，以便于后面的数据操作。步骤如下图所示：</p>
+<p><img src="\images\8_3.png" alt="Screenshot"></p>
+<p><img src="\images\8_4.png" alt="Screenshot"></p>
+<p><img src="\images\8_5.png" alt="Screenshot"></p>
+<h3 id="二、导入有关数据"><a href="#二、导入有关数据" class="headerlink" title="二、导入有关数据"></a>二、导入有关数据</h3><p>在执行相关分析操作前需往刚建立得到的个人空间数据库中导入相关数据，此处以示例面要素“USstates.shp”为例，操作步骤如下：</p>
+<p><img src="\images\8_6.png" alt="Screenshot"></p>
+<p><img src="\images\8_7.png" alt="Screenshot"></p>
+<p><img src="\images\8_8.png" alt="Screenshot"></p>
+<h3 id="三、建立属性域"><a href="#三、建立属性域" class="headerlink" title="三、建立属性域"></a>三、建立属性域</h3><p>打开ArcMap，加载刚刚导入的面要素，打开其属性表，并根据“AREA”字段建立柱状图，如下图所示：</p>
+<p><img src="\images\8_9.png" alt="Screenshot"></p>
+<p>由上图可以发现，美国50个州的面积最大为阿拉斯加576561.456，而大部分州的面积介于10000到100000之间，因此，可以通过建立属性域来筛选出面积在10000到100000之间的州。</p>
+<p>在上一步导入窗口可以发现，“AREA”字段的类型为双精度，因此根据此在ArcCatalog中建立属性域步骤如下图所示：</p>
+<p><img src="\images\8_10.png" alt="Screenshot"></p>
+<p><img src="\images\8_11.png" alt="Screenshot"></p>
+<p><img src="\images\8_12.png" alt="Screenshot"></p>
+<p><img src="\images\8_13.png" alt="Screenshot"></p>
+<p>设定属性域完成后，即可将图层在ArcMap中加载，打开编辑器，全选图层所有面要素，再选择编辑器-&gt;验证要素，则所有面要素中不符合属性域范围的要素会被选中，如下图所示：</p>
+<p><img src="\images\8_14.png" alt="Screenshot"></p>
+<h3 id="四、子类型操作"><a href="#四、子类型操作" class="headerlink" title="四、子类型操作"></a>四、子类型操作</h3><p>子类型是根据要素类的属性值将要素划分为更小的分类。因此，可以根据上步得出的对美国各州面积在10000到100000之间的范围对美国各州面要素进行子类型分类。</p>
+<p>首先通过上一步验证要素得出的结果，打开ArcMap，在属性表中建立新字段，然后打开编辑器，将被选中的，即字段“AREA”值不在10000到100000之间的要素字段值设为0，其余的设为1，如下图所示：</p>
+<p><img src="\images\8_15.png" alt="Screenshot"></p>
+<p><img src="\images\8_16.png" alt="Screenshot"></p>
+<p><img src="\images\8_17.png" alt="Screenshot"><img src="\images\8_18.png" alt="Screenshot"></p>
+<p><img src="\images\8_19.png" alt="Screenshot"></p>
+<p>然后关闭ArcMap，打开ArcCatalog，对该面要素图层进行子类型操作，子类型字段选择新建的“area_fanwei”，子类型编码为0的描述设为“面积在范围外”，为1的设为“面积在范围内”，如下图所示：</p>
+<p><img src="\images\8_20.png" alt="Screenshot"></p>
+<p><img src="\images\8_21.png" alt="Screenshot"></p>
+<p>点击确定后打开ArcMap，加载该图层打开属性表，即可发现原先“area_fanwei”字段内的数字被替换为中文，并且可以对其分级色彩如下图所示：</p>
+<p><img src="\images\8_22.png" alt="Screenshot"></p>
+<p><img src="\images\8_23.png" alt="Screenshot"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。
+    
+    </summary>
+    
+      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
+    
+    
+      <category term="GIS" scheme="http://hirojisawatari.github.io/tags/GIS/"/>
+    
+      <category term="ArcGIS" scheme="http://hirojisawatari.github.io/tags/ArcGIS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArcGIS 10根据DEM数据与小流域数据获取最短路径</title>
+    <link href="http://hirojisawatari.github.io/2013/06/04/12/"/>
+    <id>http://hirojisawatari.github.io/2013/06/04/12/</id>
+    <published>2013-06-04T07:25:24.000Z</published>
+    <updated>2017-01-17T04:41:26.935Z</updated>
+    
+    <content type="html"><![CDATA[<p>在ArcGIS中，在已知起止点的情况下，利用数字高程模型数据与小流域数据，可以很方便地分析得到两点之间在空间上的最短距离路径。<a id="more"></a></p>
+<h3 id="一、导入数据"><a href="#一、导入数据" class="headerlink" title="一、导入数据"></a>一、导入数据</h3><p>打开ArcGIS，将dem(高程数据) 、startPot (路径源点数据) 、endPot (路径终点数据) 、river (小流域数据)导入后如下图所示：</p>
+<p><img src="\images\12_1.png" alt="Screenshot"></p>
+<h3 id="二、设置环境"><a href="#二、设置环境" class="headerlink" title="二、设置环境"></a>二、设置环境</h3><p>点击工具栏中的“地理处理”-&gt;“环境”，将“处理范围”设定为“与图层dem相同”，并且将“栅格分析”中的“最大输入数”同样设定为“与图层dem相同”，同时展开工作空间，设置合理的工作路径。再选择工具栏中的“自定义”-&gt;“拓展模块”，勾选“Spatial Analyst”。</p>
+<h3 id="三、坡度计算"><a href="#三、坡度计算" class="headerlink" title="三、坡度计算"></a>三、坡度计算</h3><p>打开“ArcToolbox”-&gt;“Spatial Analyst工具”-&gt;“表面分析”-&gt;“坡度”，输入栅格设定为“dem”，窗口如下图所示：</p>
+<p><img src="\images\12_2.png" alt="Screenshot"></p>
+<p>点击确认生成坡度图层“Slope_dem4”，再对此图数据进行重分类。选择“重分类”-&gt;“重分类”，输入栅格选择“Slope_dem4”，再点击分类按钮，将列设为相等间隔的十列，点击确定生成重分类之后的坡度图层“Reclass_Slop4”，坡度越大数值越大，如下图所示：</p>
+<p><img src="\images\12_3.png" alt="Screenshot"></p>
+<h3 id="四、起伏度计算"><a href="#四、起伏度计算" class="headerlink" title="四、起伏度计算"></a>四、起伏度计算</h3><p>打开“ArcToolbox”-&gt;“Spatial Analyst工具”-&gt;“邻域分析”-&gt;“块统计”，输入栅格设置为“dem”，邻域分析设置为矩形，高度和宽度均设为11像元，统计类型设为“RANGE”，如下图所示：</p>
+<p><img src="\images\12_4.png" alt="Screenshot"></p>
+<p>点击确定生成起伏度图层“BlockSt_dem3”，选择“重分类”-&gt;“重分类”，输入栅格选择“BlockSt_dem3”，再点击分类按钮，将列设为相等间隔的十列，点击确定生成重分类之后的起伏度数据“Reclass_Bloc4”，起伏度越大数值越大，如下图所示：</p>
+<p><img src="\images\12_5.png" alt="Screenshot"></p>
+<h3 id="五、河流成本计算"><a href="#五、河流成本计算" class="headerlink" title="五、河流成本计算"></a>五、河流成本计算</h3><p>选择“重分类”-&gt;“重分类”，输入栅格“river”，按下图将该图层进行重分类。</p>
+<p><img src="\images\12_6.png" alt="Screenshot"></p>
+<p>点击确定生成河流成本数据“Reclass_rive4”，即数值越大成本越高。</p>
+<p><img src="\images\12_7.png" alt="Screenshot"></p>
+<h3 id="六、成本加权"><a href="#六、成本加权" class="headerlink" title="六、成本加权"></a>六、成本加权</h3><p>选择栅格计算器，先将坡度数据（Reclass_Slop4）和起伏度数据（Reclass_Bloc4）按照0.6：0.4 权重合并，然后与河流成本作等权重的加和合并，窗口如下图所示：</p>
+<p><img src="\images\12_8.png" alt="Screenshot"></p>
+<p>点击确定后生成成本栅格数据“raster8”，如下图所示：</p>
+<p><img src="\images\12_9.png" alt="Screenshot"></p>
+<h3 id="七、寻找最短路径"><a href="#七、寻找最短路径" class="headerlink" title="七、寻找最短路径"></a>七、寻找最短路径</h3><p>打开“ArcToolbox”-&gt;“Spatial Analyst工具”，打开距离分析，选择成本距离，选择要素源数据为“startPot”，成本栅格数据设置为“raster8”，并且设置输出回溯链接栅格数据，如下图所示：</p>
+<p><img src="\images\12_10.png" alt="Screenshot"></p>
+<p>点击确定后生成距离栅格数据“CostDis_star3”：</p>
+<p><img src="\images\12_11.png" alt="Screenshot"></p>
+<p>以及回溯链接栅格数据“direction_start”：</p>
+<p><img src="\images\12_12.png" alt="Screenshot"></p>
+<p>打开“ArcToolbox”-&gt;“Spatial Analyst工具”，打开距离分析，选择成本路径，目标数据选择endPot，并且导入刚生成的距离栅格数据和回溯链接栅格数据，如下图所示：</p>
+<p><img src="\images\12_13.png" alt="Screenshot"></p>
+<p>点击确定后即生成最短路径如下图所示：</p>
+<p><img src="\images\12_14.png" alt="Screenshot"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在ArcGIS中，在已知起止点的情况下，利用数字高程模型数据与小流域数据，可以很方便地分析得到两点之间在空间上的最短距离路径。
+    
+    </summary>
+    
+      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
+    
+    
+      <category term="GIS" scheme="http://hirojisawatari.github.io/tags/GIS/"/>
+    
+      <category term="ArcGIS" scheme="http://hirojisawatari.github.io/tags/ArcGIS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ENVI彩色增强操作</title>
+    <link href="http://hirojisawatari.github.io/2012/11/23/11/"/>
+    <id>http://hirojisawatari.github.io/2012/11/23/11/</id>
+    <published>2012-11-23T01:18:11.000Z</published>
+    <updated>2017-01-16T07:11:01.985Z</updated>
+    
+    <content type="html"><![CDATA[<p>彩色增强是将一个波段或单一的黑白图像变换为彩色图像，从而把人眼不能区分的微小的灰度差别显示为明显的色彩差异，从而便于解译和提取有用信息。<a id="more"></a>本文中利用ENVI对影像进行彩色合成，使得影像色彩接近地物的真实色彩。然后将植被显示为红色。最后从中提取人工植被。</p>
+<p>本文中以“can_tmr”文件为例进行彩色增强操作。</p>
+<h3 id="一、还原地物真实色彩"><a href="#一、还原地物真实色彩" class="headerlink" title="一、还原地物真实色彩"></a>一、还原地物真实色彩</h3><p>要处理的图像can_tmr包括6个波段，分别观察6个波段的单波段影像，通过 “Cursor Location/Value”窗口会发现，在TM Band 4图像中植被分布区域的灰度值最大，几乎接近255。而其他波段植被分布区域相对较暗。因此，要使植被区域接近真实色彩，则TM 4为绿色波段（G），同时可以采用拉伸的方法、代数运算法等等来保证绿色为255。</p>
+<p>此外，根据遥感原理知识可知，水体的反射强度随着波段的增加而减弱，吸收增强。同样，土壤的反射强度随波段的增加而增加，吸收减弱。植被、水体、土壤的反射强度关系图像如下：</p>
+<p><img src="\images\11_1.png" alt="Screenshot"></p>
+<p>因此，要使影像色彩接近真实色彩，则TM 1为蓝色波段（B），TM 7 为红色波段（R），在此之后对TM 1、TM 4、TM7三个波段的单波段影像分别直方图均衡化的方法进行图像增强（以下为增强后图像）：</p>
+<p><img src="\images\11_2.png" alt="Screenshot"></p>
+<p>将此三波段合成后图像为：</p>
+<p><img src="\images\11_3.png" alt="Screenshot"></p>
+<h3 id="二、植被显示红色"><a href="#二、植被显示红色" class="headerlink" title="二、植被显示红色"></a>二、植被显示红色</h3><p>要使植被呈现红色，则需将原图通过NDVI（Normal Differential Vegetation Index,归一化植被指数，标准差异植被指数）处理。由于NDVI指数和植物的蒸腾作用、太阳光的截取、光合作用以及地表净初级生产力等密切相关，所以生成的NDVI图像能够明显突出图中植被信息。</p>
+<p>依次打开Transform-&gt;NDVI，选择can_tmr.img，点选OK确定，获得图像如下所示：</p>
+<p><img src="\images\11_4.png" alt="Screenshot"></p>
+<p>方法一：将生成的NDVI图像作为红色波段（R），以TM 1，TM 7作为绿色（G）和蓝色（B）波段，点击Apply进行彩色合成，所得图像如下：</p>
+<p><img src="\images\11_5.png" alt="Screenshot"></p>
+<p>方法二：打开Overlay-&gt;Density Slice…，选择NDVI图像，点Clear Ranges清空系统默认的范围，然后在图像中点击“Cursor Location/Value”观察可知，在植被区域Data值都在0.3以上，所以点击Options-&gt;Add New Ranges，选择Range Start为0.3，Range End为最大Data值0.727273，选择颜色为红色，点击OK生成。再选择File-&gt;Output Ranges to Class Image生成图像。所得图像如下：</p>
+<p><img src="\images\11_6.png" alt="Screenshot"></p>
+<h3 id="三、人工植被信息提取"><a href="#三、人工植被信息提取" class="headerlink" title="三、人工植被信息提取"></a>三、人工植被信息提取</h3><p>由遥感原理可知，不同地物具有不同的吸收、反射和发射电磁辐射能力，反正，相同地物吸收、反射和发射电磁辐射能力是相同的。所以，在原遥感图像中，人工植被所呈现的反射波段特征是相同的。主成分分析（Principal Component Analysis，PCA）就是一种去除波段之间多余信息，将多波段的图像信息压缩到比原波段更有效的少数几个转换波段的方法。</p>
+<p>依次打开Transform-&gt;Principal Components-&gt;Forward PC-&gt;Rotation-&gt;Compute New Statistics and Rotate，选择can_tmr.img，点选OK确定，会得到六个主成分如下：</p>
+<p><img src="\images\11_7.png" alt="Screenshot"></p>
+<p>分别观察6个主成分的单波段影像，可以发现PC Band 2所显现的单波段影像能明显突出人工植被的图像信息，如下所示：</p>
+<p><img src="\images\11_8.png" alt="Screenshot"></p>
+<p>在此之后进行彩色合成，将PC Band 2作为红色波段（R），取除PC Band 2以外的任意两个波段作为蓝色（B）和绿色（G）波段，合成之后选择Enhance-&gt;Interactive Stretching对生产的图像进行直方图变换，三个波段变换图如下所示：</p>
+<p>R波段：</p>
+<p><img src="\images\11_9.png" alt="Screenshot"></p>
+<p>G波段：</p>
+<p><img src="\images\11_10.png" alt="Screenshot"></p>
+<p>B波段：</p>
+<p><img src="\images\11_11.png" alt="Screenshot"></p>
+<p>点击Apply后，所得图像如下，在此图像中，红色区域即为人工植被。</p>
+<p><img src="\images\11_12.png" alt="Screenshot"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;彩色增强是将一个波段或单一的黑白图像变换为彩色图像，从而把人眼不能区分的微小的灰度差别显示为明显的色彩差异，从而便于解译和提取有用信息。
+    
+    </summary>
+    
+      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
+    
+    
+      <category term="ENVI" scheme="http://hirojisawatari.github.io/tags/ENVI/"/>
+    
+      <category term="RS" scheme="http://hirojisawatari.github.io/tags/RS/"/>
+    
+      <category term="NDVI" scheme="http://hirojisawatari.github.io/tags/NDVI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ENVI图像增强操作</title>
+    <link href="http://hirojisawatari.github.io/2012/10/30/10/"/>
+    <id>http://hirojisawatari.github.io/2012/10/30/10/</id>
+    <published>2012-10-30T15:12:51.000Z</published>
+    <updated>2017-01-16T09:49:42.177Z</updated>
+    
+    <content type="html"><![CDATA[<p>在ENVI中，可以进行图像增强操作以突出遥感图像的某种特征，扩大不同影像特征间的差别，使之更适合实际应用。<a id="more"></a>通过截取区域内灰度变化值大，边界明显，细节信息丰富的区域来实现高频信息提取操作。通过对截取图像进行拉普拉斯滤波操作，了解拉普拉斯滤波可以增强原图像的边缘线条。通过进行中值滤波操作，认识到中值滤波可以实现保留大于卷积核的边缘的同时平滑图像的操作。通过进行定向滤波操作以及改变相应角度，可以了解到随着角度的变化，相应方向的线状信息图像得到补充，而其余方向的线状信息而被削减。</p>
+<p>本文中以“lon_spot”文件为例进行图像增强操作。</p>
+<h3 id="一、高频信息提取"><a href="#一、高频信息提取" class="headerlink" title="一、高频信息提取"></a>一、高频信息提取</h3><p>首先用ENVI打开“lon_spot”文件，打开工具栏中Basic Tools-&gt;Resize Data，然后打开Spetial Subset-&gt;image寻找灰度值大的区域（即为图中灰度值变化程度大的区域），并调整所选区域的大小。</p>
+<p><img src="\images\10_1.png" alt="Screenshot"></p>
+<p>点选OK选择保存路径之后保存，保存文件名为“lon_spot.img”。</p>
+<p><img src="\images\10_2.png" alt="Screenshot"></p>
+<p>原理：低频一般是大范围大尺度的信息，也就是背景，而高频反映的是小范围细节信息。在此图中应选取边界明显，区域内灰度变化值大，细节信息丰富的区域。并将此区域截取下来作为后面实验步骤的素材。</p>
+<h3 id="二、Laplacian"><a href="#二、Laplacian" class="headerlink" title="二、Laplacian"></a>二、Laplacian</h3><p>打开刚建立的“lon_spot.img”文件，选择工具栏中Filter-&gt;Convolutions and Morphology，在Convolutions and Morphology Tool中，选择Covolutions-&gt;Laplacian，点击Quick Apply，生成图像。</p>
+<p><img src="\images\10_3.png" alt="Screenshot"></p>
+<p>此时卷积核如图：</p>
+<p><img src="\images\10_4.png" alt="Screenshot"></p>
+<p>再改变Image Add Back为50%，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_5.png" alt="Screenshot"></p>
+<p>保持Image Add Back为0%，，调整Kernel Size为9，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_6.png" alt="Screenshot"></p>
+<p>此时卷积核如图：</p>
+<p><img src="\images\10_7.png" alt="Screenshot"></p>
+<p>原理：拉普拉斯滤波是边缘增强滤波，它的运行不用考虑边缘的方向。拉普拉斯滤波强调图像中的最大值，它通过运用一个具有高中心值的变换核来完成（一般来说，外围南北向与东西向权重均为负值，角落为“0”）。ENVI中默认的拉普拉斯滤波使用一个大小为3x3，中心值为“4”，南北向和东西向均为“-1”的变换核。但是可以通过改变Kernel Size来改变卷积核的大小。例如，当卷积核为9x9时，此时使用的是中心值为“104”，南北向与东西向为“-（8-1/n）”的变换核。所有的拉普拉斯滤波卷积核的维数都必须是奇数。</p>
+<p>实验中，在对上一步骤所得图像进行拉普拉斯滤波处理后，会发现原图像的边缘被增强。将其与另外一张叠加一半原图信息的图像比较下，边缘增强效果体现得相当明显。此外，将Kernel Size设为9时，会发现卷积核大小为9x9时生成的遥感图像边缘增强程度远大于默认的Kernel Size为3时，即卷积核为3x3的情况。</p>
+<h3 id="三、中值滤波处理"><a href="#三、中值滤波处理" class="headerlink" title="三、中值滤波处理"></a>三、中值滤波处理</h3><p>同样打开工具栏中Filter-&gt;Convolutions and Morphology，在Convolutions and Morphology Tool中，选择Covolutions-&gt;Median，调整Kernel Size为3，再点击Quick Apply生成图像。</p>
+<p><img src="\images\10_8.png" alt="Screenshot"></p>
+<p>保持Kernel Size为3的情况下，调整Image Add Back为50，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_9.png" alt="Screenshot"></p>
+<p>再在Image Add Back为0的情况下，调整Kernel Size为9，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_10.png" alt="Screenshot"></p>
+<p>原理：中值滤波是对一个滑动窗口内的诸像素灰度值排序，用中值代替窗口中心像素的原来灰度值，因此它是一种非线性的图像平滑法。中值滤波在保留大于卷积核的边缘的同时，平滑图像，这种方法对于消除椒盐噪声或斑点非常有效。ENVI的中值滤波器用一个被滤波器的大小限定的邻近区的中值代替每一个中心像元值。默认的卷积核大小是3x3，即Kernel Size为3。但是可以通过改变Kernel Size来改变卷积核的大小。</p>
+<p>实验中，把第一项步骤所得遥感图像进行中值滤波处理，会发现图像经过处理之后被平滑了。将一张不叠加原图信息的通过中值滤波处理后的图像与另外一张叠加一半原图信息的图像比较下，会发现有斑点在叠加过的图像上能显现，而在另外一张图像上没有显现，这体现了中值滤波的图像平滑效果。此外，通过对在实验中生成的卷积核大小分别为3x3与9x9的两幅图进行对比可以发现，卷积核越大，对原图像的平滑程度也越大。</p>
+<h3 id="四、定向滤波提取线状信息"><a href="#四、定向滤波提取线状信息" class="headerlink" title="四、定向滤波提取线状信息"></a>四、定向滤波提取线状信息</h3><p>同样打开工具栏中Filter-&gt;Convolutions and Morphology，在Convolutions and Morphology Tool中，选择Covolutions-&gt;Directional，在Enter Directional Filter Angle输入框中输入0.00，再点击Quick Apply生成图像。</p>
+<p><img src="\images\10_11.png" alt="Screenshot"></p>
+<p>此时卷积核如图：</p>
+<p><img src="\images\10_12.png" alt="Screenshot"></p>
+<p>保持Image Add Back为0不变，在Enter Directional Filter Angle输入框中输入50.00，再点击Quick Apply生成图像。</p>
+<p><img src="\images\10_13.png" alt="Screenshot"></p>
+<p>此时卷积核如图：</p>
+<p><img src="\images\10_14.png" alt="Screenshot"></p>
+<p>再保持Enter Directional Filter Angle为0.00，改变Image Add Back为50%，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_15.png" alt="Screenshot"></p>
+<p>再保持Enter Directional Filter Angle为0.00，Image Add Back为0%，改变Kernel Size为9x9，点击Quick Apply生成图像。</p>
+<p><img src="\images\10_16.png" alt="Screenshot"></p>
+<p>原理：通过规定角的大小从而改变变换核中的数值，以突出某方向的边界。定向滤波根据所选角度不同，加强的方向不同，线状信息不同。角度由规定的Enter Directional Filter Angle所决定。设Enter Directional Filter Angle为50.00时，西北方与东南方向的线状信息图像得到了补充。叠加一半原图信息后，对两图进行比较，能够更加体现东西方向线状信息被补充，南北方向线状信息被削减的特征。最后一幅图，通过改变Kernel Size的数值能够改变突出边界后所生成图像的平滑程度。定向滤波能够增强特定方向的地面形迹，如地理学中的水系，山脉走向等。</p>
+<p>在实验中，将第一项步骤所得图像进行定向滤波处理，设Enter Directional Filter Angle为0.00时，东西方向的线状信息图像得到了补充，南北方向的线状信息得到了一定的削减。设Enter Directional Filter Angle为50.00时，西北方与东南方向的线状信息图像得到了补充。叠加一半原图信息后，将其与不叠加原图信息的图像进行比较，能够更加体现东西方向线状信息被补充，南北方向线状信息被削减的特征。最后一幅图，通过改变Kernel Size的数值能够改变突出边界后所生成图像的平滑程度。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在ENVI中，可以进行图像增强操作以突出遥感图像的某种特征，扩大不同影像特征间的差别，使之更适合实际应用。
+    
+    </summary>
+    
+      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
+    
+    
+      <category term="ENVI" scheme="http://hirojisawatari.github.io/tags/ENVI/"/>
+    
+      <category term="RS" scheme="http://hirojisawatari.github.io/tags/RS/"/>
+    
+  </entry>
+  
+</feed>
