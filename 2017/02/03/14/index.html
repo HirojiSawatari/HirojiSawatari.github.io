@@ -7,7 +7,7 @@
     
 
     <title>
-      ArcGIS 10属性域与子类型操作方法 | Ka Tou Space 
+      微信小程序中获取GitHub中仓库列表数据 | Ka Tou Space 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,40 +16,18 @@
     
     
 
-    <meta name="description" content="属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。">
+    <meta name="description" content="本人曾想着利用微信小程序制作一个展示自己个人简历的应用，其中包括本人上传至GitHub中的一些项目信息。然而微信小程序不支持直接打开网页链接。因此，GitHub中项目的展示则需要通过其他方式来解决动态展示问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ArcGIS 10属性域与子类型操作方法 | Ka Tou Space">
-<meta property="og:url" content="http://hirojisawatari.github.io/2013/09/24/8/index.html">
+<meta property="og:title" content="微信小程序中获取GitHub中仓库列表数据 | Ka Tou Space">
+<meta property="og:url" content="http://hirojisawatari.github.io/2017/02/03/14/index.html">
 <meta property="og:site_name" content="Ka Tou Space">
-<meta property="og:description" content="属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_1.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_2.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_3.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_4.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_5.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_6.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_7.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_8.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_9.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_10.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_11.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_12.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_13.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_14.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_15.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_16.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_17.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_18.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_19.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_20.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_21.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_22.png">
-<meta property="og:image" content="http://hirojisawatari.github.io/\images\8_23.png">
-<meta property="og:updated_time" content="2017-01-16T06:06:37.230Z">
+<meta property="og:description" content="本人曾想着利用微信小程序制作一个展示自己个人简历的应用，其中包括本人上传至GitHub中的一些项目信息。然而微信小程序不支持直接打开网页链接。因此，GitHub中项目的展示则需要通过其他方式来解决动态展示问题。">
+<meta property="og:image" content="http://hirojisawatari.github.io/\images\14_1.png">
+<meta property="og:updated_time" content="2017-02-03T13:03:17.097Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ArcGIS 10属性域与子类型操作方法 | Ka Tou Space">
-<meta name="twitter:description" content="属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。">
-<meta name="twitter:image" content="http://hirojisawatari.github.io/\images\8_1.png">
+<meta name="twitter:title" content="微信小程序中获取GitHub中仓库列表数据 | Ka Tou Space">
+<meta name="twitter:description" content="本人曾想着利用微信小程序制作一个展示自己个人简历的应用，其中包括本人上传至GitHub中的一些项目信息。然而微信小程序不支持直接打开网页链接。因此，GitHub中项目的展示则需要通过其他方式来解决动态展示问题。">
+<meta name="twitter:image" content="http://hirojisawatari.github.io/\images\14_1.png">
     
     
       <link rel="alternate" href="/atom.xml" title="Ka Tou Space" type="application/atom+xml">
@@ -80,9 +58,10 @@
 
   
   <script type="text/javascript"> 
-  document.getElementById("head").style.background="url(/images/background-cover8.jpg) center center no-repeat #666666";
+  document.getElementById("head").style.background="url(/images/background-cover14.jpg) center center no-repeat #666666";
   document.getElementById("head").style.backgroundSize="cover";
   </script> 
+
   
 
 
@@ -280,12 +259,12 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title">ArcGIS 10属性域与子类型操作方法</h1>
+    <h1 class="post-title">微信小程序中获取GitHub中仓库列表数据</h1>
 
     
 
     <div class="post-meta">
-      <time datetime="2013-09-24" class="post-meta__date date">2013-09-24</time> 
+      <time datetime="2017-02-03" class="post-meta__date date">2017-02-03</time> 
 
       <span class="post-meta__tags tags">
 
@@ -299,7 +278,7 @@ classes that you can use:
           
             &#8226; 标签:
             <font class="tags">
-              <a class="tags-link" href="/tags/ArcGIS/">ArcGIS</a>, <a class="tags-link" href="/tags/GIS/">GIS</a>
+              <a class="tags-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tags-link" href="/tags/WeApp/">WeApp</a>, <a class="tags-link" href="/tags/XML/">XML</a>
             </font>
           
 
@@ -311,40 +290,15 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。<a id="more"></a></p>
-<h3 id="一、建立个人空间数据库"><a href="#一、建立个人空间数据库" class="headerlink" title="一、建立个人空间数据库"></a>一、建立个人空间数据库</h3><p>打开ArcCatalog，选定一个合适的位置建立个人空间数据库，此作业以“desktop/homework”文件夹为例，步骤如下所示：</p>
-<p><img src="\images\8_1.png" alt="Screenshot"></p>
-<p><img src="\images\8_2.png" alt="Screenshot"></p>
-<p>接着在新建立的个人空间数据库中建立要素数据集，并给其定义合适的地理坐标系，以便于后面的数据操作。步骤如下图所示：</p>
-<p><img src="\images\8_3.png" alt="Screenshot"></p>
-<p><img src="\images\8_4.png" alt="Screenshot"></p>
-<p><img src="\images\8_5.png" alt="Screenshot"></p>
-<h3 id="二、导入有关数据"><a href="#二、导入有关数据" class="headerlink" title="二、导入有关数据"></a>二、导入有关数据</h3><p>在执行相关分析操作前需往刚建立得到的个人空间数据库中导入相关数据，此处以示例面要素“USstates.shp”为例，操作步骤如下：</p>
-<p><img src="\images\8_6.png" alt="Screenshot"></p>
-<p><img src="\images\8_7.png" alt="Screenshot"></p>
-<p><img src="\images\8_8.png" alt="Screenshot"></p>
-<h3 id="三、建立属性域"><a href="#三、建立属性域" class="headerlink" title="三、建立属性域"></a>三、建立属性域</h3><p>打开ArcMap，加载刚刚导入的面要素，打开其属性表，并根据“AREA”字段建立柱状图，如下图所示：</p>
-<p><img src="\images\8_9.png" alt="Screenshot"></p>
-<p>由上图可以发现，美国50个州的面积最大为阿拉斯加576561.456，而大部分州的面积介于10000到100000之间，因此，可以通过建立属性域来筛选出面积在10000到100000之间的州。</p>
-<p>在上一步导入窗口可以发现，“AREA”字段的类型为双精度，因此根据此在ArcCatalog中建立属性域步骤如下图所示：</p>
-<p><img src="\images\8_10.png" alt="Screenshot"></p>
-<p><img src="\images\8_11.png" alt="Screenshot"></p>
-<p><img src="\images\8_12.png" alt="Screenshot"></p>
-<p><img src="\images\8_13.png" alt="Screenshot"></p>
-<p>设定属性域完成后，即可将图层在ArcMap中加载，打开编辑器，全选图层所有面要素，再选择编辑器-&gt;验证要素，则所有面要素中不符合属性域范围的要素会被选中，如下图所示：</p>
-<p><img src="\images\8_14.png" alt="Screenshot"></p>
-<h3 id="四、子类型操作"><a href="#四、子类型操作" class="headerlink" title="四、子类型操作"></a>四、子类型操作</h3><p>子类型是根据要素类的属性值将要素划分为更小的分类。因此，可以根据上步得出的对美国各州面积在10000到100000之间的范围对美国各州面要素进行子类型分类。</p>
-<p>首先通过上一步验证要素得出的结果，打开ArcMap，在属性表中建立新字段，然后打开编辑器，将被选中的，即字段“AREA”值不在10000到100000之间的要素字段值设为0，其余的设为1，如下图所示：</p>
-<p><img src="\images\8_15.png" alt="Screenshot"></p>
-<p><img src="\images\8_16.png" alt="Screenshot"></p>
-<p><img src="\images\8_17.png" alt="Screenshot"><img src="\images\8_18.png" alt="Screenshot"></p>
-<p><img src="\images\8_19.png" alt="Screenshot"></p>
-<p>然后关闭ArcMap，打开ArcCatalog，对该面要素图层进行子类型操作，子类型字段选择新建的“area_fanwei”，子类型编码为0的描述设为“面积在范围外”，为1的设为“面积在范围内”，如下图所示：</p>
-<p><img src="\images\8_20.png" alt="Screenshot"></p>
-<p><img src="\images\8_21.png" alt="Screenshot"></p>
-<p>点击确定后打开ArcMap，加载该图层打开属性表，即可发现原先“area_fanwei”字段内的数字被替换为中文，并且可以对其分级色彩如下图所示：</p>
-<p><img src="\images\8_22.png" alt="Screenshot"></p>
-<p><img src="\images\8_23.png" alt="Screenshot"></p>
+    <p>本人曾想着利用微信小程序制作一个展示自己个人简历的应用，其中包括本人上传至GitHub中的一些项目信息。然而微信小程序不支持直接打开网页链接。因此，GitHub中项目的展示则需要通过其他方式来解决动态展示问题。<a id="more"></a></p>
+<p>在GitHub中提供了API以动态获取某一用户的所有代码仓库信息，本人账户的仓库信息API即为<a href="https://api.github.com/users/hirojisawatari/repos" target="_blank" rel="external">https://api.github.com/users/hirojisawatari/repos</a>。要获取API提供的仓库信息，需要在小程序相关页面的js文件内onLoad事件下添加以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">wx.request(&#123;</div><div class="line">  <span class="attr">url</span>: <span class="string">'https://api.github.com/users/hirojisawatari/repos'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;&#125;,</div><div class="line">  <span class="attr">method</span>: <span class="string">'GET'</span>, <span class="comment">// OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT</span></div><div class="line">  <span class="comment">// header: &#123;&#125;, // 设置请求的 header</span></div><div class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">    <span class="comment">// success</span></div><div class="line">    that.setData(&#123;</div><div class="line">      <span class="attr">list</span>: res.data,</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">fail</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// fail</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">complete</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// complete</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>在此之前需在data事件下声明list数组，通过以上代码则将所有信息存至list数组中。API中提供了关于某一仓库的大量信息，而我们只需要其中的一部分，例如仓库名、详细说明、使用语言等。因此我们可以在wxml文件中进行筛选并设计展示界面：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">"item"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"meta"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>&#123;&#123; item.name &#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"sub-title"</span>&gt;</span>&#123;&#123; item.description &#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"lang"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">text</span>&gt;</span>&#123;&#123; item.language &#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">"git-list"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">scroll-view</span> <span class="attr">scroll-y</span>=<span class="string">"true"</span> <span class="attr">class</span>=<span class="string">"page-body"</span> <span class="attr">bindscrolltolower</span>=<span class="string">"loadMore"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">"item"</span> <span class="attr">data</span>=<span class="string">"&#123;&#123; item &#125;&#125;"</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123; list &#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;/<span class="name">scroll-view</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>若为了管理方便，可以将以上xml代码单独存储，在相应界面的wxml中用以下代码调用即可：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">import</span> <span class="attr">src</span>=<span class="string">"../common/git-list.wxml"</span>&gt;</span><span class="tag">&lt;/<span class="name">import</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">"git-list"</span> <span class="attr">data</span>=<span class="string">"&#123;&#123; list &#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>最终界面如下图所示：</p>
+<p><img src="\images\14_1.png" alt="Screenshot"></p>
 
   </section>
 
@@ -478,7 +432,7 @@ classes that you can use:
 
 <section class="post-comments">
 
-    <div class="ds-thread" data-thread-key="2013/09/24/8/" data-title="ArcGIS 10属性域与子类型操作方法" data-url="http://hirojisawatari.github.io/2013/09/24/8/"></div>
+    <div class="ds-thread" data-thread-key="2017/02/03/14/" data-title="微信小程序中获取GitHub中仓库列表数据" data-url="http://hirojisawatari.github.io/2017/02/03/14/"></div>
 
     <script type="text/javascript">
       var duoshuoQuery = {short_name:"katou"};

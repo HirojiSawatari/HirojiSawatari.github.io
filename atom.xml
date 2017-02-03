@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hirojisawatari.github.io/"/>
-  <updated>2017-01-16T02:22:01.518Z</updated>
+  <updated>2017-02-03T13:03:17.097Z</updated>
   <id>http://hirojisawatari.github.io/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微信小程序中获取GitHub中仓库列表数据</title>
+    <link href="http://hirojisawatari.github.io/2017/02/03/14/"/>
+    <id>http://hirojisawatari.github.io/2017/02/03/14/</id>
+    <published>2017-02-03T12:13:12.000Z</published>
+    <updated>2017-02-03T13:03:17.097Z</updated>
+    
+    <content type="html"><![CDATA[<p>本人曾想着利用微信小程序制作一个展示自己个人简历的应用，其中包括本人上传至GitHub中的一些项目信息。然而微信小程序不支持直接打开网页链接。因此，GitHub中项目的展示则需要通过其他方式来解决动态展示问题。<a id="more"></a></p>
+<p>在GitHub中提供了API以动态获取某一用户的所有代码仓库信息，本人账户的仓库信息API即为<a href="https://api.github.com/users/hirojisawatari/repos" target="_blank" rel="external">https://api.github.com/users/hirojisawatari/repos</a>。要获取API提供的仓库信息，需要在小程序相关页面的js文件内onLoad事件下添加以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">wx.request(&#123;</div><div class="line">  <span class="attr">url</span>: <span class="string">'https://api.github.com/users/hirojisawatari/repos'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;&#125;,</div><div class="line">  <span class="attr">method</span>: <span class="string">'GET'</span>, <span class="comment">// OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT</span></div><div class="line">  <span class="comment">// header: &#123;&#125;, // 设置请求的 header</span></div><div class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">    <span class="comment">// success</span></div><div class="line">    that.setData(&#123;</div><div class="line">      <span class="attr">list</span>: res.data,</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">fail</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// fail</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">complete</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// complete</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>在此之前需在data事件下声明list数组，通过以上代码则将所有信息存至list数组中。API中提供了关于某一仓库的大量信息，而我们只需要其中的一部分，例如仓库名、详细说明、使用语言等。因此我们可以在wxml文件中进行筛选并设计展示界面：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">"item"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"meta"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>&#123;&#123; item.name &#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"sub-title"</span>&gt;</span>&#123;&#123; item.description &#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"lang"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">text</span>&gt;</span>&#123;&#123; item.language &#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">"git-list"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">scroll-view</span> <span class="attr">scroll-y</span>=<span class="string">"true"</span> <span class="attr">class</span>=<span class="string">"page-body"</span> <span class="attr">bindscrolltolower</span>=<span class="string">"loadMore"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">"item"</span> <span class="attr">data</span>=<span class="string">"&#123;&#123; item &#125;&#125;"</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123; list &#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;/<span class="name">scroll-view</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>若为了管理方便，可以将以上xml代码单独存储，在相应界面的wxml中用以下代码调用即可：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">import</span> <span class="attr">src</span>=<span class="string">"../common/git-list.wxml"</span>&gt;</span><span class="tag">&lt;/<span class="name">import</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">"git-list"</span> <span class="attr">data</span>=<span class="string">"&#123;&#123; list &#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>最终界面如下图所示：</p>
+<p><img src="\images\14_1.png" alt="Screenshot"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本人曾想着利用微信小程序制作一个展示自己个人简历的应用，其中包括本人上传至GitHub中的一些项目信息。然而微信小程序不支持直接打开网页链接。因此，GitHub中项目的展示则需要通过其他方式来解决动态展示问题。
+    
+    </summary>
+    
+      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
+    
+    
+      <category term="WeApp" scheme="http://hirojisawatari.github.io/tags/WeApp/"/>
+    
+      <category term="JavaScript" scheme="http://hirojisawatari.github.io/tags/JavaScript/"/>
+    
+      <category term="XML" scheme="http://hirojisawatari.github.io/tags/XML/"/>
+    
+  </entry>
   
   <entry>
     <title>个性化Huno主题</title>
