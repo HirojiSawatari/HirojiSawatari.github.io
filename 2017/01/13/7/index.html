@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\7_3.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\7_4.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\7_5.png">
-<meta property="og:updated_time" content="2017-02-28T04:52:22.502Z">
+<meta property="og:updated_time" content="2017-02-28T15:34:15.888Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个性化Huno主题 | Ka Tou Space">
 <meta name="twitter:description" content="本博客基于Hexo博客框架，主题为Huno。Huno主题作者已长时间未更新，而且与最新主题例如NexT相比，美观度不足且功能有所缺失。因此需要针对Huno主题的不足进行一些个性化的修改。">
@@ -48,7 +48,7 @@
 	<link rel="stylesheet" href="/css/suspend.css">
 	
 </head>
-<body>
+<body class="custom-background">
 	
     <span class="mobile btn-mobile-menu">
         <i class="icon icon-list btn-mobile-menu__icon"></i>
@@ -58,8 +58,9 @@
 	<div class="suspend">
 		<dl>
 			<dt class="IE6PNG"></dt>
-			<dd class="suspendHead"></dd>
+			<dd class="suspendHead"></dd>			
 			<dd class="suspendSearch"><a href="http://shang.qq.com/wpa/qunwpa?idkey=cb91b633f1db596a948828f4f333dbb7394ceda014c958cf8338bb2737cb9496" target="_blank"></a></dd>
+			<dd class="suspendColor"><a href="http://shang.qq.com/wpa/qunwpa?idkey=cb91b633f1db596a948828f4f333dbb7394ceda014c958cf8338bb2737cb9496" target="_blank"></a></dd>
 			<dd class="suspendTwitch"><a href='javascript:(
     /*
      * Copyright (C) 2015 Rocko (rocko.xyz) <rocko.zxp@gmail.com>
@@ -540,7 +541,7 @@ classes that you can use:
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.post-meta__tags</span> &#123;</div><div class="line">  <span class="attribute">margin-left</span>: .<span class="number">4em</span>; &#125;</div></pre></td></tr></table></figure>
 <p>最后在small-icon路径下加入对应的小图标即可。最终效果如下所示：</p>
 <p><img src="\images\7_4.png" alt="Screenshot"></p>
-<h3 id="五、Nest背景特效"><a href="#五、Nest背景特效" class="headerlink" title="五、Nest背景特效"></a>五、Nest背景特效</h3><p>本博客背景的几何线条是采用来自NexT主题的效果，一个基于html5 canvas绘制的网页背景效果。此特效来自GitHub开源项目<a href="https://github.com/hustcc/canvas-nest.js" target="_blank" rel="external">canvas-nest.js</a>。本功能参考该博客：<a href="http://jinfang.life/posts/c00b4e03/" target="_blank" rel="external">为next主题添加nest背景特效</a>。</p>
+<h3 id="五、Nest背景特效（已取消此特效）"><a href="#五、Nest背景特效（已取消此特效）" class="headerlink" title="五、Nest背景特效（已取消此特效）"></a>五、Nest背景特效（已取消此特效）</h3><p>本博客背景的几何线条是采用来自NexT主题的效果，一个基于html5 canvas绘制的网页背景效果。此特效来自GitHub开源项目<a href="https://github.com/hustcc/canvas-nest.js" target="_blank" rel="external">canvas-nest.js</a>。本功能参考该博客：<a href="http://jinfang.life/posts/c00b4e03/" target="_blank" rel="external">为next主题添加nest背景特效</a>。</p>
 <p>首先下载<a href="https://github.com/hustcc/canvas-nest.js/blob/master/dist/canvas-nest.min.js" target="_blank" rel="external">canvas-nest.min.js</a>文件至source/js路径下，再打开layout/layout.ejs文件，将以下代码插入</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>之间：</p>
@@ -793,7 +794,7 @@ classes that you can use:
   <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
 <![endif]-->
 
-    <script type="text/javascript" color="0,0,0" opacity='0.3' zIndex="-1" count="100" src="/js/canvas-nest.min.js"></script>
+    <!-- <script type="text/javascript" color="0,0,0" opacity='0.3' zIndex="-1" count="100" src="/js/canvas-nest.min.js"></script> -->
 
 
 </body>

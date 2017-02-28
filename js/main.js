@@ -37,7 +37,7 @@ $(document).ready(function() {
 
   $(".suspend").mouseover(function() {
 	$(this).stop();
-    $(this).animate({width: 160}, 400);
+    $(this).animate({width: 120}, 400);
   })
 	
   $(".suspend").mouseout(function() {

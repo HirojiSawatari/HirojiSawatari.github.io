@@ -102,7 +102,7 @@
     <link href="http://hirojisawatari.github.io/2017/01/13/7/"/>
     <id>http://hirojisawatari.github.io/2017/01/13/7/</id>
     <published>2017-01-13T03:05:34.000Z</published>
-    <updated>2017-02-28T04:52:22.502Z</updated>
+    <updated>2017-02-28T15:34:15.888Z</updated>
     
     <content type="html"><![CDATA[<p>本博客基于Hexo博客框架，主题为Huno。Huno主题作者已长时间未更新，而且与最新主题例如NexT相比，美观度不足且功能有所缺失。因此需要针对Huno主题的不足进行一些个性化的修改。<a id="more"></a></p>
 <h3 id="一、Logo旋转"><a href="#一、Logo旋转" class="headerlink" title="一、Logo旋转"></a>一、Logo旋转</h3><p>网站logo默认是没用响应动画特效的。参考NexT主题，可以将logo加入鼠标移入时旋转效果，最终效果见本网站logo。本功能参考该博客：<a href="http://baiya.me/2016/05/22/Hexo%20Next%E4%B8%BB%E9%A2%98%E5%A4%B4%E5%83%8F%E6%94%B9%E5%9C%86%E8%A7%92%E5%B9%B6%E5%AE%9E%E7%8E%B0%E9%BC%A0%E6%A0%87%E7%A7%BB%E5%85%A5%E6%97%B6%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/" target="_blank" rel="external">Hexo Next主题头像改圆角并实现鼠标移入时旋转效果</a>。</p>
@@ -132,7 +132,7 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.post-meta__tags</span> &#123;</div><div class="line">  <span class="attribute">margin-left</span>: .<span class="number">4em</span>; &#125;</div></pre></td></tr></table></figure>
 <p>最后在small-icon路径下加入对应的小图标即可。最终效果如下所示：</p>
 <p><img src="\images\7_4.png" alt="Screenshot"></p>
-<h3 id="五、Nest背景特效"><a href="#五、Nest背景特效" class="headerlink" title="五、Nest背景特效"></a>五、Nest背景特效</h3><p>本博客背景的几何线条是采用来自NexT主题的效果，一个基于html5 canvas绘制的网页背景效果。此特效来自GitHub开源项目<a href="https://github.com/hustcc/canvas-nest.js" target="_blank" rel="external">canvas-nest.js</a>。本功能参考该博客：<a href="http://jinfang.life/posts/c00b4e03/" target="_blank" rel="external">为next主题添加nest背景特效</a>。</p>
+<h3 id="五、Nest背景特效（已取消此特效）"><a href="#五、Nest背景特效（已取消此特效）" class="headerlink" title="五、Nest背景特效（已取消此特效）"></a>五、Nest背景特效（已取消此特效）</h3><p>本博客背景的几何线条是采用来自NexT主题的效果，一个基于html5 canvas绘制的网页背景效果。此特效来自GitHub开源项目<a href="https://github.com/hustcc/canvas-nest.js" target="_blank" rel="external">canvas-nest.js</a>。本功能参考该博客：<a href="http://jinfang.life/posts/c00b4e03/" target="_blank" rel="external">为next主题添加nest背景特效</a>。</p>
 <p>首先下载<a href="https://github.com/hustcc/canvas-nest.js/blob/master/dist/canvas-nest.min.js" target="_blank" rel="external">canvas-nest.min.js</a>文件至source/js路径下，再打开layout/layout.ejs文件，将以下代码插入</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>之间：</p>
@@ -783,11 +783,11 @@
       <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
     
     
+      <category term="NDVI" scheme="http://hirojisawatari.github.io/tags/NDVI/"/>
+    
       <category term="ENVI" scheme="http://hirojisawatari.github.io/tags/ENVI/"/>
     
       <category term="RS" scheme="http://hirojisawatari.github.io/tags/RS/"/>
-    
-      <category term="NDVI" scheme="http://hirojisawatari.github.io/tags/NDVI/"/>
     
   </entry>
   
