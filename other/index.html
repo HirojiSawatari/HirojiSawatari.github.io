@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\Oldpage.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\JiaBlog.png">
 <meta property="og:image" content="http://hirojisawatari.github.io/\images\AlexBlog.png">
-<meta property="og:updated_time" content="2017-02-27T13:48:35.765Z">
+<meta property="og:updated_time" content="2017-03-01T15:55:42.782Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="其他信息">
 <meta name="twitter:description" content="联系本人地址：北京市海淀区成府路209号中楼525
@@ -60,6 +60,12 @@
     <link rel="stylesheet" href="/css/font-awesome.css">
 	<link rel="stylesheet" href="/css/suspend.css">
 	<link rel="stylesheet" href="/css/popup.css">
+	<link rel="stylesheet" href="/css/map.css">
+	
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=3e4f0d6e331ae7d7abf025282b77e020"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
 	
 </head>
 <body class="custom-background">
@@ -516,7 +522,7 @@ classes that you can use:
 <p>邮编：100871</p>
 <p>电子邮箱：<a href="mailto:ka_tou@outlook.com" target="_blank" rel="external">ka_tou@outlook.com</a></p>
 <p>个人主页：<a href="http://www.katouspace.com" target="_blank" rel="external">http://www.katouspace.com</a> &amp; <a href="http://katou.space" target="_blank" rel="external">http://katou.space</a></p>
-<p><br><br><br></p>
+<p><div id="container" style="width:500px; height:300px; position:static; border:1px solid #000"></div><br><br></p>
 <h3 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h3><p><br><br><a href="http://www.katouspace.com/oldpage" target="_blank" rel="external"><img src="\images\Oldpage.png" width="150" height="51"></a>&nbsp;&nbsp;<a href="https://www.jiangyayu.cn" target="_blank" rel="external"><img src="\images\JiaBlog.png" width="150" height="51"></a>&nbsp;&nbsp;<a href="https://blog.jiangyayu.cn" target="_blank" rel="external"><img src="\images\AlexBlog.png" width="150" height="51"></a></p>
 
   </section>
@@ -564,7 +570,31 @@ classes that you can use:
     <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
     <script type="text/javascript" src="/js/jquery.fancybox.pack.js"></script>
     <script type="text/javascript" src="/js/jquery.mousewheel-3.0.6.pack.js"></script>  <!--带有鼠标滚动效果的库-->
-
+	
+	<script>
+    var map = new AMap.Map('container', {
+        resizeEnable: true,
+        zoom:16,
+        center: [116.317001, 39.992617]    
+    });
+	var marker = new AMap.Marker({
+        position: [116.317001, 39.992617]
+    });
+	marker.setMap(map);
+	marker.on('click',function(e){
+      infowindow.open(map,e.target.getPosition());
+    })
+	AMap.plugin('AMap.AdvancedInfoWindow',function(){
+		infowindow = new AMap.AdvancedInfoWindow({
+			content: '<div class="map-info-title">本人坐标</div><div class="map-info-content">'+
+					'本人目前工作地点地址：<br/>北京市海淀区成府路209号中楼525<br/>'+
+					'</div>',
+			offset: new AMap.Pixel(0, -30)
+		});
+		infowindow.open(map,[116.317001, 39.992617]);
+	})
+	</script>
+	
     <style type="text/css">
       #content{width: 800px;margin: 20px auto;overflow: hidden;}
       #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {background-image: url('/images/fancybox_sprite.png');}  /**更改fancybox默认的图片路径**/
