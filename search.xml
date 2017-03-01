@@ -1,28 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Ka Tou Space</title>
-  <subtitle>二十三年前、この腐敗した世界に堕とされた...</subtitle>
-  <link href="/atom.xml" rel="self"/>
+<search>
   
-  <link href="http://hirojisawatari.github.io/"/>
-  <updated>2017-02-27T15:28:41.679Z</updated>
-  <id>http://hirojisawatari.github.io/</id>
   
-  <author>
-    <name>Tou Ka</name>
     
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>为Huno主题添加相册功能</title>
-    <link href="http://hirojisawatari.github.io/2017/02/27/15/"/>
-    <id>http://hirojisawatari.github.io/2017/02/27/15/</id>
-    <published>2017-02-27T14:07:14.000Z</published>
-    <updated>2017-02-27T15:28:41.679Z</updated>
-    
-    <content type="html"><![CDATA[<p>本博客基于Hexo博客框架，主题为Huno。Huno主题默认未实现相册功能，因此我们需自行编写相册以实现在博客网站中展示图片集的功能。<a id="more"></a>本博客最终实现的相册界面如下所示：</p>
+    <entry>
+      <title><![CDATA[为Huno主题添加相册功能]]></title>
+      <url>http://hirojisawatari.github.io/2017/02/27/15/</url>
+      <content type="html"><![CDATA[<p>本博客基于Hexo博客框架，主题为Huno。Huno主题默认未实现相册功能，因此我们需自行编写相册以实现在博客网站中展示图片集的功能。<a id="more"></a>本博客最终实现的相册界面如下所示：</p>
 <p><img src="\images\15_1.png" alt="Screenshot"></p>
 <p>本博客参考此文章：<a href="http://www.cnblogs.com/xljzlw/p/5137622.html" target="_blank" rel="external">hexo主题中添加相册功能</a>。</p>
 <h3 id="一、新建相册页面"><a href="#一、新建相册页面" class="headerlink" title="一、新建相册页面"></a>一、新建相册页面</h3><p>打开Git Shell，输入以下指令，即可在source文件夹中生成photo文件夹。</p>
@@ -46,30 +30,28 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>($(<span class="string">".instagram"</span>).length) &#123;</div><div class="line">    <span class="built_in">require</span>([<span class="string">'/js/photo.js'</span>, <span class="string">'/js/jquery.fancybox.js'</span>, <span class="string">'/js/jquery.lazyload.js'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">      obj.init();</div><div class="line">    &#125;);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 <p>至此相册功能构建完成。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Static Website </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;本博客基于Hexo博客框架，主题为Huno。Huno主题默认未实现相册功能，因此我们需自行编写相册以实现在博客网站中展示图片集的功能。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="Hexo" scheme="http://hirojisawatari.github.io/tags/Hexo/"/>
-    
-      <category term="Static Website" scheme="http://hirojisawatari.github.io/tags/Static-Website/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微信小程序中获取GitHub中仓库列表数据</title>
-    <link href="http://hirojisawatari.github.io/2017/02/03/14/"/>
-    <id>http://hirojisawatari.github.io/2017/02/03/14/</id>
-    <published>2017-02-03T12:13:12.000Z</published>
-    <updated>2017-02-03T13:03:17.097Z</updated>
-    
-    <content type="html"><![CDATA[<p>本人曾想着利用微信小程序制作一个展示自己个人简历的应用，其中包括本人上传至GitHub中的一些项目信息。然而微信小程序不支持直接打开网页链接。因此，GitHub中项目的展示则需要通过其他方式来解决动态展示问题。<a id="more"></a></p>
+    <entry>
+      <title><![CDATA[微信小程序中获取GitHub中仓库列表数据]]></title>
+      <url>http://hirojisawatari.github.io/2017/02/03/14/</url>
+      <content type="html"><![CDATA[<p>本人曾想着利用微信小程序制作一个展示自己个人简历的应用，其中包括本人上传至GitHub中的一些项目信息。然而微信小程序不支持直接打开网页链接。因此，GitHub中项目的展示则需要通过其他方式来解决动态展示问题。<a id="more"></a></p>
 <p>在GitHub中提供了API以动态获取某一用户的所有代码仓库信息，本人账户的仓库信息API即为<a href="https://api.github.com/users/hirojisawatari/repos" target="_blank" rel="external">https://api.github.com/users/hirojisawatari/repos</a>。要获取API提供的仓库信息，需要在小程序相关页面的js文件内onLoad事件下添加以下代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">wx.request(&#123;</div><div class="line">  <span class="attr">url</span>: <span class="string">'https://api.github.com/users/hirojisawatari/repos'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;&#125;,</div><div class="line">  <span class="attr">method</span>: <span class="string">'GET'</span>, <span class="comment">// OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT</span></div><div class="line">  <span class="comment">// header: &#123;&#125;, // 设置请求的 header</span></div><div class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">    <span class="comment">// success</span></div><div class="line">    that.setData(&#123;</div><div class="line">      <span class="attr">list</span>: res.data,</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">fail</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// fail</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">complete</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// complete</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>在此之前需在data事件下声明list数组，通过以上代码则将所有信息存至list数组中。API中提供了关于某一仓库的大量信息，而我们只需要其中的一部分，例如仓库名、详细说明、使用语言等。因此我们可以在wxml文件中进行筛选并设计展示界面：</p>
@@ -79,32 +61,30 @@
 <p>最终界面如下图所示：</p>
 <p><img src="\images\14_1.png" alt="Screenshot"></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> WeApp </tag>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> XML </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;本人曾想着利用微信小程序制作一个展示自己个人简历的应用，其中包括本人上传至GitHub中的一些项目信息。然而微信小程序不支持直接打开网页链接。因此，GitHub中项目的展示则需要通过其他方式来解决动态展示问题。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="WeApp" scheme="http://hirojisawatari.github.io/tags/WeApp/"/>
-    
-      <category term="JavaScript" scheme="http://hirojisawatari.github.io/tags/JavaScript/"/>
-    
-      <category term="XML" scheme="http://hirojisawatari.github.io/tags/XML/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>个性化Huno主题</title>
-    <link href="http://hirojisawatari.github.io/2017/01/13/7/"/>
-    <id>http://hirojisawatari.github.io/2017/01/13/7/</id>
-    <published>2017-01-13T03:05:34.000Z</published>
-    <updated>2017-02-28T15:34:15.888Z</updated>
-    
-    <content type="html"><![CDATA[<p>本博客基于Hexo博客框架，主题为Huno。Huno主题作者已长时间未更新，而且与最新主题例如NexT相比，美观度不足且功能有所缺失。因此需要针对Huno主题的不足进行一些个性化的修改。<a id="more"></a></p>
+    <entry>
+      <title><![CDATA[个性化Huno主题]]></title>
+      <url>http://hirojisawatari.github.io/2017/01/13/7/</url>
+      <content type="html"><![CDATA[<p>本博客基于Hexo博客框架，主题为Huno。Huno主题作者已长时间未更新，而且与最新主题例如NexT相比，美观度不足且功能有所缺失。因此需要针对Huno主题的不足进行一些个性化的修改。<a id="more"></a></p>
 <h3 id="一、Logo旋转"><a href="#一、Logo旋转" class="headerlink" title="一、Logo旋转"></a>一、Logo旋转</h3><p>网站logo默认是没用响应动画特效的。参考NexT主题，可以将logo加入鼠标移入时旋转效果，最终效果见本网站logo。本功能参考该博客：<a href="http://baiya.me/2016/05/22/Hexo%20Next%E4%B8%BB%E9%A2%98%E5%A4%B4%E5%83%8F%E6%94%B9%E5%9C%86%E8%A7%92%E5%B9%B6%E5%AE%9E%E7%8E%B0%E9%BC%A0%E6%A0%87%E7%A7%BB%E5%85%A5%E6%97%B6%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/" target="_blank" rel="external">Hexo Next主题头像改圆角并实现鼠标移入时旋转效果</a>。</p>
 <p>首先进入主题目录打开source/css/uno.css，找到定义logo的样式panel-cover__logo，加上以下属性：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">-webkit-transition</span>: <span class="selector-tag">-webkit-transform</span> 1<span class="selector-tag">s</span>;</div><div class="line"><span class="selector-tag">-ms-transition</span>: <span class="selector-tag">-ms-transform</span> 1<span class="selector-tag">s</span>;</div><div class="line"><span class="selector-tag">-moz-transition</span>: <span class="selector-tag">-moz-transform</span> 1<span class="selector-tag">s</span>;</div><div class="line"><span class="selector-tag">-o-transition</span>: <span class="selector-tag">-o-transform</span> 1<span class="selector-tag">s</span>;</div></pre></td></tr></table></figure>
@@ -161,30 +141,28 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">donate</span>') %&gt;</span></div></pre></td></tr></table></figure>
 <p>即可实现功能。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Static Website </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;本博客基于Hexo博客框架，主题为Huno。Huno主题作者已长时间未更新，而且与最新主题例如NexT相比，美观度不足且功能有所缺失。因此需要针对Huno主题的不足进行一些个性化的修改。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="Hexo" scheme="http://hirojisawatari.github.io/tags/Hexo/"/>
-    
-      <category term="Static Website" scheme="http://hirojisawatari.github.io/tags/Static-Website/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>利用Hexo在GitHub上搭建个人博客</title>
-    <link href="http://hirojisawatari.github.io/2017/01/11/6/"/>
-    <id>http://hirojisawatari.github.io/2017/01/11/6/</id>
-    <published>2017-01-11T13:40:51.000Z</published>
-    <updated>2017-01-16T02:22:11.619Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。<a id="more"></a></p>
+    <entry>
+      <title><![CDATA[利用Hexo在GitHub上搭建个人博客]]></title>
+      <url>http://hirojisawatari.github.io/2017/01/11/6/</url>
+      <content type="html"><![CDATA[<p>最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。<a id="more"></a></p>
 <p><img src="\images\6_1.png" alt="Screenshot"></p>
 <h3 id="一、在GitHub上建立博客源码仓库"><a href="#一、在GitHub上建立博客源码仓库" class="headerlink" title="一、在GitHub上建立博客源码仓库"></a>一、在GitHub上建立博客源码仓库</h3><p>首先，在GitHub上建立一个空仓库用来存放博客源码，仓库命名方式必须为“GitHub账户名.github.io”。</p>
 <p><img src="\images\6_2.png" alt="Screenshot"></p>
@@ -232,30 +210,28 @@
 <p>其中记录类型为CNAME，记录值即为GitHub分配的博客原域名，主机记录分别为“@”和“www”，其余项默认即可。</p>
 <p>配置完毕后打开Git Shell执行发布命令，稍等几分钟后即可使用新域名进入博客主页。之后若执行“hexo clean”需备份CNAME文件。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Static Website </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="Hexo" scheme="http://hirojisawatari.github.io/tags/Hexo/"/>
-    
-      <category term="Static Website" scheme="http://hirojisawatari.github.io/tags/Static-Website/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搭完blog后的一些闲话</title>
-    <link href="http://hirojisawatari.github.io/2016/12/19/4/"/>
-    <id>http://hirojisawatari.github.io/2016/12/19/4/</id>
-    <published>2016-12-19T11:34:05.000Z</published>
-    <updated>2017-01-14T05:23:04.922Z</updated>
-    
-    <content type="html"><![CDATA[<p>我并不是一个喜欢写文章的人，这是我的一个缺点。然而我是一个经常有意无意表露出自己内心想法的人，这也是我的一个缺点。<a id="more"></a></p>
+    <entry>
+      <title><![CDATA[搭完blog后的一些闲话]]></title>
+      <url>http://hirojisawatari.github.io/2016/12/19/4/</url>
+      <content type="html"><![CDATA[<p>我并不是一个喜欢写文章的人，这是我的一个缺点。然而我是一个经常有意无意表露出自己内心想法的人，这也是我的一个缺点。<a id="more"></a></p>
 <p>最近一直在玩GitHub，也把自己以前做的项目和最近写的一些代码都上传了上去。闲下来的时候也喜欢登上自己的GitHub账号，欣赏自己的主页，享受着成就感，满足着虚荣心。尽管实际上这些代码很low，甚至项目中有的功能都没能实现。</p>
 <p>前天晚上，我在观摩别人的GitHub账号的时候发现了一个现象，一般大牛们都有自己的个人主页，而且个人主页的代码仓库居然可以保存在GitHub账号下。一个个人主页既可以以后拿出来装逼，而且还能丰富下我那个干货不足的代码仓库，最重要的是，这个主页是免费的。何乐而不为？</p>
 <p>说干就干，趁着周日，我花了一天的时间试着熟悉Hexo博客框架，挑选着各种眼花缭乱的theme，笨拙地操作着以前根本没用过的Git shell。终于在昨天晚上，人生中第一个真正属于我自己的网站完整地展现在了我面前的Sony VAIO Pro 13的屏幕上。我翘起二郎腿，叼着一根硬白金万宝路，忍受着困意，自豪地点击着每一个控件，全然不知此时已是19号的凌晨。</p>
@@ -266,28 +242,26 @@
 <p>2016年12月19日夜于北京</p>
 <p>2017年1月10日补充：花了30来块钱买了两个域名：katouspace.com、katou.space，现在好歹也像个正规网站了。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Informal Essay </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Experience </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;我并不是一个喜欢写文章的人，这是我的一个缺点。然而我是一个经常有意无意表露出自己内心想法的人，这也是我的一个缺点。
-    
-    </summary>
-    
-      <category term="Informal Essay" scheme="http://hirojisawatari.github.io/categories/Informal-Essay/"/>
-    
-    
-      <category term="Experience" scheme="http://hirojisawatari.github.io/tags/Experience/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Scrapy爬虫 + Tkinter爬取天猫热门商品</title>
-    <link href="http://hirojisawatari.github.io/2016/12/19/3/"/>
-    <id>http://hirojisawatari.github.io/2016/12/19/3/</id>
-    <published>2016-12-18T16:10:23.000Z</published>
-    <updated>2017-01-14T05:17:10.336Z</updated>
-    
-    <content type="html"><![CDATA[<p>每当双十一、双十二，看着淘宝、天猫、京东网页上琳琅满目的商品，经常有人会因为选择困难症不知道该购买什么好。而且购物网站商品的排列顺序经常会受到人为控制。因此，一个具有通过输入关键字，筛选相关热门产品并按热门程度排序的程序是有存在意义的。<a id="more"></a>本程序以天猫为例，使用Python语言开发，利用Scrapy框架爬取网页信息，利用Tkinter框架构建程序GUI。源代码已上传至GitHub：<a href="https://github.com/HirojiSawatari/FindGoods" target="_blank" rel="external">https://github.com/HirojiSawatari/FindGoods</a><br>最终界面如下所示：</p>
+    <entry>
+      <title><![CDATA[Scrapy爬虫 + Tkinter爬取天猫热门商品]]></title>
+      <url>http://hirojisawatari.github.io/2016/12/19/3/</url>
+      <content type="html"><![CDATA[<p>每当双十一、双十二，看着淘宝、天猫、京东网页上琳琅满目的商品，经常有人会因为选择困难症不知道该购买什么好。而且购物网站商品的排列顺序经常会受到人为控制。因此，一个具有通过输入关键字，筛选相关热门产品并按热门程度排序的程序是有存在意义的。<a id="more"></a>本程序以天猫为例，使用Python语言开发，利用Scrapy框架爬取网页信息，利用Tkinter框架构建程序GUI。源代码已上传至GitHub：<a href="https://github.com/HirojiSawatari/FindGoods" target="_blank" rel="external">https://github.com/HirojiSawatari/FindGoods</a><br>最终界面如下所示：</p>
 <p><img src="\images\3_1.png" alt="Screenshot"></p>
 <h3 id="一、框架安装"><a href="#一、框架安装" class="headerlink" title="一、框架安装"></a>一、框架安装</h3><p>Tkinter框架为内置模块，无需额外安装，而Scrapy框架安装方法见官方链接：<a href="https://doc.scrapy.org/en/latest/intro/install.html" target="_blank" rel="external">https://doc.scrapy.org/en/latest/intro/install.html</a></p>
 <h3 id="二、Scrapy配置"><a href="#二、Scrapy配置" class="headerlink" title="二、Scrapy配置"></a>二、Scrapy配置</h3><p>构建项目后，由于天猫具有反爬取措施，首先需要在配置文件settings.py中输入以下代码：</p>
@@ -325,30 +299,28 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 监听Click</span></div><div class="line">tree.bind(<span class="string">"&lt;Double-1&gt;"</span>, onDBClick)</div><div class="line">跳转函数代码如下：</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">onDBClick</span><span class="params">(event)</span>:</span></div><div class="line">    <span class="comment"># 点击跳转天猫</span></div><div class="line">    item = tree.selection()[<span class="number">0</span>]</div><div class="line">    info = tree.item(item, <span class="string">"values"</span>)</div><div class="line">    url = info[<span class="number">2</span>]</div><div class="line">    webbrowser.open_new(url)</div></pre></td></tr></table></figure>
 <p>以上就是构建该项目的全部步骤。执行main.py即可实现项目的启动。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Web Crawler </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;每当双十一、双十二，看着淘宝、天猫、京东网页上琳琅满目的商品，经常有人会因为选择困难症不知道该购买什么好。而且购物网站商品的排列顺序经常会受到人为控制。因此，一个具有通过输入关键字，筛选相关热门产品并按热门程度排序的程序是有存在意义的。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="Python" scheme="http://hirojisawatari.github.io/tags/Python/"/>
-    
-      <category term="Web Crawler" scheme="http://hirojisawatari.github.io/tags/Web-Crawler/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android开发获取设备硬件相关信息</title>
-    <link href="http://hirojisawatari.github.io/2016/11/22/2/"/>
-    <id>http://hirojisawatari.github.io/2016/11/22/2/</id>
-    <published>2016-11-22T14:25:00.000Z</published>
-    <updated>2017-01-14T05:16:00.728Z</updated>
-    
-    <content type="html"><![CDATA[<p>在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。<a id="more"></a>本文所有代码能获取的设备信息如下图所示：</p>
+    <entry>
+      <title><![CDATA[Android开发获取设备硬件相关信息]]></title>
+      <url>http://hirojisawatari.github.io/2016/11/22/2/</url>
+      <content type="html"><![CDATA[<p>在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。<a id="more"></a>本文所有代码能获取的设备信息如下图所示：</p>
 <p><img src="\images\2_1.png" alt="Screenshot"></p>
 <p>首先在manifest.xml添加以下权限：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_WIFI_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CAMERA"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CHANGE_NETWORK_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CHANGE_WIFI_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.RESTART_PACKAGES"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_LOGS"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_PHONE_STATE"</span> /&gt;</span></div></pre></td></tr></table></figure>
@@ -394,30 +366,28 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">WifiManager wifiMng = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);</div><div class="line">WifiInfo wifiInfor = wifiMng.getConnectionInfo();</div><div class="line">TextView p_mac = <span class="keyword">new</span> TextView(getActivity());</div><div class="line">p_mac.setTextColor(Color.BLACK);</div><div class="line">p_mac.setText(<span class="string">"MAC地址："</span> + wifiInfor.getMacAddress());</div><div class="line">pwTable.addView(p_mac);</div></pre></td></tr></table></figure>
 <p>具体实际应用请见我的GitHub：<a href="https://github.com/HirojiSawatari/Sysmonitor/blob/master/src/hg/crx/sysmonitor/FragmentPage2.java" target="_blank" rel="external">FragmentPage2.java</a></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> Java </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="Android" scheme="http://hirojisawatari.github.io/tags/Android/"/>
-    
-      <category term="Java" scheme="http://hirojisawatari.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>十三世纪上半叶蒙古高原气候变化特征与成因分析</title>
-    <link href="http://hirojisawatari.github.io/2016/10/07/5/"/>
-    <id>http://hirojisawatari.github.io/2016/10/07/5/</id>
-    <published>2016-10-07T13:31:44.000Z</published>
-    <updated>2017-01-14T05:10:56.757Z</updated>
-    
-    <content type="html"><![CDATA[<p>摘要：利用通用地球系统模式CESM的过去2000年气候模拟试验结果，在与历史重建资料以及观测/再分析资料进行对比验证的基础上，分析了蒙古帝国扩张时期，即十三世纪上半叶蒙古高原气候变化的特征并初步探讨了其成因。<a id="more"></a>结果表明：蒙古高原地区在公元1200至1250年间气候较为温暖湿润。地表温度的变化全区一致增暖，其变化在多年际尺度上主要受气候系统内部变率影响，而在年代际尺度上主要受太阳辐射变化影响。降水量的变化同样呈现全区一致增加，且由北向南距平值逐渐增大，其主要受太阳辐射影响。</p>
+    <entry>
+      <title><![CDATA[十三世纪上半叶蒙古高原气候变化特征与成因分析]]></title>
+      <url>http://hirojisawatari.github.io/2016/10/07/5/</url>
+      <content type="html"><![CDATA[<p>摘要：利用通用地球系统模式CESM的过去2000年气候模拟试验结果，在与历史重建资料以及观测/再分析资料进行对比验证的基础上，分析了蒙古帝国扩张时期，即十三世纪上半叶蒙古高原气候变化的特征并初步探讨了其成因。<a id="more"></a>结果表明：蒙古高原地区在公元1200至1250年间气候较为温暖湿润。地表温度的变化全区一致增暖，其变化在多年际尺度上主要受气候系统内部变率影响，而在年代际尺度上主要受太阳辐射变化影响。降水量的变化同样呈现全区一致增加，且由北向南距平值逐渐增大，其主要受太阳辐射影响。</p>
 <p>关键词：气候变化；气候模拟；蒙古帝国；区域差异；成因分析</p>
 <h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h3><p>近年来全球气候极端事件频发，气候变化研究已成为科学界关注的焦点。IPCC第五次评估报告指出，未来气候变化的加剧很有可能带来更多的极端天气与气候事件，从而对人类生存环境以及经济发展造成严重威胁[1]。如何应对气候的剧烈变化已成为人类社会可持续发展中的重大课题。探究历史时期气候变化与社会变迁之间的关系，能够为应对当前及未来全球气候变化提供参考和借鉴[2]，增强对当代气候变化影响与人类社会适应的理解[3]。因此，探究社会变迁背后的自然气候因素已成为当前全球变化研究的前沿热点[4-5]。</p>
 <p>国内外越来越多的研究发现，历史上多个时间尺度的人口迁徙、经济波动、社会动乱乃至朝代更替等社会事件与相应时期的气候变化存在着密切而又复杂的对应关系[6-9]。气候的变化可能导致战争、人口波动、文明的衰落与崩溃，同时也有可能促进创造性的发明、社会变革以及文明的兴盛[10]。目前已有学者对历史上某一具体时期社会变迁背后的气候因素进行了研究。Yancheva等[11]使用雷州半岛湖光岩钻孔代用资料分析了16000年以来东亚季风的变化，并指出中国唐朝的衰亡与当时冬季风增强、夏季风减弱造成的干旱气候有因果关系；Zheng等[12]通过探究晚明时期低温冷害、极端旱灾对社会的影响程度，证明明朝灭亡与明末时期的低温干旱气候有一定关系。但是，目前大部分的研究都是针对政权的衰亡，对于朝代兴盛过程中的气候因素探究很少。</p>
@@ -455,32 +425,30 @@
 <p>以上结论与推断只是对模式模拟结果的初步分析，关于各个外强迫因子及气候系统内部变率影响地表气温和降水量的过程和机理，以及气候变化对社会经济政治影响的验证还有待进一步深入研究。</p>
 <h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p>[1]IPCC：Climate Change 2013：The physical science basis[M/OL]．Cambridge：Cambridge University Press．in press. 2013-09-30．<a href="http://www.climatechange2013.org．" target="_blank" rel="external">http://www.climatechange2013.org．</a><br>[2]PAGES．Science plan and implementation strategy[R]∥IGBP Report No. 57．Stockholm：IGBP Secretariat，2009：67．<br>[3]IHOPE．Developing an Integrated History and Future of People on Earth (IHOPE)：Research Plan (IGBP Report No. 59) [EB/OL]．<a href="http://www.stockholmresilience.org/ihope，2010．" target="_blank" rel="external">http://www.stockholmresilience.org/ihope，2010．</a><br>[4]方修琦，葛全胜，郑景云．环境演变对中华文明影响研究的进展与展望[J]．古地理学报，2004，6(1)：85-94．<br>[5]原宗子．中国环境史在建立新世界历史中的任务[M]∥王利华．中国历史上的环境与社会．北京：生活-读书-新知三联书店，2007．<br>[6]Richard S J，Wagner T S．Climate change and violent conflict in Europe over the last millennium[J]．Climatic Change，2010，99：65-79．<br>[7]Büntgen U，Tegel W，Nicolussi K，et al．2500 years of European climate variability and human susceptibility[J]．Science，2011，331(6017)：578-582．<br>[8]Haug G H，Günther D，Peterson L C，et al．Climate and the collapse of Maya civilization[J]．Science，2003，299(5613)：1731-1735．<br>[9]Burke M B，Miguel E，Satyanath S，et al．Warming increases the risk of civil war in Africa[J]．Proceedings of the National Academy of Sciences of the United States of America，2009，106(49)：20670-20674．<br>[10]Costanza R，Graumlich L，Steffen W，et al．Sustainability or collapse：What can we learn from integrating the history of humans and the rest of nature? [J]．Ambio，2007，36：522-527．<br>[11]Yancheva G，Nowaczyk N R，Jens M，et al．Influence of the intertropical convergence zone on the East Asian monsoon[J]．Nature，2007，445：74-77．<br>[12]Zheng J Y，Xiao L B，Fang X Q，et al．How climate change impacted the collapse of the Ming Dynasty[J]．Climatic Change，2014，127：169-182．<br>[13]Hoang M．Genghis Khan[M]，Saqi Books，London，1990．<br>[14]纳古单夫．蒙古马与古代蒙古骑兵作战艺术[J]．内蒙古社会科学，1994，4：64-71．<br>[15]吴文祥，葛全胜，郑景云，等．气候变化因素在蒙古西征中的可能作用研究[J]．第四纪研究，2009，29(4)：724-732．<br>[16]D’arrigo R，Jacoby G，Frank D，et al．1738 years of Mongolian temperature variability inferred from a tree-ring width chronology of Siberian pine[J]．Geophysical Research Letters，2001，28(3)：543–546．<br>[17]Pederson N，Hessl A E，Baatarbileg N，et al．Pluvials，droughts，the Mongol Empire，and modern Mongolia[J]．PNAS，2014，111(12)：4375-4379．<br>[18]Jiang D，Yu G，Zhao P，et al．Paleoclimate Modeling in China：A Review[J]．Advances in Atmospheric Sciences，2015，32：250-275．<br>[19]Zhou T，Yu R．Twentieth century surface air temperature over China and the globe simulated by coupled climate models[J]．Journal of Climate，2006，19(22)：5843-5858．<br>[20]Vertenstein M，Craig T，Middleton A，et al．CESM1.0.4 user’s guide[R]．National Center for Atmospheric Research，Boulder，CO．2012．<br>[21]Berger A．Long-term variations of daily insolation and quaternary climate changes[J]．Journal of the Atmospheric Sciences，1978，35(12)：2362-2367．<br>[22]Shapiro A I，Schmutz W，Rozanov E，et al．A new approach to the long-term reconstruction of the solar irradiance leads to large historical solar forcing[J]．Astronomy &amp; Astrophysics，2011，529(67)：1-8．<br>[23]Gao C，Robock A，Ammann C．Volcanic forcing of climate over the past 1500 years：An improved ice core-based index for climate models[J]．Journal of Geophysical Research：Atmospheres，2008，113(23)：1-15．<br>[24]MacFarling M C，Etheridge D，Trudinger C，et al．Law Dome CO2，CH4 and N2O ice core records extended to 2000 years BP[J]．Geophysical Research Letters，2006，33(14)：1-4．<br>[25]Kaplan J O，Krumhardt K M，Zimmermann N．The prehistoric and preindustrial deforestation of Europe[J]．Quaternary Science Reviews，2009，28(27~28)：3016-3034．<br>[26]Rosenbloom N A，Otto-Bliesner B L，Brady E C，et al．Simulating the mid-Pliocene Warm Period with the CCSM 4 model[J]．Geoscientific Model Development，2013，6(2)：549-561．<br>[27]王志远，刘健．过去2000年全球典型暖期特征与机制的模拟研究[J]．第四纪研究，2014，34(6)：1136-1145．<br>[28]赵红军．气候变化是否影响了我国过去两千年间的农业社会稳定？——一个基于气候变化重建数据及经济发展历史数据的实证研究[J]．经济学，2012(2)：691-722．<br>[29]Kalnay E，Kanamitsu M，Kistler R，et al．The NCEP/ NCAR 40-year reanalysis project[J]．Bulletin of the American Meteorological Society，1996，77：437-471．<br>[30]Xie P，Arkin P A．An Intercomparison of gauge observations and satellite estimates of onthlyprecipitation[J]．Journal of Applied Meteorology，1995，34(5)：1143-1160．<br>[31]Yang B，Braeuning A，Johnson K R，et al．General characteristics of temperature variation in China during the last two millennia[J]．Geophysical Research Letters，2002，29(9)：381-384．<br>[32]Shi F，Yang B，Gunten L．Preliminary multiproxy surface air temperature field reconstruction for China over the past millennium[J]．Science China：Earth Sciences，2012，55(12)：2058-2067．<br>[33]王江林，杨保．北半球及其各大洲过去1200年温度变化的若干特征[J]．第四纪研究，2014，34(6)：1146-1155．<br>[34]刘健，高建慧，王苏民．中世纪暖期温度变化的模拟[J]．湖泊科学，2006，18(2)：97-105．<br>[35]Mann M E，Jones P D．Global surface temperatures over the past two millennia[J]．Geophysical Research Letters，2003，30(15)：5-9．<br>[36]葛全胜，刘健，方修琦，等．过去2000年冷暖变化的基本特征与主要暖期[J]．地理学报，2013，68 (5)：579-592．<br>[37]Soon W，Baliunas S，Idso C，et al．Reconstructing climatic and environmental changes of the past 1000 years：reappraisal[J]．Energy and Environment，2003，14(2)：233-296．<br>[38]包桂红．草原光辉：哈拉和林与元上都[J]．大众考古，2014，11：57-62．<br>[39]闫建成，梁存柱，付晓玥，等．草原与荒漠一年生植物性状对降水变化的响应[J]．草业学报，2013，22(1)：68-76．<br>[40]赵慧颖．气候变化对典型草原区牧草气候生产潜力的影响[J]．中国农业气象，2007，28(3)：281-284．<br>[41]韩芳，牛建民，刘朋涛，等．气候变化对内蒙古荒漠草原牧草气候生产力的影响[J]．中国草地学报，2010，32(5)：57-65．<br>[42]North G R，Bell T L，Cahalan R F et al．Sampling errors in the estimation of empirical orthogonal functions[J]．Monthly Weather Review，1982，110(7)：699-706．<br>[43]况雪源，刘健，王红丽，等．近千年来中国区域降水模拟与重建资料的对比分析[J]．地球科学进展，2009，24(2)：159-171．<br>[44]况雪源，刘健，王红丽，等．近千年来中国气温模拟与重建资料的对比分析[J]．第四纪研究，2011，31(1)：48-56．<br>[45]刘健，Hans von Storch，陈星，等．近千年全球气候变化的长积分模拟试验[J]．地球科学进展，2005，20(5)：561-567．<br>[46]严蜜，王志远，刘健．中国过去1500年典型暖期气候的模拟研究[J]．第四纪研究，2014，34(6)：1166-1175． </p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Academic Thesis </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Paleoclimate </tag>
+            
+            <tag> NCL </tag>
+            
+            <tag> CESM </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;摘要：利用通用地球系统模式CESM的过去2000年气候模拟试验结果，在与历史重建资料以及观测/再分析资料进行对比验证的基础上，分析了蒙古帝国扩张时期，即十三世纪上半叶蒙古高原气候变化的特征并初步探讨了其成因。
-    
-    </summary>
-    
-      <category term="Academic Thesis" scheme="http://hirojisawatari.github.io/categories/Academic-Thesis/"/>
-    
-    
-      <category term="Paleoclimate" scheme="http://hirojisawatari.github.io/tags/Paleoclimate/"/>
-    
-      <category term="NCL" scheme="http://hirojisawatari.github.io/tags/NCL/"/>
-    
-      <category term="CESM" scheme="http://hirojisawatari.github.io/tags/CESM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>求索路（一）</title>
-    <link href="http://hirojisawatari.github.io/2015/05/25/1/"/>
-    <id>http://hirojisawatari.github.io/2015/05/25/1/</id>
-    <published>2015-05-25T12:27:58.000Z</published>
-    <updated>2017-01-14T05:14:54.758Z</updated>
-    
-    <content type="html"><![CDATA[<p>路漫漫其修远兮，吾将上下而求索。<a id="more"></a></p>
+    <entry>
+      <title><![CDATA[求索路（一）]]></title>
+      <url>http://hirojisawatari.github.io/2015/05/25/1/</url>
+      <content type="html"><![CDATA[<p>路漫漫其修远兮，吾将上下而求索。<a id="more"></a></p>
 <p>一个月前的今天，祖父毫无征兆地突然去世；一个月后的今天，我收拾行李即将离开辽师。躺在空荡荡的床上，望着嬉笑着的室友，突然想写点什么。</p>
 <p>一切要从三年前说起。</p>
 <p>大二上学期，我做了一些现在看起来愚蠢至极的决定，整天浑浑噩噩，不务正业，从而造成了许多无法挽回的恶果，其中之一就是挂掉了线性代数。挂科也就意味着我上大学以来追求保研，然后混个研究生文凭的美梦完全化为泡影，我的未来顿时陷入迷茫之中。</p>
@@ -500,28 +468,26 @@
 <p>皓月当空，晚风习习。明日离校，百感交集。悠悠往事，记忆犹新。遂成此文，聊以慰藉。</p>
 <p>2015年5月25日夜于大连</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Informal Essay </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Memoir </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;路漫漫其修远兮，吾将上下而求索。
-    
-    </summary>
-    
-      <category term="Informal Essay" scheme="http://hirojisawatari.github.io/categories/Informal-Essay/"/>
-    
-    
-      <category term="Memoir" scheme="http://hirojisawatari.github.io/tags/Memoir/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>利用主成分分析评价全国31个省市自治区综合发展实力</title>
-    <link href="http://hirojisawatari.github.io/2013/11/20/13/"/>
-    <id>http://hirojisawatari.github.io/2013/11/20/13/</id>
-    <published>2013-11-20T08:11:32.000Z</published>
-    <updated>2017-01-19T07:01:10.099Z</updated>
-    
-    <content type="html"><![CDATA[<p>主成份分析的主要目的是希望用较少的变量去解释原来资料中的大部分变异，将我们手中许多相关性很高的变量转化成彼此相互独立或不相关的变量。通常是选出比原始变量个数少、能解释大部分资料中的变异的几个新变量，即所谓主成份，并用以解释资料的综合性指标。<a id="more"></a>由此可见，主成份分析实际上是一种降维方法。</p>
+    <entry>
+      <title><![CDATA[利用主成分分析评价全国31个省市自治区综合发展实力]]></title>
+      <url>http://hirojisawatari.github.io/2013/11/20/13/</url>
+      <content type="html"><![CDATA[<p>主成份分析的主要目的是希望用较少的变量去解释原来资料中的大部分变异，将我们手中许多相关性很高的变量转化成彼此相互独立或不相关的变量。通常是选出比原始变量个数少、能解释大部分资料中的变异的几个新变量，即所谓主成份，并用以解释资料的综合性指标。<a id="more"></a>由此可见，主成份分析实际上是一种降维方法。</p>
 <p>主成份分析与因子分析的用途如下：（1）用于多元回归分析，解决共线性问题。如前所述，利用主成份分析提取出主要信息，然后使用提取出的主成份代替原变量进行分析，就可以避开原变量的共线性问题。（2）多指标综合评价时突出重点进行评价。当针对多种相关指标前提下，需要对于对于指标进行化简，然后用“主成份指标”进行加权评价，可以有效解决“主观权重”问题，并能够突出重点。（3）用于多指标聚类分析。存在相关关系密切的多种指标进行聚类分析时，需要在主成份分析的基础上进一步作出聚类分析，使类别划分更合理，更易得到合理的解释。</p>
 <h3 id="一、数据收集与整理"><a href="#一、数据收集与整理" class="headerlink" title="一、数据收集与整理"></a>一、数据收集与整理</h3><p>利用《中国统计年鉴2012》，收集进行地区评级所需要的原始数据。原始数据表如下图所示：</p>
 <p><img src="\images\13_1.png" alt="Screenshot"></p>
@@ -548,28 +514,26 @@
 <p>根据数据可以将综合发展实力评分划分为四个等级进行区分，及最高级（评分大于1），次高级（评分介于0到1），较低级（评分介于-1到0），低级（评分小于-1），并可以在ArcGIS中制作专题图，如下所示：</p>
 <p><img src="\images\13_11.png" alt="Screenshot"></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> SPSS </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;主成份分析的主要目的是希望用较少的变量去解释原来资料中的大部分变异，将我们手中许多相关性很高的变量转化成彼此相互独立或不相关的变量。通常是选出比原始变量个数少、能解释大部分资料中的变异的几个新变量，即所谓主成份，并用以解释资料的综合性指标。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="SPSS" scheme="http://hirojisawatari.github.io/tags/SPSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ArcGIS 10关系类及注释类操作方法</title>
-    <link href="http://hirojisawatari.github.io/2013/10/10/9/"/>
-    <id>http://hirojisawatari.github.io/2013/10/10/9/</id>
-    <published>2013-10-10T07:13:24.000Z</published>
-    <updated>2017-01-16T06:06:27.320Z</updated>
-    
-    <content type="html"><![CDATA[<p>地理数据库中的关系类用于管理一个类（要素类或表）中的对象与另一个类中的对象之间的关联。而注释类则通过标注要素某一字段用于识别要素。<a id="more"></a></p>
+    <entry>
+      <title><![CDATA[ArcGIS 10关系类及注释类操作方法]]></title>
+      <url>http://hirojisawatari.github.io/2013/10/10/9/</url>
+      <content type="html"><![CDATA[<p>地理数据库中的关系类用于管理一个类（要素类或表）中的对象与另一个类中的对象之间的关联。而注释类则通过标注要素某一字段用于识别要素。<a id="more"></a></p>
 <h3 id="一、建立个人空间数据库"><a href="#一、建立个人空间数据库" class="headerlink" title="一、建立个人空间数据库"></a>一、建立个人空间数据库</h3><p>打开ArcCatalog，选定合适的位置建立个人空间数据库，这次在“desktop/homework”路径下建立个人空间数据库，步骤如下所示：</p>
 <p><img src="\images\9_1.png" alt="Screenshot"></p>
 <p><img src="\images\9_2.png" alt="Screenshot"></p>
@@ -607,30 +571,28 @@
 <p><img src="\images\9_26.png" alt="Screenshot"></p>
 <p><img src="\images\9_27.png" alt="Screenshot"></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> GIS </tag>
+            
+            <tag> ArcGIS </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;地理数据库中的关系类用于管理一个类（要素类或表）中的对象与另一个类中的对象之间的关联。而注释类则通过标注要素某一字段用于识别要素。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="GIS" scheme="http://hirojisawatari.github.io/tags/GIS/"/>
-    
-      <category term="ArcGIS" scheme="http://hirojisawatari.github.io/tags/ArcGIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ArcGIS 10属性域与子类型操作方法</title>
-    <link href="http://hirojisawatari.github.io/2013/09/24/8/"/>
-    <id>http://hirojisawatari.github.io/2013/09/24/8/</id>
-    <published>2013-09-24T08:39:08.000Z</published>
-    <updated>2017-01-16T06:06:37.230Z</updated>
-    
-    <content type="html"><![CDATA[<p>属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。<a id="more"></a></p>
+    <entry>
+      <title><![CDATA[ArcGIS 10属性域与子类型操作方法]]></title>
+      <url>http://hirojisawatari.github.io/2013/09/24/8/</url>
+      <content type="html"><![CDATA[<p>属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。<a id="more"></a></p>
 <h3 id="一、建立个人空间数据库"><a href="#一、建立个人空间数据库" class="headerlink" title="一、建立个人空间数据库"></a>一、建立个人空间数据库</h3><p>打开ArcCatalog，选定一个合适的位置建立个人空间数据库，此作业以“desktop/homework”文件夹为例，步骤如下所示：</p>
 <p><img src="\images\8_1.png" alt="Screenshot"></p>
 <p><img src="\images\8_2.png" alt="Screenshot"></p>
@@ -665,30 +627,28 @@
 <p><img src="\images\8_22.png" alt="Screenshot"></p>
 <p><img src="\images\8_23.png" alt="Screenshot"></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> GIS </tag>
+            
+            <tag> ArcGIS </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="GIS" scheme="http://hirojisawatari.github.io/tags/GIS/"/>
-    
-      <category term="ArcGIS" scheme="http://hirojisawatari.github.io/tags/ArcGIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ArcGIS 10根据DEM数据与小流域数据获取最短路径</title>
-    <link href="http://hirojisawatari.github.io/2013/06/04/12/"/>
-    <id>http://hirojisawatari.github.io/2013/06/04/12/</id>
-    <published>2013-06-04T07:25:24.000Z</published>
-    <updated>2017-01-17T04:41:26.935Z</updated>
-    
-    <content type="html"><![CDATA[<p>在ArcGIS中，在已知起止点的情况下，利用数字高程模型数据与小流域数据，可以很方便地分析得到两点之间在空间上的最短距离路径。<a id="more"></a></p>
+    <entry>
+      <title><![CDATA[ArcGIS 10根据DEM数据与小流域数据获取最短路径]]></title>
+      <url>http://hirojisawatari.github.io/2013/06/04/12/</url>
+      <content type="html"><![CDATA[<p>在ArcGIS中，在已知起止点的情况下，利用数字高程模型数据与小流域数据，可以很方便地分析得到两点之间在空间上的最短距离路径。<a id="more"></a></p>
 <h3 id="一、导入数据"><a href="#一、导入数据" class="headerlink" title="一、导入数据"></a>一、导入数据</h3><p>打开ArcGIS，将dem(高程数据) 、startPot (路径源点数据) 、endPot (路径终点数据) 、river (小流域数据)导入后如下图所示：</p>
 <p><img src="\images\12_1.png" alt="Screenshot"></p>
 <h3 id="二、设置环境"><a href="#二、设置环境" class="headerlink" title="二、设置环境"></a>二、设置环境</h3><p>点击工具栏中的“地理处理”-&gt;“环境”，将“处理范围”设定为“与图层dem相同”，并且将“栅格分析”中的“最大输入数”同样设定为“与图层dem相同”，同时展开工作空间，设置合理的工作路径。再选择工具栏中的“自定义”-&gt;“拓展模块”，勾选“Spatial Analyst”。</p>
@@ -719,30 +679,28 @@
 <p>点击确定后即生成最短路径如下图所示：</p>
 <p><img src="\images\12_14.png" alt="Screenshot"></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> GIS </tag>
+            
+            <tag> ArcGIS </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;在ArcGIS中，在已知起止点的情况下，利用数字高程模型数据与小流域数据，可以很方便地分析得到两点之间在空间上的最短距离路径。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="GIS" scheme="http://hirojisawatari.github.io/tags/GIS/"/>
-    
-      <category term="ArcGIS" scheme="http://hirojisawatari.github.io/tags/ArcGIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ENVI彩色增强操作</title>
-    <link href="http://hirojisawatari.github.io/2012/11/23/11/"/>
-    <id>http://hirojisawatari.github.io/2012/11/23/11/</id>
-    <published>2012-11-23T01:18:11.000Z</published>
-    <updated>2017-01-16T07:11:01.985Z</updated>
-    
-    <content type="html"><![CDATA[<p>彩色增强是将一个波段或单一的黑白图像变换为彩色图像，从而把人眼不能区分的微小的灰度差别显示为明显的色彩差异，从而便于解译和提取有用信息。<a id="more"></a>本文中利用ENVI对影像进行彩色合成，使得影像色彩接近地物的真实色彩。然后将植被显示为红色。最后从中提取人工植被。</p>
+    <entry>
+      <title><![CDATA[ENVI彩色增强操作]]></title>
+      <url>http://hirojisawatari.github.io/2012/11/23/11/</url>
+      <content type="html"><![CDATA[<p>彩色增强是将一个波段或单一的黑白图像变换为彩色图像，从而把人眼不能区分的微小的灰度差别显示为明显的色彩差异，从而便于解译和提取有用信息。<a id="more"></a>本文中利用ENVI对影像进行彩色合成，使得影像色彩接近地物的真实色彩。然后将植被显示为红色。最后从中提取人工植被。</p>
 <p>本文中以“can_tmr”文件为例进行彩色增强操作。</p>
 <h3 id="一、还原地物真实色彩"><a href="#一、还原地物真实色彩" class="headerlink" title="一、还原地物真实色彩"></a>一、还原地物真实色彩</h3><p>要处理的图像can_tmr包括6个波段，分别观察6个波段的单波段影像，通过 “Cursor Location/Value”窗口会发现，在TM Band 4图像中植被分布区域的灰度值最大，几乎接近255。而其他波段植被分布区域相对较暗。因此，要使植被区域接近真实色彩，则TM 4为绿色波段（G），同时可以采用拉伸的方法、代数运算法等等来保证绿色为255。</p>
 <p>此外，根据遥感原理知识可知，水体的反射强度随着波段的增加而减弱，吸收增强。同样，土壤的反射强度随波段的增加而增加，吸收减弱。植被、水体、土壤的反射强度关系图像如下：</p>
@@ -773,32 +731,30 @@
 <p>点击Apply后，所得图像如下，在此图像中，红色区域即为人工植被。</p>
 <p><img src="\images\11_12.png" alt="Screenshot"></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ENVI </tag>
+            
+            <tag> RS </tag>
+            
+            <tag> NDVI </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;彩色增强是将一个波段或单一的黑白图像变换为彩色图像，从而把人眼不能区分的微小的灰度差别显示为明显的色彩差异，从而便于解译和提取有用信息。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="ENVI" scheme="http://hirojisawatari.github.io/tags/ENVI/"/>
-    
-      <category term="RS" scheme="http://hirojisawatari.github.io/tags/RS/"/>
-    
-      <category term="NDVI" scheme="http://hirojisawatari.github.io/tags/NDVI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ENVI图像增强操作</title>
-    <link href="http://hirojisawatari.github.io/2012/10/30/10/"/>
-    <id>http://hirojisawatari.github.io/2012/10/30/10/</id>
-    <published>2012-10-30T15:12:51.000Z</published>
-    <updated>2017-01-16T09:49:42.177Z</updated>
-    
-    <content type="html"><![CDATA[<p>在ENVI中，可以进行图像增强操作以突出遥感图像的某种特征，扩大不同影像特征间的差别，使之更适合实际应用。<a id="more"></a>通过截取区域内灰度变化值大，边界明显，细节信息丰富的区域来实现高频信息提取操作。通过对截取图像进行拉普拉斯滤波操作，了解拉普拉斯滤波可以增强原图像的边缘线条。通过进行中值滤波操作，认识到中值滤波可以实现保留大于卷积核的边缘的同时平滑图像的操作。通过进行定向滤波操作以及改变相应角度，可以了解到随着角度的变化，相应方向的线状信息图像得到补充，而其余方向的线状信息而被削减。</p>
+    <entry>
+      <title><![CDATA[ENVI图像增强操作]]></title>
+      <url>http://hirojisawatari.github.io/2012/10/30/10/</url>
+      <content type="html"><![CDATA[<p>在ENVI中，可以进行图像增强操作以突出遥感图像的某种特征，扩大不同影像特征间的差别，使之更适合实际应用。<a id="more"></a>通过截取区域内灰度变化值大，边界明显，细节信息丰富的区域来实现高频信息提取操作。通过对截取图像进行拉普拉斯滤波操作，了解拉普拉斯滤波可以增强原图像的边缘线条。通过进行中值滤波操作，认识到中值滤波可以实现保留大于卷积核的边缘的同时平滑图像的操作。通过进行定向滤波操作以及改变相应角度，可以了解到随着角度的变化，相应方向的线状信息图像得到补充，而其余方向的线状信息而被削减。</p>
 <p>本文中以“lon_spot”文件为例进行图像增强操作。</p>
 <h3 id="一、高频信息提取"><a href="#一、高频信息提取" class="headerlink" title="一、高频信息提取"></a>一、高频信息提取</h3><p>首先用ENVI打开“lon_spot”文件，打开工具栏中Basic Tools-&gt;Resize Data，然后打开Spetial Subset-&gt;image寻找灰度值大的区域（即为图中灰度值变化程度大的区域），并调整所选区域的大小。</p>
 <p><img src="\images\10_1.png" alt="Screenshot"></p>
@@ -840,20 +796,24 @@
 <p>原理：通过规定角的大小从而改变变换核中的数值，以突出某方向的边界。定向滤波根据所选角度不同，加强的方向不同，线状信息不同。角度由规定的Enter Directional Filter Angle所决定。设Enter Directional Filter Angle为50.00时，西北方与东南方向的线状信息图像得到了补充。叠加一半原图信息后，对两图进行比较，能够更加体现东西方向线状信息被补充，南北方向线状信息被削减的特征。最后一幅图，通过改变Kernel Size的数值能够改变突出边界后所生成图像的平滑程度。定向滤波能够增强特定方向的地面形迹，如地理学中的水系，山脉走向等。</p>
 <p>在实验中，将第一项步骤所得图像进行定向滤波处理，设Enter Directional Filter Angle为0.00时，东西方向的线状信息图像得到了补充，南北方向的线状信息得到了一定的削减。设Enter Directional Filter Angle为50.00时，西北方与东南方向的线状信息图像得到了补充。叠加一半原图信息后，将其与不叠加原图信息的图像进行比较，能够更加体现东西方向线状信息被补充，南北方向线状信息被削减的特征。最后一幅图，通过改变Kernel Size的数值能够改变突出边界后所生成图像的平滑程度。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ENVI </tag>
+            
+            <tag> RS </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;在ENVI中，可以进行图像增强操作以突出遥感图像的某种特征，扩大不同影像特征间的差别，使之更适合实际应用。
-    
-    </summary>
-    
-      <category term="Tech Blog" scheme="http://hirojisawatari.github.io/categories/Tech-Blog/"/>
-    
-    
-      <category term="ENVI" scheme="http://hirojisawatari.github.io/tags/ENVI/"/>
-    
-      <category term="RS" scheme="http://hirojisawatari.github.io/tags/RS/"/>
-    
-  </entry>
   
-</feed>
+  
+</search>
