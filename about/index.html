@@ -839,6 +839,7 @@ classes that you can use:
     });
 
     $('.popup-btn-close').click(function(e){
+	  isfetched = false;
       $('.popup').hide();
       $(".popoverlay").remove();
       $('body').css('overflow', '');
