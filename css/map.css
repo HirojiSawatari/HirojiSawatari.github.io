@@ -1,16 +1,21 @@
 .map-info-title{
-  color: white;
-  font-size: 14px;
-  background-color: rgba(0,155,255,0.8);
-  line-height: 26px;
-  padding: 0px 0 0 6px;
-  font-weight: lighter;
-  letter-spacing: 1px
+	color: white;
+	font-size: 14px;
+	background-color: rgba(0,155,255,0.8);
+	line-height: 26px;
+	padding: 0px 0 0 6px;
+	font-weight: lighter;
+	letter-spacing: 1px
 }
 
 .map-info-content{
-  padding: 4px;
-  font-size: 14px;
-  color: #666666;
-  line-height: 23px;
+	padding: 4px;
+	font-size: 14px;
+	color: #666666;
+	line-height: 23px;
+}
+@media all and (max-width: 960px) {
+	.map-div{
+		display:none;
+	}
 }
