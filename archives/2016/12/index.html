@@ -18,7 +18,7 @@
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="Archives: 2016/12">
-<meta property="og:url" content="http://hirojisawatari.github.io/archives/2016/12/index.html">
+<meta property="og:url" content="http://www.katouspace.com/archives/2016/12/index.html">
 <meta property="og:site_name" content="Ka Tou Space">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Archives: 2016/12">
@@ -60,9 +60,7 @@
 				<a href="javascript:;" class="popup-trigger"></a>
 			</dd>
 			<dd class="suspendColor">
-				<a href="http://shang.qq.com/wpa/qunwpa?idkey=cb91b633f1db596a948828f4f333dbb7394ceda014c958cf8338bb2737cb9496" target="_blank">
-					
-				</a>
+				<a href="javascript:;" class="popupcolor-trigger"></a>
 			</dd>
 			<dd class="suspendTwitch"><a href='javascript:(
     /*
@@ -278,6 +276,20 @@
 			</div>
 		</div>
 		
+		<div class="color-search">
+			<div class="popupcolor">
+				<span class="search-icon fa fa-search"></span>
+				<input type="text" id="color-input" placeholder="输入颜色代码">
+				<div id="color-result">
+					<div style="margin: auto; position: absolute; left: 0; right: 0; top: 25%; bottom: 0">
+						<center>此代码对应颜色为：</center>
+					</div>
+					<div id="color-show" style="background: #ffffff; width: 200px; height: 75px; margin: auto; position: absolute; left: 0; right: 0; top: 0; bottom: 0; border:1px solid #000"></div>
+				</div>
+				<span class="popupcolor-btn-close">close</span>
+			</div>
+		</div>
+		
 	</div>
 	
     
@@ -388,7 +400,7 @@ classes that you can use:
 
     <!-- E-Mail -->
       <li class="navigation__item">
-        <a href="mailto:ka_tou@outlook.com" title="E-Mail of Ka Tou">
+        <a href="mailto:ka_tou@katouspace.com" title="E-Mail of Ka Tou">
           <i class='icon icon-mail'></i>
           <span class="label">E-Mail</span>
         </a>
@@ -778,6 +790,56 @@ classes that you can use:
   </script>
 
 
+	<script type="text/javascript">
+    // Popupcolor Window;
+    var colorisfetched = false;
+	
+    // monitor main search box;
+    function colorproceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popupcolor').toggle();
+    }
+    // search function;
+	var colorSearchFunc = function(search_id, content_id) {
+		colorisfetched = true;
+		
+		var $input = document.getElementById(search_id);
+        var $resultContent = document.getElementById(content_id);
+		
+		$input.addEventListener('input', function(){
+			var colorcode = this.value.trim().toLowerCase();
+			if (this.value.trim().length > 1) {
+				$resultContent.style.background = colorcode;
+			}
+		});
+		
+		colorproceedsearch();
+	}
+
+    // handle and trigger popup window;
+    $('.popupcolor-trigger').click(function(e) {
+      e.stopPropagation();
+      if (colorisfetched == false) {
+		//function
+		colorSearchFunc('color-input', 'color-show');
+      } else {
+		colorisfetched = false;
+        $('.popupcolor').hide();
+		$(".popoverlay").remove();
+		$('body').css('overflow', '');
+      };
+    });
+
+    $('.popupcolor-btn-close').click(function(e){
+	  colorisfetched = false;
+      $('.popupcolor').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popupcolor').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
     
 
     <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>

@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[为Huno主题添加相册功能]]></title>
-      <url>http://hirojisawatari.github.io/2017/02/27/15/</url>
+      <url>http://www.katouspace.com/2017/02/27/15/</url>
       <content type="html"><![CDATA[<p>本博客基于Hexo博客框架，主题为Huno。Huno主题默认未实现相册功能，因此我们需自行编写相册以实现在博客网站中展示图片集的功能。<a id="more"></a>本博客最终实现的相册界面如下所示：</p>
 <p><img src="\images\15_1.png" alt="Screenshot"></p>
 <p>本博客参考此文章：<a href="http://www.cnblogs.com/xljzlw/p/5137622.html" target="_blank" rel="external">hexo主题中添加相册功能</a>。</p>
@@ -50,7 +50,7 @@
     
     <entry>
       <title><![CDATA[微信小程序中获取GitHub中仓库列表数据]]></title>
-      <url>http://hirojisawatari.github.io/2017/02/03/14/</url>
+      <url>http://www.katouspace.com/2017/02/03/14/</url>
       <content type="html"><![CDATA[<p>本人曾想着利用微信小程序制作一个展示自己个人简历的应用，其中包括本人上传至GitHub中的一些项目信息。然而微信小程序不支持直接打开网页链接。因此，GitHub中项目的展示则需要通过其他方式来解决动态展示问题。<a id="more"></a></p>
 <p>在GitHub中提供了API以动态获取某一用户的所有代码仓库信息，本人账户的仓库信息API即为<a href="https://api.github.com/users/hirojisawatari/repos" target="_blank" rel="external">https://api.github.com/users/hirojisawatari/repos</a>。要获取API提供的仓库信息，需要在小程序相关页面的js文件内onLoad事件下添加以下代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">wx.request(&#123;</div><div class="line">  <span class="attr">url</span>: <span class="string">'https://api.github.com/users/hirojisawatari/repos'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;&#125;,</div><div class="line">  <span class="attr">method</span>: <span class="string">'GET'</span>, <span class="comment">// OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT</span></div><div class="line">  <span class="comment">// header: &#123;&#125;, // 设置请求的 header</span></div><div class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">    <span class="comment">// success</span></div><div class="line">    that.setData(&#123;</div><div class="line">      <span class="attr">list</span>: res.data,</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">fail</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// fail</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">complete</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// complete</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
@@ -83,7 +83,7 @@
     
     <entry>
       <title><![CDATA[个性化Huno主题]]></title>
-      <url>http://hirojisawatari.github.io/2017/01/13/7/</url>
+      <url>http://www.katouspace.com/2017/01/13/7/</url>
       <content type="html"><![CDATA[<p>本博客基于Hexo博客框架，主题为Huno。Huno主题作者已长时间未更新，而且与最新主题例如NexT相比，美观度不足且功能有所缺失。因此需要针对Huno主题的不足进行一些个性化的修改。<a id="more"></a></p>
 <h3 id="一、Logo旋转"><a href="#一、Logo旋转" class="headerlink" title="一、Logo旋转"></a>一、Logo旋转</h3><p>网站logo默认是没用响应动画特效的。参考NexT主题，可以将logo加入鼠标移入时旋转效果，最终效果见本网站logo。本功能参考该博客：<a href="http://baiya.me/2016/05/22/Hexo%20Next%E4%B8%BB%E9%A2%98%E5%A4%B4%E5%83%8F%E6%94%B9%E5%9C%86%E8%A7%92%E5%B9%B6%E5%AE%9E%E7%8E%B0%E9%BC%A0%E6%A0%87%E7%A7%BB%E5%85%A5%E6%97%B6%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/" target="_blank" rel="external">Hexo Next主题头像改圆角并实现鼠标移入时旋转效果</a>。</p>
 <p>首先进入主题目录打开source/css/uno.css，找到定义logo的样式panel-cover__logo，加上以下属性：</p>
@@ -161,7 +161,7 @@
     
     <entry>
       <title><![CDATA[利用Hexo在GitHub上搭建个人博客]]></title>
-      <url>http://hirojisawatari.github.io/2017/01/11/6/</url>
+      <url>http://www.katouspace.com/2017/01/11/6/</url>
       <content type="html"><![CDATA[<p>最近一个月我利用工作之余零零散散的时间，通过Hexo在GitHub上搭建了我的个人主页，把之前发布的日志和博客也都迁移了过来，并且购买了自己的域名，也在Huno主题的基础上进行了一些个性化的修改。今天网站的框架已经初步完成。趁此机会系统地总结一下搭建博客的详细步骤。<a id="more"></a></p>
 <p><img src="\images\6_1.png" alt="Screenshot"></p>
 <h3 id="一、在GitHub上建立博客源码仓库"><a href="#一、在GitHub上建立博客源码仓库" class="headerlink" title="一、在GitHub上建立博客源码仓库"></a>一、在GitHub上建立博客源码仓库</h3><p>首先，在GitHub上建立一个空仓库用来存放博客源码，仓库命名方式必须为“GitHub账户名.github.io”。</p>
@@ -230,7 +230,7 @@
     
     <entry>
       <title><![CDATA[搭完blog后的一些闲话]]></title>
-      <url>http://hirojisawatari.github.io/2016/12/19/4/</url>
+      <url>http://www.katouspace.com/2016/12/19/4/</url>
       <content type="html"><![CDATA[<p>我并不是一个喜欢写文章的人，这是我的一个缺点。然而我是一个经常有意无意表露出自己内心想法的人，这也是我的一个缺点。<a id="more"></a></p>
 <p>最近一直在玩GitHub，也把自己以前做的项目和最近写的一些代码都上传了上去。闲下来的时候也喜欢登上自己的GitHub账号，欣赏自己的主页，享受着成就感，满足着虚荣心。尽管实际上这些代码很low，甚至项目中有的功能都没能实现。</p>
 <p>前天晚上，我在观摩别人的GitHub账号的时候发现了一个现象，一般大牛们都有自己的个人主页，而且个人主页的代码仓库居然可以保存在GitHub账号下。一个个人主页既可以以后拿出来装逼，而且还能丰富下我那个干货不足的代码仓库，最重要的是，这个主页是免费的。何乐而不为？</p>
@@ -260,7 +260,7 @@
     
     <entry>
       <title><![CDATA[Scrapy爬虫 + Tkinter爬取天猫热门商品]]></title>
-      <url>http://hirojisawatari.github.io/2016/12/19/3/</url>
+      <url>http://www.katouspace.com/2016/12/19/3/</url>
       <content type="html"><![CDATA[<p>每当双十一、双十二，看着淘宝、天猫、京东网页上琳琅满目的商品，经常有人会因为选择困难症不知道该购买什么好。而且购物网站商品的排列顺序经常会受到人为控制。因此，一个具有通过输入关键字，筛选相关热门产品并按热门程度排序的程序是有存在意义的。<a id="more"></a>本程序以天猫为例，使用Python语言开发，利用Scrapy框架爬取网页信息，利用Tkinter框架构建程序GUI。源代码已上传至GitHub：<a href="https://github.com/HirojiSawatari/FindGoods" target="_blank" rel="external">https://github.com/HirojiSawatari/FindGoods</a><br>最终界面如下所示：</p>
 <p><img src="\images\3_1.png" alt="Screenshot"></p>
 <h3 id="一、框架安装"><a href="#一、框架安装" class="headerlink" title="一、框架安装"></a>一、框架安装</h3><p>Tkinter框架为内置模块，无需额外安装，而Scrapy框架安装方法见官方链接：<a href="https://doc.scrapy.org/en/latest/intro/install.html" target="_blank" rel="external">https://doc.scrapy.org/en/latest/intro/install.html</a></p>
@@ -319,7 +319,7 @@
     
     <entry>
       <title><![CDATA[Android开发获取设备硬件相关信息]]></title>
-      <url>http://hirojisawatari.github.io/2016/11/22/2/</url>
+      <url>http://www.katouspace.com/2016/11/22/2/</url>
       <content type="html"><![CDATA[<p>在安卓开发过程中，有时需要获取设备硬件信息以及网络信息，包括设备型号、CPU信息、RAM以及ROM信息、摄像头信息、分辨率、运营商信息等。网上逐条搜索相关方法比较繁琐，因此本文总结了相关信息的具体获取方法。<a id="more"></a>本文所有代码能获取的设备信息如下图所示：</p>
 <p><img src="\images\2_1.png" alt="Screenshot"></p>
 <p>首先在manifest.xml添加以下权限：</p>
@@ -386,7 +386,7 @@
     
     <entry>
       <title><![CDATA[十三世纪上半叶蒙古高原气候变化特征与成因分析]]></title>
-      <url>http://hirojisawatari.github.io/2016/10/07/5/</url>
+      <url>http://www.katouspace.com/2016/10/07/5/</url>
       <content type="html"><![CDATA[<p>摘要：利用通用地球系统模式CESM的过去2000年气候模拟试验结果，在与历史重建资料以及观测/再分析资料进行对比验证的基础上，分析了蒙古帝国扩张时期，即十三世纪上半叶蒙古高原气候变化的特征并初步探讨了其成因。<a id="more"></a>结果表明：蒙古高原地区在公元1200至1250年间气候较为温暖湿润。地表温度的变化全区一致增暖，其变化在多年际尺度上主要受气候系统内部变率影响，而在年代际尺度上主要受太阳辐射变化影响。降水量的变化同样呈现全区一致增加，且由北向南距平值逐渐增大，其主要受太阳辐射影响。</p>
 <p>关键词：气候变化；气候模拟；蒙古帝国；区域差异；成因分析</p>
 <h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h3><p>近年来全球气候极端事件频发，气候变化研究已成为科学界关注的焦点。IPCC第五次评估报告指出，未来气候变化的加剧很有可能带来更多的极端天气与气候事件，从而对人类生存环境以及经济发展造成严重威胁[1]。如何应对气候的剧烈变化已成为人类社会可持续发展中的重大课题。探究历史时期气候变化与社会变迁之间的关系，能够为应对当前及未来全球气候变化提供参考和借鉴[2]，增强对当代气候变化影响与人类社会适应的理解[3]。因此，探究社会变迁背后的自然气候因素已成为当前全球变化研究的前沿热点[4-5]。</p>
@@ -447,7 +447,7 @@
     
     <entry>
       <title><![CDATA[求索路（一）]]></title>
-      <url>http://hirojisawatari.github.io/2015/05/25/1/</url>
+      <url>http://www.katouspace.com/2015/05/25/1/</url>
       <content type="html"><![CDATA[<p>路漫漫其修远兮，吾将上下而求索。<a id="more"></a></p>
 <p>一个月前的今天，祖父毫无征兆地突然去世；一个月后的今天，我收拾行李即将离开辽师。躺在空荡荡的床上，望着嬉笑着的室友，突然想写点什么。</p>
 <p>一切要从三年前说起。</p>
@@ -486,7 +486,7 @@
     
     <entry>
       <title><![CDATA[利用主成分分析评价全国31个省市自治区综合发展实力]]></title>
-      <url>http://hirojisawatari.github.io/2013/11/20/13/</url>
+      <url>http://www.katouspace.com/2013/11/20/13/</url>
       <content type="html"><![CDATA[<p>主成份分析的主要目的是希望用较少的变量去解释原来资料中的大部分变异，将我们手中许多相关性很高的变量转化成彼此相互独立或不相关的变量。通常是选出比原始变量个数少、能解释大部分资料中的变异的几个新变量，即所谓主成份，并用以解释资料的综合性指标。<a id="more"></a>由此可见，主成份分析实际上是一种降维方法。</p>
 <p>主成份分析与因子分析的用途如下：（1）用于多元回归分析，解决共线性问题。如前所述，利用主成份分析提取出主要信息，然后使用提取出的主成份代替原变量进行分析，就可以避开原变量的共线性问题。（2）多指标综合评价时突出重点进行评价。当针对多种相关指标前提下，需要对于对于指标进行化简，然后用“主成份指标”进行加权评价，可以有效解决“主观权重”问题，并能够突出重点。（3）用于多指标聚类分析。存在相关关系密切的多种指标进行聚类分析时，需要在主成份分析的基础上进一步作出聚类分析，使类别划分更合理，更易得到合理的解释。</p>
 <h3 id="一、数据收集与整理"><a href="#一、数据收集与整理" class="headerlink" title="一、数据收集与整理"></a>一、数据收集与整理</h3><p>利用《中国统计年鉴2012》，收集进行地区评级所需要的原始数据。原始数据表如下图所示：</p>
@@ -532,7 +532,7 @@
     
     <entry>
       <title><![CDATA[ArcGIS 10关系类及注释类操作方法]]></title>
-      <url>http://hirojisawatari.github.io/2013/10/10/9/</url>
+      <url>http://www.katouspace.com/2013/10/10/9/</url>
       <content type="html"><![CDATA[<p>地理数据库中的关系类用于管理一个类（要素类或表）中的对象与另一个类中的对象之间的关联。而注释类则通过标注要素某一字段用于识别要素。<a id="more"></a></p>
 <h3 id="一、建立个人空间数据库"><a href="#一、建立个人空间数据库" class="headerlink" title="一、建立个人空间数据库"></a>一、建立个人空间数据库</h3><p>打开ArcCatalog，选定合适的位置建立个人空间数据库，这次在“desktop/homework”路径下建立个人空间数据库，步骤如下所示：</p>
 <p><img src="\images\9_1.png" alt="Screenshot"></p>
@@ -591,7 +591,7 @@
     
     <entry>
       <title><![CDATA[ArcGIS 10属性域与子类型操作方法]]></title>
-      <url>http://hirojisawatari.github.io/2013/09/24/8/</url>
+      <url>http://www.katouspace.com/2013/09/24/8/</url>
       <content type="html"><![CDATA[<p>属性域是指地理数据库中，一种用于强制保证数据完整性的机制。属性域可定义要素类或非空间属性表中的字段所允许的值。如果要素或非空间对象已被分组为各个子类型，则可为每个子类型分配不同的属性域。而子类型是要素类中具有相同属性的要素的子集，或表中具有相同属性的对象的子集。可通过它们对数据进行分类。<a id="more"></a></p>
 <h3 id="一、建立个人空间数据库"><a href="#一、建立个人空间数据库" class="headerlink" title="一、建立个人空间数据库"></a>一、建立个人空间数据库</h3><p>打开ArcCatalog，选定一个合适的位置建立个人空间数据库，此作业以“desktop/homework”文件夹为例，步骤如下所示：</p>
 <p><img src="\images\8_1.png" alt="Screenshot"></p>
@@ -647,7 +647,7 @@
     
     <entry>
       <title><![CDATA[ArcGIS 10根据DEM数据与小流域数据获取最短路径]]></title>
-      <url>http://hirojisawatari.github.io/2013/06/04/12/</url>
+      <url>http://www.katouspace.com/2013/06/04/12/</url>
       <content type="html"><![CDATA[<p>在ArcGIS中，在已知起止点的情况下，利用数字高程模型数据与小流域数据，可以很方便地分析得到两点之间在空间上的最短距离路径。<a id="more"></a></p>
 <h3 id="一、导入数据"><a href="#一、导入数据" class="headerlink" title="一、导入数据"></a>一、导入数据</h3><p>打开ArcGIS，将dem(高程数据) 、startPot (路径源点数据) 、endPot (路径终点数据) 、river (小流域数据)导入后如下图所示：</p>
 <p><img src="\images\12_1.png" alt="Screenshot"></p>
@@ -699,7 +699,7 @@
     
     <entry>
       <title><![CDATA[ENVI彩色增强操作]]></title>
-      <url>http://hirojisawatari.github.io/2012/11/23/11/</url>
+      <url>http://www.katouspace.com/2012/11/23/11/</url>
       <content type="html"><![CDATA[<p>彩色增强是将一个波段或单一的黑白图像变换为彩色图像，从而把人眼不能区分的微小的灰度差别显示为明显的色彩差异，从而便于解译和提取有用信息。<a id="more"></a>本文中利用ENVI对影像进行彩色合成，使得影像色彩接近地物的真实色彩。然后将植被显示为红色。最后从中提取人工植被。</p>
 <p>本文中以“can_tmr”文件为例进行彩色增强操作。</p>
 <h3 id="一、还原地物真实色彩"><a href="#一、还原地物真实色彩" class="headerlink" title="一、还原地物真实色彩"></a>一、还原地物真实色彩</h3><p>要处理的图像can_tmr包括6个波段，分别观察6个波段的单波段影像，通过 “Cursor Location/Value”窗口会发现，在TM Band 4图像中植被分布区域的灰度值最大，几乎接近255。而其他波段植被分布区域相对较暗。因此，要使植被区域接近真实色彩，则TM 4为绿色波段（G），同时可以采用拉伸的方法、代数运算法等等来保证绿色为255。</p>
@@ -753,7 +753,7 @@
     
     <entry>
       <title><![CDATA[ENVI图像增强操作]]></title>
-      <url>http://hirojisawatari.github.io/2012/10/30/10/</url>
+      <url>http://www.katouspace.com/2012/10/30/10/</url>
       <content type="html"><![CDATA[<p>在ENVI中，可以进行图像增强操作以突出遥感图像的某种特征，扩大不同影像特征间的差别，使之更适合实际应用。<a id="more"></a>通过截取区域内灰度变化值大，边界明显，细节信息丰富的区域来实现高频信息提取操作。通过对截取图像进行拉普拉斯滤波操作，了解拉普拉斯滤波可以增强原图像的边缘线条。通过进行中值滤波操作，认识到中值滤波可以实现保留大于卷积核的边缘的同时平滑图像的操作。通过进行定向滤波操作以及改变相应角度，可以了解到随着角度的变化，相应方向的线状信息图像得到补充，而其余方向的线状信息而被削减。</p>
 <p>本文中以“lon_spot”文件为例进行图像增强操作。</p>
 <h3 id="一、高频信息提取"><a href="#一、高频信息提取" class="headerlink" title="一、高频信息提取"></a>一、高频信息提取</h3><p>首先用ENVI打开“lon_spot”文件，打开工具栏中Basic Tools-&gt;Resize Data，然后打开Spetial Subset-&gt;image寻找灰度值大的区域（即为图中灰度值变化程度大的区域），并调整所选区域的大小。</p>
