@@ -1093,12 +1093,14 @@ code {
 .content-wrapper {
   z-index: 800;
   width: 68%;
-  max-width: 960px;
+  /* max-width: 960px; */
   margin-left: 32%; }
 
 .content-wrapper__inner {
+  background: rgba(255,255,255,0.45) none repeat scroll 0 0 !important;
+  background-color: #000;
   margin: 0 10%;
-  padding: 50px 0; }
+  padding: 50px; }
 
 .footer {
   display: block;
