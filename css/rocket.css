@@ -83,3 +83,10 @@
   margin-top: 7px;
   margin-left: 7px;
 }
+
+
+@media all and (max-width: 960px) {
+  #rocket-to-top.rocket-to-top-on{
+    display:none;
+  }
+}
