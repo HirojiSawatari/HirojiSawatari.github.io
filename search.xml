@@ -4,6 +4,54 @@
   
     
     <entry>
+      <title><![CDATA[在Linux上移植CESM1.0.3模式]]></title>
+      <url>http://www.katouspace.com/2017/04/23/16/</url>
+      <content type="html"><![CDATA[<p>通用地球系统模式（Community Earth System Model, CESM）是由美国国家大气中心于2010年发布的新一代地球系统模式，是目前最先进、使用最广泛的地球系统模式之一。本文以CESM1.0.3为例，介绍CESM模式在Linux上的移植方法。<a id="more"></a>本文内容参考该贴：<a href="http://bbs.06climate.com/forum.php?mod=viewthread&amp;tid=15655" target="_blank" rel="external">成功移植CESM模式（介绍）——Porting CESM via user defined machine files</a>。</p>
+<h3 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h3><p>移植之前首先需要安装netCDF、intel-Fortran与impi。此外，需提前下载模式运行需要的inputdata，可利用svn在该网址下载：<a href="https://svn-ccsm-inputdata.cgd.ucar.edu/trunk/inputdata" target="_blank" rel="external">https://svn-ccsm-inputdata.cgd.ucar.edu/trunk/inputdata</a>。</p>
+<h3 id="二、开始移植"><a href="#二、开始移植" class="headerlink" title="二、开始移植"></a>二、开始移植</h3><h4 id="1、建立Machine"><a href="#1、建立Machine" class="headerlink" title="1、建立Machine"></a>1、建立Machine</h4><p>首先将模式拷贝至目录中，进入cesm1_0_3/scripts/ccsm_utils/Machines目录，首先打开config_machines.xml，在文件末尾添加自己的机器信息，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">machine</span> <span class="attr">MACH</span>=<span class="string">"the"</span></span></div><div class="line">         <span class="attr">DESC</span>=<span class="string">"the, os is Linux, 12 pes/node, batch system is something about IBM"</span></div><div class="line">         <span class="attr">EXEROOT</span>=<span class="string">"/gpfsES/geo/the/cesm_amoc/$CASE"</span></div><div class="line">         <span class="attr">OBJROOT</span>=<span class="string">"$EXEROOT"</span></div><div class="line">         <span class="attr">INCROOT</span>=<span class="string">"$EXEROOT/lib/include"</span></div><div class="line">         <span class="attr">DIN_LOC_ROOT_CSMDATA</span>=<span class="string">"/gpfsES/geo/the/CESM/inputdata"</span></div><div class="line">         <span class="attr">DIN_LOC_ROOT_CLMQIAN</span>=<span class="string">"/gpfsES/geo/the/CESM/inputdata/atm/datm7/atm_forcing.datm7.Qian.T62.c080727"</span></div><div class="line">         <span class="attr">DOUT_S_ROOT</span>=<span class="string">"/gpfsES/geo/the/cesm_amoc/Archive/$CASE"</span></div><div class="line">         <span class="attr">DOUT_L_HTAR</span>=<span class="string">"TRUE"</span></div><div class="line">         <span class="attr">DOUT_L_MSROOT</span>=<span class="string">"UNSET"</span></div><div class="line">         <span class="attr">CCSM_BASELINE</span>=<span class="string">"UNSET"</span></div><div class="line">         <span class="attr">CCSM_CPRNC</span>=<span class="string">"UNSET"</span></div><div class="line">         <span class="attr">OS</span>=<span class="string">"Linux"</span></div><div class="line">         <span class="attr">BATCHQUERY</span>=<span class="string">"qstat"</span></div><div class="line">         <span class="attr">BATCHSUBMIT</span>=<span class="string">"qsub"</span></div><div class="line">         <span class="attr">GMAKE_J</span>=<span class="string">"1"</span></div><div class="line">         <span class="attr">MAX_TASKS_PER_NODE</span>=<span class="string">"12"</span></div><div class="line">         <span class="attr">MPISERIAL_SUPPORT</span>=<span class="string">"FALSE"</span> /&gt;</div></pre></td></tr></table></figure>
+<p>其中MACH字段为机器名，EXEROOT为之后建立的case目录，DIN_LOC_ROOT_CSMDATA为inputdata目录，DOUT_S_ROOT为模式结果输出目录。</p>
+<p>之后复制Machines文件夹中的env_machopts.###、Macros.###、mkbatch.###并将拓展名修改为自己的机器名，再打开env_machopts文件，修改其中netCDF、mpi等路径以适应当前系统。最后打开mkbatch文件，修改mach为新建的机器名。</p>
+<h4 id="2、生成（create）Case"><a href="#2、生成（create）Case" class="headerlink" title="2、生成（create）Case"></a>2、生成（create）Case</h4><p>进入/cesm1_0_3/scripts目录下，执行以下指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./create_newcase -case ~/cesm_amoc/mask_2004 -compset B1850 -res T31_g37 -mach the</div></pre></td></tr></table></figure>
+<p>其中-case后参数为case路径，-res后为分辨率，-mach后为机器名。-compset和-res的设置参数可参考CESM用户手册。</p>
+<h4 id="3、配置（configure）Case"><a href="#3、配置（configure）Case" class="headerlink" title="3、配置（configure）Case"></a>3、配置（configure）Case</h4><p>进入Case目录下，打开env_conf.xml，修改以下参数：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--"Run initialization type, valid values: startup,hybrid,branch (char) " --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">entry</span> <span class="attr">id</span>=<span class="string">"RUN_TYPE"</span>   <span class="attr">value</span>=<span class="string">"hybrid"</span>  /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--"Run start date (yyyy-mm-dd). Only used for startup or hybrid runs (char) " --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">entry</span> <span class="attr">id</span>=<span class="string">"RUN_STARTDATE"</span>   <span class="attr">value</span>=<span class="string">"0001-01-01"</span>  /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--"Reference case for hybrid or branch runs (char) " --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">entry</span> <span class="attr">id</span>=<span class="string">"RUN_REFCASE"</span>   <span class="attr">value</span>=<span class="string">"xiao845"</span>  /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--"Reference date for hybrid or branch runs (yyyy-mm-dd) (char) " --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">entry</span> <span class="attr">id</span>=<span class="string">"RUN_REFDATE"</span>   <span class="attr">value</span>=<span class="string">"2004-01-01"</span>  /&gt;</span></div></pre></td></tr></table></figure>
+<p>参数意义在备注中已有介绍。其中，只有RUN_TYPE为hybrid和branch时后两个参数有意义。</p>
+<p>之后打开env_mach_pes.xml文件，配置好你所要使用的cpu核心数。</p>
+<p>再打开env_run.xml文件，设置模式运行年份，例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--"sets the run length with STOP_N and STOP_DATE, valid values: none,never,nsteps,nstep,nseconds,nsecond,nminutes,nminute,nhours,nhour,ndays,nday,nmonths,nmonth,nyears,nyear,date,ifdays0,end (char) " --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">entry</span> <span class="attr">id</span>=<span class="string">"STOP_OPTION"</span>   <span class="attr">value</span>=<span class="string">"nyears"</span>  /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--"sets the run length with STOP_OPTION and STOP_DATE (integer) " --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">entry</span> <span class="attr">id</span>=<span class="string">"STOP_N"</span>   <span class="attr">value</span>=<span class="string">"2000"</span>  /&gt;</span></div></pre></td></tr></table></figure>
+<p>上面设置为模式持续模拟2000年。</p>
+<p>修改完毕后，执行以下指令保存配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure -case</div></pre></td></tr></table></figure>
+<p>若需重新配置，需使用-cleanall指令删除之前的配置并初始化。</p>
+<h4 id="4、构建（building）Case"><a href="#4、构建（building）Case" class="headerlink" title="4、构建（building）Case"></a>4、构建（building）Case</h4><p>在Case目录中打开新生成的Buildconf目录，打开cam.buildnml.csh文件以修改模式运行参数以及导入的强迫场路径等信息。若之前RUN_TYPE为hybrid和branch，还需要向Case根目录的run文件夹拷贝参照试验的rest文件。</p>
+<p>上述工作完成后，返回Case根目录，执行以下指令执行build：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./mask_2004.the.build</div></pre></td></tr></table></figure>
+<p>之后若需重新配置，需首先执行./mask_2004.the.clean_build清除build。</p>
+<h4 id="5、提交作业"><a href="#5、提交作业" class="headerlink" title="5、提交作业"></a>5、提交作业</h4><p>build完成后，执行以下指令即可提交作业：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./mask_2004.the.submit</div></pre></td></tr></table></figure>
+<p>之后通过qstat可以查询任务运行状态，qdel停止任务，任务若出错停止可以在Case的run目录查询错误log文件。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech Blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> CESM </tag>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[为Huno主题添加相册功能]]></title>
       <url>http://www.katouspace.com/2017/02/27/15/</url>
       <content type="html"><![CDATA[<p>本博客基于Hexo博客框架，主题为Huno。Huno主题默认未实现相册功能，因此我们需自行编写相册以实现在博客网站中展示图片集的功能。<a id="more"></a>本博客最终实现的相册界面如下所示：</p>
@@ -435,11 +483,11 @@
         
         <tags>
             
+            <tag> CESM </tag>
+            
             <tag> Paleoclimate </tag>
             
             <tag> NCL </tag>
-            
-            <tag> CESM </tag>
             
         </tags>
         
