@@ -22,7 +22,7 @@
 <meta property="og:url" content="http://www.katouspace.com/2017/04/23/16/index.html">
 <meta property="og:site_name" content="Ka Tou Space">
 <meta property="og:description" content="通用地球系统模式（Community Earth System Model, CESM）是由美国国家大气中心于2010年发布的新一代地球系统模式，是目前最先进、使用最广泛的地球系统模式之一。本文以CESM1.0.3为例，介绍CESM模式在Linux上的移植方法。">
-<meta property="og:updated_time" content="2017-04-23T06:21:51.373Z">
+<meta property="og:updated_time" content="2017-04-26T06:53:28.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Linux上移植CESM1.0.3模式 | Ka Tou Space">
 <meta name="twitter:description" content="通用地球系统模式（Community Earth System Model, CESM）是由美国国家大气中心于2010年发布的新一代地球系统模式，是目前最先进、使用最广泛的地球系统模式之一。本文以CESM1.0.3为例，介绍CESM模式在Linux上的移植方法。">
@@ -606,7 +606,7 @@ classes that you can use:
 <h3 id="二、开始移植"><a href="#二、开始移植" class="headerlink" title="二、开始移植"></a>二、开始移植</h3><h4 id="1、建立Machine"><a href="#1、建立Machine" class="headerlink" title="1、建立Machine"></a>1、建立Machine</h4><p>首先将模式拷贝至目录中，进入cesm1_0_3/scripts/ccsm_utils/Machines目录，首先打开config_machines.xml，在文件末尾添加自己的机器信息，如下所示：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">machine</span> <span class="attr">MACH</span>=<span class="string">"the"</span></span></div><div class="line">         <span class="attr">DESC</span>=<span class="string">"the, os is Linux, 12 pes/node, batch system is something about IBM"</span></div><div class="line">         <span class="attr">EXEROOT</span>=<span class="string">"/gpfsES/geo/the/cesm_amoc/$CASE"</span></div><div class="line">         <span class="attr">OBJROOT</span>=<span class="string">"$EXEROOT"</span></div><div class="line">         <span class="attr">INCROOT</span>=<span class="string">"$EXEROOT/lib/include"</span></div><div class="line">         <span class="attr">DIN_LOC_ROOT_CSMDATA</span>=<span class="string">"/gpfsES/geo/the/CESM/inputdata"</span></div><div class="line">         <span class="attr">DIN_LOC_ROOT_CLMQIAN</span>=<span class="string">"/gpfsES/geo/the/CESM/inputdata/atm/datm7/atm_forcing.datm7.Qian.T62.c080727"</span></div><div class="line">         <span class="attr">DOUT_S_ROOT</span>=<span class="string">"/gpfsES/geo/the/cesm_amoc/Archive/$CASE"</span></div><div class="line">         <span class="attr">DOUT_L_HTAR</span>=<span class="string">"TRUE"</span></div><div class="line">         <span class="attr">DOUT_L_MSROOT</span>=<span class="string">"UNSET"</span></div><div class="line">         <span class="attr">CCSM_BASELINE</span>=<span class="string">"UNSET"</span></div><div class="line">         <span class="attr">CCSM_CPRNC</span>=<span class="string">"UNSET"</span></div><div class="line">         <span class="attr">OS</span>=<span class="string">"Linux"</span></div><div class="line">         <span class="attr">BATCHQUERY</span>=<span class="string">"qstat"</span></div><div class="line">         <span class="attr">BATCHSUBMIT</span>=<span class="string">"qsub"</span></div><div class="line">         <span class="attr">GMAKE_J</span>=<span class="string">"1"</span></div><div class="line">         <span class="attr">MAX_TASKS_PER_NODE</span>=<span class="string">"12"</span></div><div class="line">         <span class="attr">MPISERIAL_SUPPORT</span>=<span class="string">"FALSE"</span> /&gt;</div></pre></td></tr></table></figure>
 <p>其中MACH字段为机器名，EXEROOT为之后建立的case目录，DIN_LOC_ROOT_CSMDATA为inputdata目录，DOUT_S_ROOT为模式结果输出目录。</p>
-<p>之后复制Machines文件夹中的env_machopts.###、Macros.###、mkbatch.###并将拓展名修改为自己的机器名，再打开env_machopts文件，修改其中netCDF、mpi等路径以适应当前系统。最后打开mkbatch文件，修改mach为新建的机器名。</p>
+<p>之后复制Machines文件夹中的env_machopts.###、Macros.###、mkbatch.###并将拓展名修改为自己的机器名，再打开env_machopts、Macros文件，修改其中netCDF、mpi等路径以适应当前系统。最后打开mkbatch文件，修改mach为新建的机器名。</p>
 <h4 id="2、生成（create）Case"><a href="#2、生成（create）Case" class="headerlink" title="2、生成（create）Case"></a>2、生成（create）Case</h4><p>进入/cesm1_0_3/scripts目录下，执行以下指令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./create_newcase -case ~/cesm_amoc/mask_2004 -compset B1850 -res T31_g37 -mach the</div></pre></td></tr></table></figure>
 <p>其中-case后参数为case路径，-res后为分辨率，-mach后为机器名。-compset和-res的设置参数可参考CESM用户手册。</p>
@@ -1065,6 +1065,20 @@ classes that you can use:
 	
     <!-- <script type="text/javascript" color="0,0,0" opacity='0.3' zIndex="-1" count="100" src="/js/canvas-nest.min.js"></script> -->
 
+    <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
+        <script>tpwidget("init", {
+        "flavor": "bubble",
+        "location": "WX4FBXXFKE4F",
+        "geolocation": "enabled",
+        "position": "top-right",
+        "margin": "10px 10px",
+        "language": "zh-chs",
+        "unit": "c",
+        "theme": "black",
+        "uid": "U0A8AFDF45",
+        "hash": "9050924bc55b4bd728138c05019bcbe4"
+    });
+    tpwidget("show");</script>
 
 </body>
 
